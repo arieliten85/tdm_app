@@ -41,7 +41,7 @@ function Card(props: ProductoProps) {
   // Función para abrir el enlace de WhatsApp
   const openWhatsApp = (props: ProductoProps) => {
     // Número de WhatsApp al que se enviará el mensaje
-    const phoneNumber = "541162331432";
+    const phoneNumber = "541162331431";
     // Mensaje predefinido que incluye el título del producto
     const message = `¡Hola! Estoy interesado en el producto:.
   -----------------------
