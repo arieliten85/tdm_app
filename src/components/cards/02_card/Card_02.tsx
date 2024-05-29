@@ -31,10 +31,33 @@ export function Card_02() {
   );
 }
 
-function Card(props: { img: string; title: string; description: string }) {
+interface ProductoProps {
+  img: string;
+  title: string;
+  description: string;
+}
+
+function Card(props: ProductoProps) {
   // Función para abrir el enlace de WhatsApp
-  const openWhatsApp = () => {
-    window.open("https://wa.me/541162331431", "_blank");
+  const openWhatsApp = (props: ProductoProps) => {
+    // Número de WhatsApp al que se enviará el mensaje
+    const phoneNumber = "541162331432";
+    // Mensaje predefinido que incluye el título del producto
+    const message = `¡Hola! Estoy interesado en el producto:.
+  -----------------------
+   *Titulo*: ${props.title}
+   *imagen*: ${props.img}
+  -----------------------
+  ¿Podrías brindarme más información?`;
+
+    // Formatear el mensaje para que sea una URL válida
+    const formattedMessage = encodeURIComponent(message);
+
+    // Abrir WhatsApp con el número y el mensaje predefinido
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${formattedMessage}`,
+      "_blank"
+    );
   };
 
   return (
@@ -44,7 +67,7 @@ function Card(props: { img: string; title: string; description: string }) {
         <h2 className="card__title">{props.title}</h2>
         <p className="card__description">{props.description}</p>
       </div>
-      <button className="card__btn" onClick={openWhatsApp}>
+      <button className="card__btn" onClick={() => openWhatsApp(props)}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: "24px" }} />{" "}
         Contactar por WhatsApp
       </button>
