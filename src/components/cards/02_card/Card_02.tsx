@@ -34,7 +34,7 @@ export function Card_02() {
 function Card(props: { img: string; title: string; description: string }) {
   // Función para abrir el enlace de WhatsApp
   const openWhatsApp = () => {
-    window.open("https://wa.me/541162331432", "_blank");
+    window.open("https://wa.me/541162331431", "_blank");
   };
 
   return (
