@@ -3,7 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+
 export function Card_02() {
+  const [counts, setCounts] = useState({});
+
+  const increment = (title) => {
+    setCounts((prevCounts) => ({
+      ...prevCounts,
+      [title]: (prevCounts[title] || 0) + 1,
+    }));
+  };
+
+  const decrement = (title) => {
+    setCounts((prevCounts) => ({
+      ...prevCounts,
+      [title]: prevCounts[title] > 0 ? prevCounts[title] - 1 : 0,
+    }));
+  };
+
   return (
     <div className="wrapper">
       <Card
@@ -11,6 +28,9 @@ export function Card_02() {
         title="Cookies"
         description="¡Irresistible! Nuestra cookie, con chispas de chocolate, te invita a una experiencia de sabor única. ¡Ordénala ahora y déjate tentar!"
         price="$2.50"
+        count={counts["Cookies"] || 0}
+        increment={() => increment("Cookies")}
+        decrement={() => decrement("Cookies")}
       />
 
       <Card
@@ -18,6 +38,9 @@ export function Card_02() {
         title="Brownie Tentación"
         description="Una tentación irresistible! Nuestro brownie, con su textura densa y exquisito sabor a chocolate, te invita a disfrutar de un buen momento"
         price="$3.00"
+        count={counts["Brownie Tentación"] || 0}
+        increment={() => increment("Brownie Tentación")}
+        decrement={() => decrement("Brownie Tentación")}
       />
 
       <Card
@@ -25,12 +48,18 @@ export function Card_02() {
         title="Pastafrola Artesanal"
         description="¡Clásica y deliciosa! Nuestra pastafrola combina una base crujiente con dulce de membrillo casero. ¡Ordénala ahora y disfruta de un sabor auténtico en cada bocado!"
         price="$4.50"
+        count={counts["Pastafrola Artesanal"] || 0}
+        increment={() => increment("Pastafrola Artesanal")}
+        decrement={() => decrement("Pastafrola Artesanal")}
       />
       <Card
         img="https://chocolateaguila.com/archivos/recetas/receta-262_budin-de-zanahorias.jpg"
         title="Budín de Zanahoria"
-        description="Nuestro budín de zanahoria, con su suave textura y el toque cítrico del glaseado de limón, te invita a un festín de sabores caseros. Cada bocado es una explosión de sabor que te dejará deseando más. "
+        description="Nuestro budín de zanahoria, con su suave textura y el toque cítrico del glaseado de limón, te invita a un festín de sabores caseros. Cada bocado es una explosión de sabor que te dejará deseando más."
         price="$3.50"
+        count={counts["Budín de Zanahoria"] || 0}
+        increment={() => increment("Budín de Zanahoria")}
+        decrement={() => decrement("Budín de Zanahoria")}
       />
     </div>
   );
@@ -40,19 +69,32 @@ interface ProductoProps {
   img: string;
   title: string;
   description: string;
-  price: string; // Nueva propiedad para el precio
+  price: string;
+  count: number;
+  increment: () => void;
+  decrement: () => void;
 }
 
 function Card(props: ProductoProps) {
   const openWhatsApp = (props: ProductoProps) => {
     const phoneNumber = "541162331432";
-    const message = `¡Hola! Estoy interesado en el producto:.
-  -----------------------
-   *Titulo*: ${props.title}
-   *imagen*: ${props.img}
+    const message = `¡Hola Mary!,
+    
+Me gustaría encargarte el siguiente producto:
+-----------------------
+   *Título*: ${props.title}
    *Precio*: ${props.price}
-  -----------------------
-  ¿Podrías brindarme más información?`;
+   *Cantidad*: ${props.count}
+-----------------------
+
+*INFO COMPRA*
+Por favor, esperar confirmacion de stock antes de proceder con el pago. 
+  
+*Forma de pago:*
+Mecado pago alias: [tododulcemary.mp]
+
+`;
+
     const formattedMessage = encodeURIComponent(message);
 
     window.open(
@@ -72,7 +114,11 @@ function Card(props: ProductoProps) {
           <strong className="text-seconday">...Ver más</strong>
         </p>
       </div>
-      <Counter />
+      <Counter
+        count={props.count}
+        increment={props.increment}
+        decrement={props.decrement}
+      />
       <button
         className="card__btn_whatsapp"
         onClick={() => openWhatsApp(props)}
@@ -84,19 +130,7 @@ function Card(props: ProductoProps) {
   );
 }
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-
+const Counter = ({ count, increment, decrement }) => {
   return (
     <div className="counter-container">
       <Button
