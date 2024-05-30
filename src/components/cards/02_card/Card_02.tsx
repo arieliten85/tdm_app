@@ -5,16 +5,16 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export function Card_02() {
-  const [counts, setCounts] = useState({});
+  const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
-  const increment = (title) => {
+  const increment = (title: string) => {
     setCounts((prevCounts) => ({
       ...prevCounts,
       [title]: (prevCounts[title] || 0) + 1,
     }));
   };
 
-  const decrement = (title) => {
+  const decrement = (title: string) => {
     setCounts((prevCounts) => ({
       ...prevCounts,
       [title]: prevCounts[title] > 0 ? prevCounts[title] - 1 : 0,
@@ -88,10 +88,10 @@ Me gustaría encargarte el siguiente producto:
 -----------------------
 
 *INFO COMPRA*
-Por favor, esperar confirmacion de stock antes de proceder con el pago. 
-  
+Por favor, espera la confirmación de stock antes de proceder con el pago.
+
 *Forma de pago:*
-Mecado pago alias: [tododulcemary.mp]
+Mercado Pago, alias: tododulcemary.mp
 
 `;
 
@@ -130,7 +130,13 @@ Mecado pago alias: [tododulcemary.mp]
   );
 }
 
-const Counter = ({ count, increment, decrement }) => {
+interface CounterProps {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+}
+
+const Counter = ({ count, increment, decrement }: CounterProps) => {
   return (
     <div className="counter-container">
       <Button
