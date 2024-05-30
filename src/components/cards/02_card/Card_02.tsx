@@ -78,21 +78,15 @@ interface ProductoProps {
 function Card(props: ProductoProps) {
   const openWhatsApp = (props: ProductoProps) => {
     const phoneNumber = "541162331432";
-    const message = `¡Hola Mary!,
-    
-Me gustaría encargarte el siguiente producto:
------------------------
-   *Título*: ${props.title}
-   *Precio*: ${props.price}
-   *Cantidad*: ${props.count}
------------------------
+    const message = `¡Hola Mary!
+  Me gustaría encargarte el siguiente producto:
 
-*INFO COMPRA*
-Por favor, espera la confirmación de stock antes de proceder con el pago.
+  *Título*: ${props.title}
+  *Precio*: ${props.price}
+  *Cantidad*: ${props.count}
 
-*Forma de pago:*
-Mercado Pago, alias: tododulcemary.mp
-
+  Por favor, ¿podrías confirmarme si hay disponibilidad de stock?
+  Gracias.
 `;
 
     const formattedMessage = encodeURIComponent(message);
