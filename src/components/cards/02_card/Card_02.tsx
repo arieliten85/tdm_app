@@ -122,6 +122,10 @@ Por favor, ¿podrías confirmarme si hay disponibilidad de stock? 🤔
         <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: "24px" }} /> Haz
         tu pedido ya!
       </button>
+
+      <a href="whatsapp://send?text=https://dulceelena.com.ar/productos/brownie-clasico1/">
+        Compartir en WhatsApp
+      </a>
     </div>
   );
 }
