@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import productos from "../../../api/products.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { Button } from "react-bootstrap";
 
 interface ProductoProps {
   id: string;
@@ -65,10 +68,6 @@ export function DetailsContainer() {
   );
 }
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { Button } from "react-bootstrap";
-
 interface CardProps {
   img: string;
   title: string;
@@ -103,6 +102,22 @@ Por favor, ¿podrías confirmarme si hay disponibilidad de stock? 🤔
     );
   };
 
+  const shareProduct = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: props.title,
+          text: `¡Mira este producto! ${props.title} por solo ${props.price}.`,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error("Error sharing:", error);
+      }
+    } else {
+      alert("Tu navegador no soporta la API de compartir.");
+    }
+  };
+
   return (
     <div className="card">
       <div className="card__info">
@@ -127,12 +142,9 @@ Por favor, ¿podrías confirmarme si hay disponibilidad de stock? 🤔
         tu pedido ya!
       </button>
 
-      <a
-        href="whatsapp://send?text=https://tododulcemary.netlify.app/producto/01"
-        className="text-center"
-      >
+      <button className="text-center card__btn_share" onClick={shareProduct}>
         Compartir en WhatsApp
-      </a>
+      </button>
     </div>
   );
 }
