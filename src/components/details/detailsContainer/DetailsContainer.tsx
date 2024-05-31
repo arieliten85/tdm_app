@@ -128,7 +128,7 @@ Por favor, ¿podrías confirmarme si hay disponibilidad de stock? 🤔
       </button>
 
       <a
-        href="whatsapp://send?text=https://tododulcemary/producto/02.netlify.app"
+        href="whatsapp://send?text=https://tdm-4wmispu8t-ariels-projects-60dd33cd.vercel.app/producto/01"
         className="text-center p-2"
       >
         Compartir en WhatsApp
