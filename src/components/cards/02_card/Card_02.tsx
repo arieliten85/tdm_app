@@ -123,7 +123,7 @@ Por favor, ¿podrías confirmarme si hay disponibilidad de stock? 🤔
         tu pedido ya!
       </button>
 
-      <a href="whatsapp://send?text=https://dulceelena.com.ar/productos/brownie-clasico1/">
+      <a href="whatsapp://send?text=https://tododulcemary.netlify.app">
         Compartir en WhatsApp
       </a>
     </div>
