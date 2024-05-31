@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { NavBar01 } from "./components/navBar01/NavBar01";
 import Home from "./pages/Home";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
+import { DetailsContainer } from "./components/details/detailsContainer/DetailsContainer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavBar01 />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/producto/:id" element={<DetailsContainer />} />
       </Routes>
       <FloatingWhatsApp
         phoneNumber="541162331432"
