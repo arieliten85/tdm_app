@@ -1,22 +1,77 @@
- 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
- @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-*{
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none !important
- }
-
+* {
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none !important;
+}
+ul {
+  margin: 0;
+}
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #fcfcfc;
+  background-color: #ecece9;
 }
 
-.app{
-  margin-top: 90px !important;
+.app {
+  margin-top: 200px !important;
+}
 
+.img_slider {
+  width: 100%;
+  height: 100%;
+}
+.slider_container {
+  display: flex;
+  justify-content: center;
+  margin: 10px !important;
+}
+.slider {
+  max-width: 70%;
+  min-width: 100px;
+}
+.slick-list {
+  // border: black solid;
+
+  max-height: 450px;
+}
+
+.slick-next {
+  right: -3px !important;
+}
+.slick-prev {
+  left: -20px !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 0 !important;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: rgb(97, 93, 93) !important;
+  display: none;
+
+  font-size: 40px !important;
+}
+@media screen and (min-width: 810px) {
+  .slick-prev::before,
+  .slick-next::before {
+    color: rgb(97, 93, 93) !important;
+    display: block;
+    font-size: 40px !important;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .slider {
+    // border: rgb(117, 87, 10) solid;
+    margin: 10px !important;
+  }
+
+  .slick-list {
+    // border: black solid;
+    margin: 20px !important;
+  }
 }

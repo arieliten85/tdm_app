@@ -16,7 +16,6 @@ $clr-gray700: #161d34;
 /*   border radius */
 $radius: 0.2rem;
 
- 
 $font-primery: "Noto Sans", sans-serif;
 
 //CONTENEDOR
@@ -24,14 +23,15 @@ $font-primery: "Noto Sans", sans-serif;
   margin: 2rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 16rem));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   justify-content: center;
-  
+  width: 50% !important;
+  border: rgb(30, 26, 26) solid;
 }
 
 .card {
   box-shadow: 0 0 10px 5px $clr-shadow;
-  border-radius:10px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -45,11 +45,11 @@ $font-primery: "Noto Sans", sans-serif;
 
   &__body {
     margin: 1rem !important;
-    flex-grow: 1  ;
+    flex-grow: 1;
   }
   &__title {
     line-height: 1.4rem;
-    margin-bottom: 0.5rem!important;
+    margin-bottom: 0.5rem !important;
     font-family: $font-primery;
     color: $clr-gray500;
     font-weight: bolder;
@@ -60,13 +60,13 @@ $font-primery: "Noto Sans", sans-serif;
   }
   &__price {
     font-size: 1.4rem;
-    margin-top: 0.6rem!important;
+    margin-top: 0.6rem !important;
     font-family: $font-primery;
     color: $clr-gray500;
     font-weight: bolder;
 
     &::before {
-      content: "$" ;
+      content: "$";
       font-size: 1rem;
       position: relative;
       top: -0.3rem;
@@ -92,5 +92,3 @@ $font-primery: "Noto Sans", sans-serif;
     }
   }
 }
-
- 
