@@ -3,99 +3,74 @@ $sp-1: 10px;
 $sp-2: 20px;
 $sp-3: 30px;
 
-// Width
+// Witdh
 $wd-100: 100%;
 $wd-90: 90%;
 $wd-80: 80%;
 
-// Colors
+// Color
 $white: white;
 $backgroundColorSmallNavbar: rgb(32, 58, 67);
 $backgroundColorNavBar: #84bfae;
 $overlayColor: rgba(29, 28, 28, 0.387);
 $focusedLinkColor: #41c7c2;
-
+$overlayColor: rgba(29, 28, 28, 0.387);
+$focusedLinkColor: #41c7c2;
 .header {
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: $sp-2 0;
   background: $backgroundColorNavBar;
   z-index: 4;
-  padding: 0 !important;
+  //box-shadow:1px 1px 5px 2px black;
 }
 
 .logo {
-  font-size: $sp-2;
+  padding: $sp-2;
   cursor: pointer;
   color: $white;
   font-style: italic;
   font-weight: 400;
-  margin: 25px !important;
-  max-width: 200px;
-  height: auto;
-  transition: max-width 0.3s ease;
-}
-
-.logo.small {
-  max-width: 150px;
+  max-width: 100px;
 }
 
 .navContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  z-index: 3;
-  // width: $wd-80;
-  // Adding position relative to ensure z-index works correctly
-  position: relative;
+  align-items: flex-end;
+  padding: 0 15px !important;
+  width: 100%;
 }
-
-.navContainer ul {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 100vh;
-  background: $backgroundColorSmallNavbar;
-  padding: 50px 0 !important; // Ajustar padding-top para mover los enlaces más abajo
-  z-index: 2;
-  transform: translateX(100%);
-  transition: transform 0.25s ease;
-  overflow-y: auto;
-}
-
-.navContainer li {
-  padding: 10px !important;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.navLink {
-  color: $white;
-}
+// TOGGLE
 
 .navToggle {
   display: block;
   background-color: transparent;
   border: none;
-  width: 100%;
+  height: 43px;
+  width: 38px;
   padding: 8px 8px !important;
-  margin: 20px -8px 20px 0px !important;
+  margin: 10px -8px 10px 0px !important;
   outline: none;
   cursor: pointer;
-  z-index: 5; // Ensure this is higher than header and navContainer
-  position: relative; // Ensure z-index works correctly
-  margin-right: 20px !important;
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  right: 10px;
 }
-
+.navToggle.active span:first-child {
+  transform: rotate(45deg) translate(4.4px, 4.4px);
+}
+.navToggle.active span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+.navToggle.active span:last-child {
+  transform: rotate(-45deg) translate(4.4px, -4.4px);
+}
 .navToggle span {
   position: relative;
   display: block;
@@ -106,24 +81,30 @@ $focusedLinkColor: #41c7c2;
   border-radius: 5px;
   transition: all 0.3s cubic-bezier(1, 0.13, 0.35, 1.09);
 }
-
-.navToggle.active span:first-child {
-  transform: rotate(45deg) translate(4.4px, 4.4px);
+.navToggle.active span {
+  background: $white;
 }
-
-.navToggle.active span:nth-child(2) {
-  width: 0%;
-  opacity: 0;
-}
-
-.navToggle.active span:last-child {
-  transform: rotate(-45deg) translate(4.4px, -4.4px);
-}
-
 .navToggle span:last-child {
   margin-bottom: 0 !important;
 }
 
+.linksContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100vh;
+  background: $backgroundColorSmallNavbar;
+  padding: 58px 0px !important;
+  z-index: 3;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  overflow-y: auto;
+}
+
+.navLink {
+  color: $white;
+}
 .overlay {
   position: fixed;
   left: 0;
@@ -135,42 +116,40 @@ $focusedLinkColor: #41c7c2;
   opacity: 0;
   transition: opacity 1s ease 0.1s;
 }
-
 .overlay.active {
   opacity: 3;
   width: 100%;
   height: 120%;
 }
 
+.linksContainer li {
+  padding: 10px !important;
+}
+
 .focused {
-  // background-color: #d9d5c5;
-  color: #84bfae;
-  font-weight: 500;
+  background-color: $focusedLinkColor;
 }
 
 @media screen and (min-width: 1240px) {
-  .header {
-    flex-direction: column;
-  }
   .navToggle {
     display: none;
   }
 
-  .navContainer {
-    width: $wd-80 !important;
+  .linksContainer li {
+    padding: 10px !important;
   }
 
-  .navContainer ul {
+  .linksContainer {
     position: relative;
-    flex-direction: row;
+    display: flex;
     gap: 15px;
     width: 100%;
-    height: auto;
+    height: 100%;
     background: none;
     padding: 0 !important;
+    z-index: 3;
     transform: none;
-    transition: none;
+    transition: transform 0.25s ease;
     overflow-y: auto;
-    justify-content: center;
   }
 }

@@ -58,15 +58,21 @@ function Card(props: ProductoProps) {
   return (
     <Link to={`/producto/${props.id}`}>
       <div className="card">
-        <div className="card__info">
+        <div className="card__container__img">
           <img src={props.img} className="card__image" alt="Card" />
-          <h2 className="card__title">{props.title}</h2>
-          <p className="card__price">{props.price}</p>
-          <p className="card__description">
-            {props.description.slice(0, 100)}
-            <strong className="text-seconday">...Ver más</strong>
-          </p>
         </div>
+        <div className="card__info">
+          <div className="card__info__text">
+            <h2 className="card__title">{props.title}</h2>
+            <p className="card__price">{props.price}</p>
+            <p className="card__description">
+              {props.description.slice(0, 100)}
+              <strong className="text-seconday">...Ver más</strong>
+            </p>
+          </div>
+        </div>
+
+        <button className=" card__details">Ver más</button>
       </div>
     </Link>
   );

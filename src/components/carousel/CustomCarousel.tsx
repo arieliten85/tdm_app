@@ -1,45 +1,18 @@
-// import Carousel from "react-bootstrap/Carousel";
-
-// export function CustomCarousel() {
-//   const image01 =
-//     "https://images.unsplash.com/photo-1569864358642-9d1684040f43?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-//   return (
-//     <Carousel
-//       style={{
-//         maxHeight: "200px ",
-//         overflow: "hidden",
-
-//         display: "flex",
-//         margin: "0 auto",
-//       }}
-//     >
-//       <Carousel.Item>
-//         <img
-//           src={image01}
-//           alt="First slide"
-//           className="w-100"
-//           style={{ objectFit: "cover", height: "500px" }}
-//         />
-//       </Carousel.Item>
-//     </Carousel>
-//   );
-// }
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import "./customCarousel.scss";
 import Slider from "react-slick";
 
 export function CustomCarousel() {
   const image01 =
-    "https://images.unsplash.com/photo-1569864358642-9d1684040f43?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    "https://dcdn.mitiendanube.com/stores/001/377/634/themes/new_linkedman/2-slide-1714504411269-5658220142-d0bed3eebba43c8ecaf0d7744ae7ba3e1714504423-1920-1920.webp?819690099";
 
   const image02 =
-    "https://images.unsplash.com/photo-1516919549054-e08258825f80?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    "https://dcdn.mitiendanube.com/stores/001/377/634/themes/new_linkedman/2-slide-1714137566562-600619833-d94cac8eff404d1322837221d98e6b361714137577-1920-1920.webp?819690099";
 
   const image03 =
-    "https://plus.unsplash.com/premium_photo-1663133730195-2ce4986a96b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGNha2UlMjBiYWNrZ3JvdW5kfGVufDB8MHwwfHx8MA%3D%3D";
+    "https://dcdn.mitiendanube.com/stores/001/377/634/themes/new_linkedman/1-slide-1653607423820-7339466423-5251f519a986c42dd7eef8dd89214af11653607504-1920-1920.webp?819690099";
 
   const settings = {
     dots: true,
@@ -57,6 +30,9 @@ export function CustomCarousel() {
           </div>
           <div>
             <img src={image02} className=" img_slider" />
+          </div>
+          <div>
+            <img src={image03} className=" img_slider" />
           </div>
         </Slider>
       </div>

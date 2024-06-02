@@ -30,5 +30,38 @@
     "description": "Nuestro budín de zanahoria, con su suave textura y el toque cítrico del glaseado de limón, te invita a un festín de sabores caseros. Cada bocado es una explosión de sabor que te dejará deseando más.",
     "price": "$3.50",
     "count": 0
+  },
+
+  {
+    "id": "05",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_V38fYdTpZZZWBKm2zsmdl2TLhkSowMgietl9YwQg65Bz0p2ltsrousuxyvW6aGwTG8c&usqp=CAU",
+    "title": "Galletas de la Abuela",
+    "description": "Revive los mejores recuerdos con nuestras galletas de la abuela. Repletas de chispas de chocolate y horneadas con amor, son el acompañamiento perfecto para tu café o té. ¡Ordénalas ahora y disfruta de un sabor nostálgico!",
+    "price": "$2.50",
+    "count": 0
+  },
+  {
+    "id": "06",
+    "img": "https://vinomanos.com/wp-content/uploads/2019/11/brownie.jpg",
+    "title": "Brownie de Ensueño",
+    "description": "Sumérgete en la decadencia con nuestro brownie de ensueño. Con una textura fudgy y un intenso sabor a chocolate, es el postre ideal para cualquier amante del cacao. ¡No te resistas y pruébalo hoy mismo!",
+    "price": "$3.00",
+    "count": 0
+  },
+  {
+    "id": "07",
+    "img": "https://media.airedesantafe.com.ar/p/c3bcc6e6562c6e77ac34966c5e42c51f/adjuntos/268/imagenes/002/698/0002698406/1200x675/smart/pastafrola.png",
+    "title": "Pastafrola Tradicional",
+    "description": "Nuestra pastafrola tradicional, con su base crocante y dulce de membrillo artesanal, te transporta a los sabores de la infancia. ¡Ordénala y disfruta de cada mordisco!",
+    "price": "$4.50",
+    "count": 0
+  },
+  {
+    "id": "08",
+    "img": "https://media.airedesantafe.com.ar/p/c3bcc6e6562c6e77ac34966c5e42c51f/adjuntos/268/imagenes/002/698/0002698406/1200x675/smart/pastafrola.png",
+    "title": "Pastafrola Tradicional",
+    "description": "Nuestra pastafrola tradicional, con su base crocante y dulce de membrillo artesanal, te transporta a los sabores de la infancia. ¡Ordénala y disfruta de cada mordisco!",
+    "price": "$6.50",
+    "count": 0
   }
 ]

@@ -1,78 +1,59 @@
-.slider {
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  position: absolute;
-}
-.slider ul {
-  display: flex;
-  animation: cambio 20s infinite alternate linear;
-  width: 400%;
-}
-.slider li {
-  width: 100%;
-  list-style: none;
-}
-.slider img {
+.img_slider {
   width: 100%;
   height: 100%;
 }
-
-.bg {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.651);
+.slider_container {
+  display: flex;
+  justify-content: center;
+  margin: 10px !important;
+}
+.slider {
   width: 100%;
-  height: 500px;
-  overflow: hidden;
+}
+.slick-list {
+  // border: black solid;
 
-  .boxContenedor {
-    border: red solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  max-height: 450px;
+}
 
-    width: 100%;
-    height: 500px;
+.slick-prev {
+  left: -10px !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 0 !important;
+}
 
-    h2 {
-      color: white;
-    }
+.slick-prev::before,
+.slick-next::before {
+  color: rgba(97, 93, 93, 0.651) !important;
+  display: block;
+
+  font-size: 30px !important;
+}
+
+.slick-dots li button::before {
+  font-size: 8px !important;
+}
+@media screen and (min-width: 810px) {
+  .slider {
+    max-width: 80%;
+  }
+  .slick-prev::before,
+  .slick-next::before {
+    display: block;
+    font-size: 40px !important;
   }
 }
 
-@keyframes cambio {
-  0% {
-    margin-left: 0;
-  }
-  20% {
-    margin-left: 0;
+@media screen and (min-width: 1240px) {
+  .slider {
+    max-width: 70%;
+    margin: 10px !important;
   }
 
-  25% {
-    margin-left: -100%;
-  }
-  45% {
-    margin-left: -100%;
-  }
-
-  50% {
-    margin-left: -200%;
-  }
-  70% {
-    margin-left: -200%;
-  }
-
-  75% {
-    margin-left: -300%;
-  }
-  100% {
-    margin-left: -300%;
-  }
-}
-@media only screen and (min-width: 320px) and (max-width: 768px) {
-  .slider,
-  .slider ul,
-  .slider img {
-    height: 100vh;
+  .slick-list {
+    // border: black solid;
+    margin: 20px !important;
   }
 }
