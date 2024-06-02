@@ -54,7 +54,7 @@ interface ProductoProps {
   decrement: () => void;
 }
 
-function Card(props: ProductoProps) {
+export function Card(props: ProductoProps) {
   return (
     <Link to={`/producto/${props.id}`}>
       <div className="card">

@@ -1,5 +1,4 @@
-// Navigation.jsx
-import React from "react";
+import React, { ReactNode, useState } from "react";
 import {
   IoMdHome,
   IoMdSearch,
@@ -7,7 +6,7 @@ import {
   IoMdHeart,
   IoMdContact,
 } from "react-icons/io";
-import "./Navigation.scss"; // Make sure this file is in the same directory
+import "./Navigation.scss"; // Asegúrate de que este archivo esté en el mismo directorio
 
 export const Navigation = () => {
   return (
@@ -30,15 +29,22 @@ export const Navigation = () => {
   );
 };
 
-const MenuItem = ({ href, icon, name, isActive = false }) => {
-  const [active, setActive] = React.useState(isActive);
+interface MenuItemProps {
+  href: string;
+  icon: ReactNode; // Definición explícita del tipo de la prop icon
+  name: string;
+  isActive?: boolean;
+}
+
+const MenuItem = ({ href, icon, name, isActive = false }: MenuItemProps) => {
+  const [active, setActive] = useState(isActive);
 
   const handleClick = () => {
-    // Set all links to inactive
+    // Establecer todos los enlaces en inactivo
     document
       .querySelectorAll(".menu-link")
       .forEach((link) => link.classList.remove("is-active"));
-    // Set the current link to active
+    // Establecer el enlace actual en activo
     setActive(true);
   };
 
