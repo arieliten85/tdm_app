@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+
+.footer {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.footer-column {
+  text-align: center;
+  margin-bottom: 1rem;
+  flex-basis: 100%;
+}
+
+.footer-column h4 {
+  margin: 0.5rem 0;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin: 0.7rem 0;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.footer-logo {
+  width: 150px;
+}
+
+.footer-icons ul li {
+  text-align: center;
+}
+
+.footer-icons ul li .location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-icons ul li .location span {
+  font-size: 1rem;
+  color: #530e0e;
+}
+
+.footer-icons ul li .instagram-icon {
+  color: #ce5c5c;
+}
+
+.footer-icons ul li a:last-child {
+  color: #3b5998;
+}
+
+.location-icon {
+  color: #ff0000;
+}
+
+.footer-icons ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.footer-copyright p {
+  margin: 0;
+}
+.location-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-icons ul li svg {
+  font-size: 1.5rem; /* Tamaño de iconos igualado */
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-column {
+    margin-bottom: 2rem; /* Espaciado adicional entre columnas */
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .footer-logo {
+    width: 250px;
+  }
+  .footer-content {
+    flex-wrap: nowrap;
+  }
+
+  .footer-column {
+    text-align: start;
+    flex-basis: auto;
+    margin-bottom: 0;
+  }
+}

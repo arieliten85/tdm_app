@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Navigation2.scss";
+import "./navigation.scss";
 import { FaSearch } from "react-icons/fa";
 
 export const Navigation: React.FC = () => {

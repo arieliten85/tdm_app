@@ -1,6 +1,7 @@
 import { CustomCarousel } from "../components/carousel/CustomCarousel";
 import { CardList } from "../components/cards/cardList/CardList";
 import { InfoText } from "../infoTextHome/InfoText";
+import { Footer } from "../components/footer/Footer";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <InfoText />
         <CardList />
       </div>
+      <Footer />
     </>
   );
 }
