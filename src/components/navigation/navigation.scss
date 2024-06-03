@@ -65,7 +65,7 @@
   align-items: center;
   align-content: center;
   height: auto;
-  padding-top: 0.7rem;
+  padding: 10px;
 }
 
 @media only screen and (min-width: 62rem) {
@@ -94,9 +94,18 @@
   grid-column: span 2;
   order: 3;
   width: 100%;
-  height: auto;
+
   margin: 0 auto;
-  padding-block: 1rem;
+  //padding-block: 1rem;
+  overflow: hidden;
+  max-height: 85px;
+  transition: max-height 0.5s ease;
+}
+
+.search-hide {
+  max-height: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .search-form {
@@ -164,6 +173,11 @@
     z-index: 0;
     right: -60px;
   }
+  .search-hide {
+    max-height: 85px;
+    padding: 0;
+    overflow: hidden;
+  }
 }
 
 .menu {
@@ -209,7 +223,7 @@
   color: var(--color-red-400);
 }
 
-@media only screen and (min-width: 36rem) {
+@media only screen and (min-width: 810px) {
   .menu {
     position: relative;
     justify-self: end;
@@ -252,7 +266,7 @@
   transition: 0.35s ease;
 }
 
-@media only screen and (min-width: 36rem) {
+@media only screen and (min-width: 810px) {
   .burger {
     display: none;
     visibility: hidden;
