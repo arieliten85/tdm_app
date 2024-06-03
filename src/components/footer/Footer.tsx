@@ -66,7 +66,7 @@ export function Footer() {
       </div>
       <div className="footer-copyright">
         <p>
-          &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+          &copy; {new Date().getFullYear()} TodoDulceMary. All rights reserved.
         </p>
       </div>
     </footer>
