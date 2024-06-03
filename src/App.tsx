@@ -1,13 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "../src/styles/index.scss";
 import { Routes, Route } from "react-router-dom";
-
 import Home from "./pages/Home";
-
 import { DetailsContainer } from "./components/details/detailsContainer/DetailsContainer";
 import { WhatsAppButton } from "./components/whatsAppButton/WhatsAppButton";
-import { Navigation } from "./components/Navivation02/Navigation";
+import { Navigation } from "./components/navigation/Navigation";
 
 function App() {
   return (

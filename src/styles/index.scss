@@ -78,12 +78,44 @@ button {
 
 .main-home {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
   margin-top: 20px;
+}
+.subtitle-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtitle-container h2 {
+  font-size: 1.9vmax;
+  background-color: #fff;
+  font-weight: bolder;
+  color: #4e4d4d;
+  padding: 15px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.subtitle-container p {
+  color: #4e4d4d;
+  text-align: center;
+  font-size: 1.6vmax;
+  width: 85%;
 }
 
 @media only screen and (min-width: 62rem) {
   .app {
     margin-top: 70px !important;
+  }
+
+  .subtitle-container h2 {
+    font-size: 1.3vmax;
+  }
+  .subtitle-container p {
+    font-size: 1.2vmax;
   }
 }

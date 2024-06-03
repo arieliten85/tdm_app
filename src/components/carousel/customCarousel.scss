@@ -5,23 +5,20 @@
 .slider_container {
   display: flex;
   justify-content: center;
-  margin: 10px !important;
 }
 .slider {
   width: 100%;
 }
 .slick-list {
-  // border: black solid;
-
   max-height: 450px;
 }
 
 .slick-prev {
-  left: -10px !important;
+  left: -0px !important;
   z-index: 1;
 }
 .slick-next {
-  right: 0 !important;
+  right: 12px !important;
 }
 
 .slick-prev::before,
@@ -53,7 +50,6 @@
   }
 
   .slick-list {
-    // border: black solid;
     margin: 20px !important;
   }
 }
