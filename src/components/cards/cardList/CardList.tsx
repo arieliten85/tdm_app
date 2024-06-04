@@ -34,7 +34,7 @@ export function CardList() {
   ) => {
     const message = `¡Hola! 
 
- Me gustaría encargarte el siguiente producto:
+Me gustaría encargarte el siguiente producto:
 ---------------------------------------
  *Producto*: ${product.title}
  *Precio*: ${product.price} c/u
