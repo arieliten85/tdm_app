@@ -1,10 +1,11 @@
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { phoneNumber } from "../../api/whatapp";
 import { Link } from "react-router-dom";
 
 export const WhatsAppButton = () => {
   return (
-    <Link to={"https://wa.me/541162331431"} target="_blank">
+    <Link to={`https://wa.me/${phoneNumber}`} target="_blank">
       <div
         className="whatsapp-icon position-fixed   p-2"
         style={{

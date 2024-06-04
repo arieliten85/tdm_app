@@ -12,3 +12,13 @@ export interface CounterProps {
   increment: () => void;
   decrement: () => void;
 }
+
+export interface buyProductProps {
+  img: string;
+  title: string;
+  description: string;
+  price: string;
+  count?: number;
+  increment?: () => void;
+  decrement?: () => void;
+}
