@@ -3,12 +3,11 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding-bottom: 10px !important;
+
+  margin: 10px 0 10px 0 !important;
 }
 
 .counter-btn {
-  //border: solid 2px #a1a8a3 !important;
-
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;

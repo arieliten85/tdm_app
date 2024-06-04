@@ -53,6 +53,7 @@ export function CardList() {
           <Modal.Header closeButton>
             <Modal.Title>{selectedProduct.title}</Modal.Title>
           </Modal.Header>
+          <div></div>
           <Modal.Body>
             <div className="modal-image-container">
               <img
@@ -61,15 +62,17 @@ export function CardList() {
                 className="modal-image"
               />
             </div>
+            <div className="modal-body-container">
+              <p className="desc">{selectedProduct.description}</p>
 
-            <p className="desc">{selectedProduct.description}</p>
-
-            <Counter
-              count={count}
-              increment={increment}
-              decrement={decrement}
-            />
+              <Counter
+                count={count}
+                increment={increment}
+                decrement={decrement}
+              />
+            </div>
           </Modal.Body>
+
           <Modal.Footer className="text-center">
             <div className="info-price">
               <p className="price">

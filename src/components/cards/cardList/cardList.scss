@@ -88,7 +88,6 @@ $clr-gray700: #161d34;
     font-weight: bold;
     font-size: 15px !important;
     font-family: Oxygen, sans-serif;
-
     border: none;
     background: transparent;
     color: white;
@@ -99,6 +98,7 @@ $clr-gray700: #161d34;
     align-items: center;
     gap: 20px;
     width: 100%;
+    margin: 0 !important;
   }
 
   &:hover {
@@ -120,22 +120,32 @@ $clr-gray700: #161d34;
   top: 3px;
   right: -5px;
 }
+
+//// MODAL
+
+.modal-header {
+  padding: 10px !important;
+}
 .modal-content {
-  max-width: 330px;
+  max-width: 300px;
   height: auto;
   margin: 0 auto;
 }
 .modal-image-container {
-  height: 220px;
+  height: 200px;
 }
 
 .modal-body {
-  padding: 10px;
+  padding: 0;
 
   .desc {
     text-align: justify;
-    padding: 5px;
+
     font-size: 17px;
+    text-align: justify;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 !important;
   }
 
   .price {
@@ -144,20 +154,32 @@ $clr-gray700: #161d34;
     font-size: 17px;
   }
 }
+.modal-body-container {
+  margin: 10px 10px 0 10px !important;
+}
 .modal-image {
   width: 100%;
   height: 100%;
 }
 
 .modal-footer {
+  padding: 0 !important;
+
+  margin: 0 10px 20px 10px !important;
+}
+.modal-footer-container {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  margin: 0 !important;
+  // padding-bottom: 10px !important;
 }
 .info-price {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin: 10px 0 15px 0 !important;
   .price {
     text-align: start;
     font-weight: 400;
