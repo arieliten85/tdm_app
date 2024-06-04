@@ -75,11 +75,11 @@ export function CardList() {
 
           <Modal.Footer className="text-center">
             <div className="info-price">
+              <p className="total">Total: {formatPrice(total)}</p>
               <p className="price">
                 Precio: {selectedProduct.price}
                 <span style={{ fontSize: "10px" }}> c/u</span>
               </p>
-              <p className="total">Total: {formatPrice(total)}</p>
             </div>
 
             <Button className="card__btn_whatsapp">
