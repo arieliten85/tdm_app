@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Importar Link desde React Router
 import { FaInstagram, FaFacebook, FaMapMarkerAlt } from "react-icons/fa";
 import "./footer.scss";
 
-import logo from "../../assets/logo.png";
+import logo from "../../assets/TodoDulceMary_sin_fondo.png";
 
 export function Footer() {
   return (
