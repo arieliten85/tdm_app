@@ -1,0 +1,101 @@
+.nosotros-container {
+  padding: 20px;
+
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  height: 100vh;
+}
+
+.quienes-somos {
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 !important;
+  // border: rgba(168, 166, 166, 0.253) solid 1px;
+}
+
+.quienes-somos h1 {
+  color: #c59a72;
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.quienes-somos p {
+  color: #6d4c41;
+
+  font-size: 16px;
+}
+
+.contacto {
+  background-color: #3d3b3833;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.contacto h2 {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.map {
+  width: calc(100% - 20px);
+  // max-width: 300px;
+  height: 300px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: #ff7043;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+span {
+  color: black;
+  font-size: 16px;
+}
+
+@media (min-width: 1290px) {
+  .nosotros-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: self-start;
+    gap: 20px;
+    height: 100vh;
+  }
+
+  .quienes-somos {
+    width: 70%;
+    height: 450px;
+  }
+
+  .contacto {
+    width: 30%;
+    height: 450px;
+  }
+
+  .contact-info {
+    order: 2;
+  }
+}
