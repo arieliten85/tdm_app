@@ -37,7 +37,8 @@ export function CardList() {
  Me gustaría encargarte el siguiente producto:
 ---------------------------------------
  *Producto*: ${product.title}
- *Cantidad*: ${count} c/u
+ *Precio*: ${product.price} c/u
+ *Cantidad*: ${count}
  *Total*: ${formatPrice(total)}
 ---------------------------------------
  
