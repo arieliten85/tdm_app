@@ -1,7 +1,13 @@
 .nosotros-container {
   padding: 20px;
-
-  font-family: Arial, sans-serif;
+  margin-top: 30px !important;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 0px;
 
   display: flex;
   flex-direction: column;
@@ -80,7 +86,7 @@ span {
     justify-content: center;
     align-items: self-start;
     gap: 20px;
-    height: 100vh;
+    max-height: 500px;
   }
 
   .quienes-somos {

@@ -1,0 +1,74 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.gallery-container {
+  padding: 20px;
+}
+
+.gallery-container .image {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-container .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.gallery-container .image:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-container .modal-content {
+  width: 100%;
+  max-width: 800px;
+}
+
+.gallery-container .modal-body img {
+  width: 100%;
+}
+
+.gallery-container .optional-images {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.optional-images {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.button-consultar-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.button-consultar {
+  background: rgb(37, 211, 102);
+  color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  width: 100%;
+}
+.button-consultar:hover {
+  background: rgb(53, 231, 119);
+}
+.description {
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modal-consulta {
+  top: -30px !important;
+}
