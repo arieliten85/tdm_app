@@ -122,6 +122,10 @@ $clr-gray700: #161d34;
 }
 
 //// MODAL
+///
+.modal {
+  top: 60px !important;
+}
 
 .modal-header {
   padding: 10px !important;
