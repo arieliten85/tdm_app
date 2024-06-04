@@ -77,7 +77,7 @@ export function CardList() {
             <div className="info-price">
               <p className="total">Total: {formatPrice(total)}</p>
               <p className="price">
-                Precio: {selectedProduct.price}
+                {selectedProduct.price}
                 <span style={{ fontSize: "10px" }}> c/u</span>
               </p>
             </div>
