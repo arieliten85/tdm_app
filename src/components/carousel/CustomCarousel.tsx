@@ -2,8 +2,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./customCarousel.scss";
 import Slider from "react-slick";
-
-import imagesCarousel from "../../api/imagesCarousel.json";
+import { imagesCarousel } from "../../api/imagesCarousel";
 
 export const CustomCarousel = () => {
   const settings = {

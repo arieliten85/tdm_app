@@ -82,7 +82,7 @@
   position: relative;
   top: 5px;
   font-family: "Borel", cursive;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -1px;
@@ -150,6 +150,7 @@
   right: 10px;
 }
 
+// SEARCH
 @media only screen and (min-width: 62rem) {
   .search {
     justify-self: center;
@@ -159,21 +160,8 @@
     height: auto;
   }
 
-  .search-form {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 100%;
-    width: 100%;
-    height: 40px;
-
-    border-bottom: solid 1px;
-
-    position: relative;
-    z-index: 0;
-    right: -60px;
-  }
   .search-hide {
+    display: block;
     max-height: 85px;
     padding: 0;
     overflow: hidden;
@@ -222,7 +210,7 @@
   outline: none;
   color: var(--color-red-400);
 }
-
+// MENU
 @media only screen and (min-width: 810px) {
   .menu {
     position: relative;
