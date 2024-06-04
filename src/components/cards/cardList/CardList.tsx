@@ -39,7 +39,7 @@ export function CardList() {
  *Producto*: ${product.title}
  *Precio*: ${product.price} c/u
  *Cantidad*: ${count}
- *Total*: ${formatPrice(total)}
+ *Total*: ${Number(formatPrice(total))}
 ---------------------------------------
  
 Por favor, ¿podrías confirmarme si hay stock? 
