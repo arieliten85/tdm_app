@@ -49,9 +49,11 @@ export const Navigation: React.FC = () => {
       setSearchValue("");
     }
   };
-
-  console.log("location.pathname", location.pathname);
-
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
   return (
     <header className="header" id="header">
       <nav className="navbar container">
@@ -115,6 +117,7 @@ export const Navigation: React.FC = () => {
               autoFocus
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <FaSearch className="search-submit" onClick={handleSearch} />
           </div>
