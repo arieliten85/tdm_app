@@ -119,7 +119,13 @@ export const Navigation: React.FC = () => {
               onChange={(e) => setSearchValue(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-            <FaSearch className="search-submit" onClick={handleSearch} />
+            {!searchValue ? (
+              <FaSearch className="search-submit" />
+            ) : (
+              <p className="  ir-search" onClick={handleSearch}>
+                IR
+              </p>
+            )}
           </div>
         </div>
         <div

@@ -136,9 +136,13 @@
   color: var(--color-black-500);
   background: transparent;
 }
-
+.ir-search {
+  cursor: pointer !important;
+  background-color: #866e66;
+  color: white;
+  padding: 10px;
+}
 .search-submit {
-  cursor: pointer;
   display: block;
   font-size: 1.25rem;
   line-height: 1.5;
