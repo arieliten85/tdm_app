@@ -1,74 +1,80 @@
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.gallery-container {
-  padding: 20px;
+  &-item {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+    width: 100% !important;
+
+    .image-container {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+  }
 }
 
-.gallery-container .image {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-  cursor: pointer;
+//-----MODAL--------
+.modal-gallery {
+  top: -30px !important;
 }
 
-.gallery-container .image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.2s ease;
-}
-
-.gallery-container .image:hover img {
-  transform: scale(1.05);
-}
-
-.gallery-container .modal-content {
-  width: 100%;
-  max-width: 800px;
-}
-
-.gallery-container .modal-body img {
+.modal-gallery .modal-body img {
   width: 100%;
 }
 
-.gallery-container .optional-images {
+.modal-gallery .optional-images {
   display: flex;
   justify-content: center;
   padding: 10px;
 }
 
-.optional-images {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
-
-.button-consultar-container {
+.modal-gallery .button-container {
   display: flex;
   justify-content: center;
   margin: 10px;
 }
-.button-consultar {
+.modal-gallery .button {
   background: rgb(37, 211, 102);
   color: white;
   font-size: 20px;
   margin: 0 auto;
   width: 100%;
 }
-.button-consultar:hover {
+.modal-gallery .button:hover {
   background: rgb(53, 231, 119);
 }
-.description {
+.modal-gallery .description {
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
 }
 
-.modal-consulta {
-  top: -30px !important;
+@media screen and (min-width: 810px) {
+  .gallery {
+    &-item {
+      grid-template-columns: repeat(3, 1fr) !important;
+      width: 100% !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .gallery {
+    &-item {
+      grid-template-columns: repeat(4, 1fr) !important;
+      width: 65% !important;
+    }
+  }
 }

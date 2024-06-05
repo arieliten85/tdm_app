@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./navigation.scss";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSearchContext } from "../../context/SearchContextProps ";
 
 export const Navigation: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation(); // Hook para obtener la ubicación actual
   const [menuActive, setMenuActive] = useState(false);
-
-  const [searchVisible, setSearchVisible] = useState(true);
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const { setSearchValue: setSearchValueContext } = useSearchContext();
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -16,6 +20,7 @@ export const Navigation: React.FC = () => {
     setMenuActive(false);
   };
 
+  // EFECTO HIDE SEARCH
   useEffect(() => {
     let lastScrollTop = 0;
 
@@ -23,9 +28,9 @@ export const Navigation: React.FC = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
       if (scrollTop > lastScrollTop) {
-        setSearchVisible(false);
+        setIsSearchVisible(false);
       } else {
-        setSearchVisible(true);
+        setIsSearchVisible(true);
       }
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
@@ -37,6 +42,16 @@ export const Navigation: React.FC = () => {
     };
   }, []);
 
+  const handleSearch = () => {
+    if (searchValue) {
+      setSearchValueContext(searchValue);
+      navigate(`/productos/busqueda/${searchValue}`);
+      setSearchValue("");
+    }
+  };
+
+  console.log("location.pathname", location.pathname);
+
   return (
     <header className="header" id="header">
       <nav className="navbar container">
@@ -46,42 +61,64 @@ export const Navigation: React.FC = () => {
         <div className={`menu ${menuActive ? "is-active" : ""}`} id="menu">
           <ul className="menu-inner">
             <li className="menu-item">
-              <Link to={"/"} onClick={closeMenu}>
-                <p className="menu-link">inicio</p>
+              <Link
+                to="/"
+                onClick={closeMenu}
+                className={`menu-link ${
+                  location.pathname === "/" ? "active" : ""
+                }`}
+              >
+                inicio
               </Link>
             </li>
             <li className="menu-item">
-              <Link to={"/galeria"} onClick={closeMenu}>
-                <p className="menu-link">Galeria</p>
+              <Link
+                to="/galeria"
+                onClick={closeMenu}
+                className={`menu-link ${
+                  location.pathname === "/galeria" ? "active" : ""
+                }`}
+              >
+                Galeria
               </Link>
             </li>
             <li className="menu-item">
-              <Link to={"/comoComprar"} onClick={closeMenu}>
-                <p className="menu-link"> Como comprar</p>
+              <Link
+                to="/comoComprar"
+                onClick={closeMenu}
+                className={`menu-link ${
+                  location.pathname === "/comoComprar" ? "active" : ""
+                }`}
+              >
+                Como comprar
               </Link>
             </li>
             <li className="menu-item" onClick={closeMenu}>
-              <Link to={"/nosotros"}>
-                <p className="menu-link">Nosotros</p>
+              <Link
+                to="/nosotros"
+                className={`menu-link ${
+                  location.pathname === "/nosotros" ? "active" : ""
+                }`}
+              >
+                Nosotros
               </Link>
             </li>
           </ul>
         </div>
-        <div className={`search ${!searchVisible ? "search-hide" : ""}`}>
-          <form className="search-form">
+        <div className={`search ${!isSearchVisible ? "search-hide" : ""}`}>
+          <div className="search-form">
             <input
               type="text"
               name="search"
               className="search-input"
               placeholder="Buscar"
               autoFocus
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button type="submit" className="search-submit" disabled>
-              <FaSearch />
-            </button>
-          </form>
+            <FaSearch className="search-submit" onClick={handleSearch} />
+          </div>
         </div>
-
         <div
           className={`burger ${menuActive ? "is-active" : ""}`}
           id="burger"

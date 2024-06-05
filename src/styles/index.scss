@@ -73,19 +73,26 @@ button {
   background: none;
   box-shadow: none;
 }
+p {
+  margin: 0 !important;
+}
 
 .app {
-  margin-top: 100px !important;
+  margin-top: 110px !important;
 }
 
-.main-home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+// FLEX
+.flex-center-column {
+  display: flex !important;
+  flex-direction: column !important;
 
-  margin-top: 20px;
+  align-items: center !important;
+
+  height: 100vh;
+
+  margin-top: 20px !important;
 }
+
 .subtitle-container {
   display: flex;
   flex-direction: column;

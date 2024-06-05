@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import productos from "../../../api/products.json";
+import { productos } from "../../../api/productos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Button } from "react-bootstrap";
@@ -11,7 +11,7 @@ interface ProductoProps {
   title: string;
   description: string;
   price: string;
-  count: number;
+  count?: number;
 }
 
 export function DetailsContainer() {

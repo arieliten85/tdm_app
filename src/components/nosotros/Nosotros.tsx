@@ -38,20 +38,21 @@ export const Nosotros = () => {
       <section className="contacto">
         <h2>Contacto</h2>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.8620284485!2d-43.46294610955385!3d-22.908299803908683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f5fb9289a65%3A0x5c5e13369dc8b17!2sR%C3%ADo%20de%20Janeiro%2C%20State%20of%20Rio%20de%20Janeiro%2C%20Brazil!5e0!3m2!1sen!2sus!4v1680581222463!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.492447162654!2d-58.38375948426091!3d-34.70900598043167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccd2b3f15e0a7%3A0xf1d2b74df0840d1!2sRio%20de%20Janeiro%202678%2C%20B1824BFS%20Lan%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires%2C%20Argentina!5e0!3m2!1sen!2sus!4v1680581222463!5m2!1sen!2sus"
           title="Google Map"
           className="map"
           allowFullScreen
           loading="lazy"
         ></iframe>
+
         <div className="contact-info">
           <div className="contact-item">
             <FaHome className="icon" />
-            <span>Rio de Janeiro, Brasil</span>
+            <span>Rio de Janeiro 2678, Lanus Oeste</span>
           </div>
           <div className="contact-item">
             <FaEnvelope className="icon" />
-            <span>tododulce@gmail.com</span>
+            <span>tododulcemary@gmail.com</span>
           </div>
         </div>
       </section>

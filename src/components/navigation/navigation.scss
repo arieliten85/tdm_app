@@ -73,7 +73,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
     height: 4.25rem;
-    padding-top: 0;
+    padding-top: 13px;
     margin: 0 auto;
   }
 }
@@ -138,6 +138,7 @@
 }
 
 .search-submit {
+  cursor: pointer;
   display: block;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -146,7 +147,7 @@
   background: transparent;
   margin: 0 !important;
   position: absolute;
-  top: 2px;
+  top: 10px;
   right: 10px;
 }
 
@@ -156,22 +157,7 @@
     grid-column: initial;
     order: initial;
     width: 50%;
-    height: auto;
-  }
-
-  .search-form {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 100%;
-    width: 100%;
-    height: 40px;
-
-    border-bottom: solid 1px;
-
-    position: relative;
-    z-index: 0;
-    right: -60px;
+    max-height: 85px;
   }
 }
 
@@ -208,14 +194,20 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: inherit;
-  text-transform: uppercase;
-  color: var(--color-black-500);
+  text-transform: uppercase !important;
+  color: #6d4c41;
   transition: all 0.35s ease-in-out;
+  padding: 0.5rem; /* Añadir padding para mejorar la visualización del fondo */
 }
 
 .menu-link:hover {
   outline: none;
-  color: var(--color-red-400);
+  color: #866e66;
+}
+
+.menu-link.active {
+  color: #6d4c41;
+  font-weight: bolder;
 }
 
 @media only screen and (min-width: 36rem) {
@@ -224,7 +216,7 @@
     justify-self: end;
     top: 0;
     left: inherit;
-    //width: auto;
+    width: 120%;
     height: auto;
     padding-block: 0;
     background: none;

@@ -204,6 +204,12 @@ $clr-gray700: #161d34;
   .modal-content {
     max-width: 350px;
   }
+
+  .wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1240px) {
@@ -215,6 +221,7 @@ $clr-gray700: #161d34;
 
   .card {
     width: 250px !important;
+    min-height: 240px;
 
     &__container__img {
       height: 200px;

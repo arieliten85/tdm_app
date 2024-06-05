@@ -1,7 +1,7 @@
 import "./cardList.scss";
 import { useEffect, useState } from "react";
-import productos from "../../../api/products.json";
-import { buyProductProps } from "../../../types/types";
+
+import { ProductoProps, buyProductProps } from "../../../types/types";
 import { Modal, Button } from "react-bootstrap";
 import { Counter } from "../../../components/counter/Counter";
 import { CardItem } from "./cardItem/CardItem";
@@ -11,8 +11,15 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import { phoneNumber } from "../../../api/whatapp";
 import { formatPrice } from "../../../components/utils/formatPrice ";
+import { useSearchContext } from "../../../context/SearchContextProps ";
 
-export function CardList() {
+export interface Productos {
+  productos: ProductoProps[];
+}
+
+export function CardList({ productos }: Productos) {
+  const { searchResults } = useSearchContext();
+
   const { count, increment, decrement, reset } = useCounter(0);
   const [total, setTotal] = useState<number>(0);
   const [selectedProduct, setSelectedProduct] =
@@ -61,6 +68,12 @@ Por favor, ¿podrías confirmarme si hay stock?
     }
   }, [count, selectedProduct]);
 
+  useEffect(() => {
+    if (searchResults) {
+      console.log("desde cards", searchResults);
+    }
+  }, [searchResults]);
+
   return (
     <div className="wrapper">
       {productos.map((producto) => (
@@ -76,45 +89,73 @@ Por favor, ¿podrías confirmarme si hay stock?
       ))}
 
       {selectedProduct && (
-        <Modal show={true} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedProduct.title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="modal-image-container">
-              <img
-                src={selectedProduct.img}
-                alt={selectedProduct.title}
-                className="modal-image"
-              />
-            </div>
-            <div className="modal-body-container">
-              <p className="desc">{selectedProduct.description}</p>
-              <Counter
-                count={count}
-                increment={increment}
-                decrement={decrement}
-              />
-            </div>
-          </Modal.Body>
-          <Modal.Footer className="text-center">
-            <div className="info-price">
-              <p className="total">Total: {formatPrice(total)}</p>
-              <p className="price">
-                {selectedProduct.price}
-                <span style={{ fontSize: "10px" }}> c/u</span>
-              </p>
-            </div>
-            <Button
-              className="card__btn_whatsapp"
-              onClick={() => buyProduct(selectedProduct, count, total)}
-            >
-              Comprar
-              <FontAwesomeIcon icon={faWhatsapp} className="icon-whatsapp" />
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <ModalCards
+          buyProduct={buyProduct}
+          count={count}
+          decrement={decrement}
+          handleClose={handleClose}
+          increment={increment}
+          selectedProduct={selectedProduct}
+          total={total}
+        />
       )}
     </div>
   );
 }
+
+interface ModalCardsProps {
+  handleClose: () => void;
+  selectedProduct: buyProductProps;
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+  total: number;
+  buyProduct: (product: buyProductProps, count: number, total: number) => void;
+}
+
+const ModalCards = ({
+  handleClose,
+  selectedProduct,
+  count,
+  increment,
+  decrement,
+  total,
+  buyProduct,
+}: ModalCardsProps) => {
+  return (
+    <Modal show={true} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{selectedProduct.title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="modal-image-container">
+          <img
+            src={selectedProduct.img}
+            alt={selectedProduct.title}
+            className="modal-image"
+          />
+        </div>
+        <div className="modal-body-container">
+          <p className="desc">{selectedProduct.description}</p>
+          <Counter count={count} increment={increment} decrement={decrement} />
+        </div>
+      </Modal.Body>
+      <Modal.Footer className="text-center">
+        <div className="info-price">
+          <p className="total">Total: {formatPrice(total)}</p>
+          <p className="price">
+            {selectedProduct.price}
+            <span style={{ fontSize: "10px" }}> c/u</span>
+          </p>
+        </div>
+        <Button
+          className="card__btn_whatsapp"
+          onClick={() => buyProduct(selectedProduct, count, total)}
+        >
+          Comprar
+          <FontAwesomeIcon icon={faWhatsapp} className="icon-whatsapp" />
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};

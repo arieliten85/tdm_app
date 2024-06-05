@@ -4,6 +4,7 @@ export interface ProductoProps {
   title: string;
   description: string;
   price: string;
+  tags?: string[];
 }
 
 export interface CounterProps {
@@ -18,6 +19,7 @@ export interface buyProductProps {
   title: string;
   description: string;
   price: string;
+  tags?: string[];
   count?: number;
   increment?: () => void;
   decrement?: () => void;

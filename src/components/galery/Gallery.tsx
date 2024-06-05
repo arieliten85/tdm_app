@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./galery.scss";
+import "../../styles/index.scss";
 import { imagesData } from "../../api/galeria";
 
 export const Gallery = () => {
@@ -34,12 +35,22 @@ export const Gallery = () => {
 
   return (
     <>
-      <h1 className="text-center fs-1 py-2">Galería</h1>
-      <div className="gallery-container">
-        <section className="gallery">
+      <h1 className="text-center fs-1">Galería</h1>
+
+      <div className="gallery flex-center-column">
+        <section
+          className="
+        gallery-item
+        grid-column-mobile
+        p-1 
+      
+        
+        
+        "
+        >
           {imagesData.map((image) => (
             <div
-              className="image"
+              className="image-container"
               key={image.id}
               onClick={() =>
                 openModal(
@@ -49,49 +60,48 @@ export const Gallery = () => {
                 )
               }
             >
-              <img src={image.mainImage.src} alt={image.mainImage.alt} />
+              <img src={image.mainImage.src} />
             </div>
           ))}
         </section>
       </div>
-      <div className="modal-item">
-        <Modal
-          className="modal-consulta"
-          show={showModal}
-          onHide={closeModal}
-          centered
-        >
-          <Modal.Header closeButton></Modal.Header>
-          <Modal.Body>
-            <img
-              src={selectedImage || ""}
-              alt="Selected Image"
-              style={{ width: "100%", height: "350px" }}
-            />
-            <p className="description">{selectedDescription}</p>
-            <div className="optional-images">
-              {selectedOptionalImages.map((optionalImage, index) => (
-                <img
-                  key={index}
-                  src={optionalImage}
-                  alt={`Optional Image ${index + 1}`}
-                  style={{
-                    width: "50px",
-                    cursor: "pointer",
-                    marginRight: "10px",
-                  }}
-                  onClick={() => handleOptionalImageClick(optionalImage)}
-                />
-              ))}
-            </div>
-            <div className="button-consultar-container">
-              <Button className="button-consultar" onClick={closeModal}>
-                Consultar
-              </Button>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </div>
+
+      <Modal
+        className="modal-gallery"
+        show={showModal}
+        onHide={closeModal}
+        centered
+      >
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <img
+            src={selectedImage || ""}
+            alt="Selected Image"
+            style={{ width: "100%", height: "350px" }}
+          />
+          <p className="description">{selectedDescription}</p>
+          <div className="optional-images">
+            {selectedOptionalImages.map((optionalImage, index) => (
+              <img
+                key={index}
+                src={optionalImage}
+                alt={`Optional Image ${index + 1}`}
+                style={{
+                  width: "50px",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+                onClick={() => handleOptionalImageClick(optionalImage)}
+              />
+            ))}
+          </div>
+          <div className="button-container">
+            <Button className="button" onClick={closeModal}>
+              Consultar
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
