@@ -58,7 +58,9 @@ export const Navigation: React.FC = () => {
     <header className="header" id="header">
       <nav className="navbar container">
         <div className="container-brand">
-          <span className="brand">TodoDulceMary</span>
+          <Link to={"/"}>
+            <span className="brand">TodoDulceMary</span>
+          </Link>
         </div>
         <div className={`menu ${menuActive ? "is-active" : ""}`} id="menu">
           <ul className="menu-inner">
