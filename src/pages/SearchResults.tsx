@@ -1,10 +1,16 @@
-import { NotFoundData } from "../components/utililidades/Components";
+import {
+  NotFoundData,
+  ShowSpinner,
+} from "../components/utililidades/Components";
 import { CardList } from "../components/cards/cardList/CardList";
 
 import { useProductsContext } from "../context/ProductProvider";
 
 export function SearchResults() {
-  const { filteredProducts } = useProductsContext();
+  const { filteredProducts, error, loading } = useProductsContext();
+
+  console.log("error", error);
+  console.log("data search", filteredProducts);
 
   if (!filteredProducts.length) {
     return <NotFoundData />;
@@ -12,9 +18,16 @@ export function SearchResults() {
 
   return (
     <>
-      <div className="flex-center-column p2" style={{ height: "100vh" }}>
-        <CardList productos={filteredProducts} />
-      </div>
+      {loading ? (
+        <ShowSpinner />
+      ) : (
+        <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+          <h1 className="w-100 text-center">Productos</h1>
+
+          {!filteredProducts.length && <NotFoundData />}
+          <CardList productos={filteredProducts} />
+        </div>
+      )}
     </>
   );
 }

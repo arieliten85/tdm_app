@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
+import { useProductsContext } from "../../context/ProductProvider";
 
 export const Filter = () => {
+  const { clearFilters } = useProductsContext();
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const navigate = useNavigate();
@@ -20,6 +22,11 @@ export const Filter = () => {
     setShow(true);
   };
 
+  const handleCleanFilter = () => {
+    clearFilters();
+    setMinPrice("");
+    setMaxPrice("");
+  };
   const handleFilter = () => {
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
@@ -61,6 +68,9 @@ export const Filter = () => {
 
           <Button className="mt-3 button" onClick={handleFilter}>
             Filtrar
+          </Button>
+          <Button className="mt-3 button" onClick={handleCleanFilter}>
+            limpiar filtros
           </Button>
         </Form>
       </div>

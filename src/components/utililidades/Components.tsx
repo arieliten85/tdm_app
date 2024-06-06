@@ -2,25 +2,30 @@ import { Spinner } from "react-bootstrap";
 
 export const NotFoundData = () => {
   return (
-    <div className="flex-center-column p2" style={{ height: "100vh" }}>
-      <h1
-        className=" text-center mt-5 p-3 text-white "
-        style={{
-          backgroundColor: "#c69b739e",
-          textTransform: "uppercase",
-          fontSize: "15px",
-        }}
-      >
-        sin resultados
-      </h1>
-    </div>
+    <h1
+      className=" text-center   p-3 text-white "
+      style={{
+        backgroundColor: "#e6762bee",
+        textTransform: "uppercase",
+        fontSize: "12px",
+        fontWeight: "bold",
+      }}
+    >
+      No tenemos resultados para tu búsqueda. Por favor, intentá con otros
+      filtros.
+    </h1>
   );
 };
 
 export const ShowSpinner = () => {
   return (
-    <div className="d-flex justify-content-center align-items-center h-50">
-      <Spinner />
+    <div
+      style={{
+        height: "100vh",
+      }}
+      className="d-flex justify-content-center align-items-center"
+    >
+      <Spinner className="fs-3" />
     </div>
   );
 };

@@ -8,10 +8,6 @@ import {
 export const Productos = () => {
   const { filteredProducts, loading } = useProductsContext();
 
-  if (!filteredProducts.length) {
-    return <NotFoundData />;
-  }
-
   return (
     <div
       className="flex-center-column p-2"
@@ -24,7 +20,9 @@ export const Productos = () => {
           <ShowSpinner />
         ) : (
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
-            <h1 className="mb-4 w-100 ">Productos</h1>
+            <h1 className="w-100 text-center">Productos</h1>
+
+            {!filteredProducts.length && <NotFoundData />}
             <CardList productos={filteredProducts} />
           </div>
         )}
