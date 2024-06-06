@@ -1,0 +1,52 @@
+.filter {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  max-width: 30%;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+
+  p {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .button {
+    background: #caa07a !important;
+  }
+}
+
+.filter-form {
+  display: none;
+
+  .button {
+    background: #caa07a !important;
+  }
+
+  .button:hover {
+    background: #b98d67 !important;
+  }
+}
+
+.modal-filter {
+  .button {
+    background: #caa07a !important;
+  }
+
+  .button:hover {
+    background: #b98d67 !important;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .filter {
+    display: none !important;
+  }
+
+  .filter-form {
+    display: block;
+  }
+}

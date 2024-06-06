@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./navigation.scss";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSearchContext } from "../../context/SearchContextProps ";
 
 export const Navigation: React.FC = () => {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ export const Navigation: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(true);
   const [searchValue, setSearchValue] = useState<string>("");
-  const { setSearchValue: setSearchValueContext } = useSearchContext();
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -44,8 +42,7 @@ export const Navigation: React.FC = () => {
 
   const handleSearch = () => {
     if (searchValue) {
-      setSearchValueContext(searchValue);
-      navigate(`/productos/busqueda/${searchValue}`);
+      navigate(`/search/?q=${searchValue}`);
       setSearchValue("");
     }
   };

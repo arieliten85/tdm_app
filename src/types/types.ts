@@ -7,6 +7,9 @@ export interface ProductoProps {
   tags?: string[];
 }
 
+export interface Productos {
+  productos: ProductoProps[];
+}
 export interface CounterProps {
   count: number;
 

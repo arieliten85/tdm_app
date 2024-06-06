@@ -13,6 +13,18 @@ $clr-gray500: #4f546c;
 $clr-gray600: #2a324b;
 $clr-gray700: #161d34;
 
+.productos-home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  // w-100  d-flex justify-content-center gap-4  align-items-start
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -208,19 +220,30 @@ $clr-gray700: #161d34;
   .wrapper {
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
-    width: 100%;
   }
 }
 
 @media screen and (min-width: 1240px) {
+  .productos-home {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+  }
+
   .wrapper {
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    width: 65%;
+    // width: 68%;
+    max-width: 70%;
+
+    padding: 0 !important;
   }
 
   .card {
-    width: 250px !important;
+    //width: 250px !important;
     min-height: 240px;
 
     &__container__img {

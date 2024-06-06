@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom"; // Importar Link desde React Router
 import { FaInstagram, FaFacebook, FaMapMarkerAlt } from "react-icons/fa";
 import "./footer.scss";

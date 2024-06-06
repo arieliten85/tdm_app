@@ -1,30 +1,19 @@
+import { NotFoundData } from "../components/utililidades/Components";
 import { CardList } from "../components/cards/cardList/CardList";
-import { useSearchContext } from "../context/SearchContextProps ";
 
-export default function SearchResults() {
-  const { searchResults } = useSearchContext();
+import { useProductsContext } from "../context/ProductProvider";
 
-  if (!searchResults.length) {
-    return (
-      <div className="flex-center-column">
-        <h1
-          className=" text-center mt-5    p-3 text-white "
-          style={{
-            backgroundColor: "#c69b739e",
-            textTransform: "uppercase",
-            fontSize: "15px",
-          }}
-        >
-          sin resultados
-        </h1>
-      </div>
-    );
+export function SearchResults() {
+  const { filteredProducts } = useProductsContext();
+
+  if (!filteredProducts.length) {
+    return <NotFoundData />;
   }
 
   return (
     <>
-      <div className="flex-center-column">
-        <CardList productos={searchResults} />
+      <div className="flex-center-column p2" style={{ height: "100vh" }}>
+        <CardList productos={filteredProducts} />
       </div>
     </>
   );

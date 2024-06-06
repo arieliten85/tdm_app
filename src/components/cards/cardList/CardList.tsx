@@ -1,25 +1,17 @@
 import "./cardList.scss";
 import { useEffect, useState } from "react";
 
-import { ProductoProps, buyProductProps } from "../../../types/types";
+import { Productos, buyProductProps } from "../../../types/types";
 import { Modal, Button } from "react-bootstrap";
 import { Counter } from "../../../components/counter/Counter";
 import { CardItem } from "./cardItem/CardItem";
 import { useCounter } from "../../../components/hook/useCounter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-
 import { phoneNumber } from "../../../api/whatapp";
 import { formatPrice } from "../../../components/utils/formatPrice ";
-import { useSearchContext } from "../../../context/SearchContextProps ";
-
-export interface Productos {
-  productos: ProductoProps[];
-}
-
+import { Filter } from "../../../components/filter/Filter";
 export function CardList({ productos }: Productos) {
-  const { searchResults } = useSearchContext();
-
   const { count, increment, decrement, reset } = useCounter(0);
   const [total, setTotal] = useState<number>(0);
   const [selectedProduct, setSelectedProduct] =
@@ -68,37 +60,34 @@ Por favor, ¿podrías confirmarme si hay stock?
     }
   }, [count, selectedProduct]);
 
-  useEffect(() => {
-    if (searchResults) {
-      console.log("desde cards", searchResults);
-    }
-  }, [searchResults]);
-
   return (
-    <div className="wrapper">
-      {productos.map((producto) => (
-        <div key={producto.id} onClick={() => handleCardClick(producto)}>
-          <CardItem
-            id={producto.id}
-            img={producto.img}
-            title={producto.title}
-            description={producto.description}
-            price={producto.price}
-          />
-        </div>
-      ))}
+    <div className="productos-home">
+      <Filter />
+      <div className="wrapper">
+        {productos.map((producto) => (
+          <div key={producto.id} onClick={() => handleCardClick(producto)}>
+            <CardItem
+              id={producto.id}
+              img={producto.img}
+              title={producto.title}
+              description={producto.description}
+              price={producto.price}
+            />
+          </div>
+        ))}
 
-      {selectedProduct && (
-        <ModalCards
-          buyProduct={buyProduct}
-          count={count}
-          decrement={decrement}
-          handleClose={handleClose}
-          increment={increment}
-          selectedProduct={selectedProduct}
-          total={total}
-        />
-      )}
+        {selectedProduct && (
+          <ModalCards
+            buyProduct={buyProduct}
+            count={count}
+            decrement={decrement}
+            handleClose={handleClose}
+            increment={increment}
+            selectedProduct={selectedProduct}
+            total={total}
+          />
+        )}
+      </div>
     </div>
   );
 }

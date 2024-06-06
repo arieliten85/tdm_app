@@ -1,8 +1,8 @@
 // HowBuy.js
-import React from "react";
+
 import "./howBuy.scss";
 
-const HowBuy = () => {
+export const HowBuy = () => {
   return (
     <div className="how-buy-container">
       <h2>Cómo Comprar en Nuestra Página</h2>
@@ -45,5 +45,3 @@ const HowBuy = () => {
     </div>
   );
 };
-
-export default HowBuy;

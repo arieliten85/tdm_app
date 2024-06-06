@@ -31,13 +31,11 @@ export const SearchProvider: React.FC<{ children: ReactNode }> = ({
       const searchValueMinusculas = searchValue.toLowerCase();
 
       const results = productos.filter((producto: ProductoProps) => {
-        // Buscar por título
         const tituloEnMinusculas = producto.title.toLowerCase();
         if (tituloEnMinusculas.includes(searchValueMinusculas)) {
           return true;
         }
 
-        // Buscar por etiquetas
         if (producto.tags) {
           const tagsEnMinusculas = producto.tags.map((tag) =>
             tag.toLowerCase()
