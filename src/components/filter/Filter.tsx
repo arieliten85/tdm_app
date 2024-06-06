@@ -102,8 +102,11 @@ export const Filter = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="button" onClick={handleFilter}>
+          <Button className="mt-3 button" onClick={handleFilter}>
             Filtrar
+          </Button>
+          <Button className="mt-3 button" onClick={handleCleanFilter}>
+            limpiar filtros
           </Button>
         </Modal.Footer>
       </Modal>
