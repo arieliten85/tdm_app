@@ -4,9 +4,9 @@
 }
 
 .container {
-  //max-width: 80rem;
   height: auto;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
   padding: 0 1.25rem;
 }
 
@@ -253,7 +253,7 @@
   font-weight: bolder;
 }
 
-@media only screen and (min-width: 36rem) {
+@media only screen and (min-width: 820px) {
   .menu {
     position: relative;
     justify-self: end;
@@ -296,7 +296,7 @@
   transition: 0.35s ease;
 }
 
-@media only screen and (min-width: 36rem) {
+@media only screen and (min-width: 820px) {
   .burger {
     display: none;
     visibility: hidden;
