@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const NotFoundData = () => {
   return (
-    <div className=" mt-3">
+    <div className=" mt-3 ">
       <h1
         className=" text-center p-3 text-white "
         style={{
@@ -39,7 +39,7 @@ interface TitleCategory {
 export const TitleCategory = ({ title }: TitleCategory) => {
   return (
     <>
-      <div className="title-category-container">
+      <div className="title-category-container m-3">
         <div className="line"></div>
         <h1>{title}</h1>
       </div>
