@@ -7,12 +7,9 @@ import { CardList } from "../components/cards/cardList/CardList";
 import { useProductsContext } from "../context/ProductProvider";
 
 export function SearchResults() {
-  const { filteredProducts, error, loading } = useProductsContext();
+  const { products, loading } = useProductsContext();
 
-  console.log("error", error);
-  console.log("data search", filteredProducts);
-
-  if (!filteredProducts.length) {
+  if (!products.length) {
     return <NotFoundData />;
   }
 
@@ -24,8 +21,8 @@ export function SearchResults() {
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
           <h1 className="w-100 text-center">Productos</h1>
 
-          {!filteredProducts.length && <NotFoundData />}
-          <CardList productos={filteredProducts} />
+          {!products.length && <NotFoundData />}
+          <CardList productos={products} />
         </div>
       )}
     </>

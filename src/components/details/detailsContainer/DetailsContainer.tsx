@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { productos } from "../../../api/productos";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Button } from "react-bootstrap";
+import { useProductsContext } from "../../../context/ProductProvider";
 
 interface ProductoProps {
   id: string;
@@ -15,12 +16,13 @@ interface ProductoProps {
 }
 
 export function DetailsContainer() {
+  const { products } = useProductsContext();
   const params = useParams();
   const [product, setProduct] = useState<ProductoProps | null>(null);
   const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
-    const findProductById = productos.find(
+    const findProductById = products.find(
       (producto) => producto.id === params.id
     );
     setProduct(findProductById || null);

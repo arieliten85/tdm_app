@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./navigation.scss";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaChevronDown } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const Navigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation(); // Hook para obtener la ubicación actual
   const [menuActive, setMenuActive] = useState(false);
+  const [menuProductActive, setMenuProductActive] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(true);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
+    setMenuProductActive(false);
+  };
+  const toggleMenuProducts = () => {
+    setMenuProductActive(!menuProductActive);
   };
 
   const closeMenu = () => {
+    setMenuProductActive(false);
     setMenuActive(false);
   };
 
@@ -51,6 +57,7 @@ export const Navigation: React.FC = () => {
       handleSearch();
     }
   };
+
   return (
     <header className="header" id="header">
       <nav className="navbar container">
@@ -72,6 +79,38 @@ export const Navigation: React.FC = () => {
                 inicio
               </Link>
             </li>
+
+            <li
+              className="menu-item menu-item-product"
+              onClick={toggleMenuProducts}
+            >
+              <p
+                className={`menu-link  ${
+                  location.pathname === "/productos" ? "active" : ""
+                }`}
+              >
+                Productos
+              </p>
+              <FaChevronDown />
+
+              <ul
+                className={`subMenu-productos ${
+                  menuProductActive ? "subMenu-productos-active" : ""
+                }`}
+              >
+                <li>
+                  <Link to={"/tematicas"} onClick={closeMenu}>
+                    <p>tortas tematicas</p>
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/budines"} onClick={closeMenu}>
+                    <p>budines</p>
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
             <li className="menu-item">
               <Link
                 to="/galeria"

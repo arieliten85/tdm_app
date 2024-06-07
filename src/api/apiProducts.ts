@@ -1,4 +1,4 @@
-export const productos = [
+export const apiProducts = [
   {
     id: "01",
     img: "https://cuk-it.com/wp-content/uploads/2020/06/alfajores-maicena.webp",

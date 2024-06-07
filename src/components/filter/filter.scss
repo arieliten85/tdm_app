@@ -3,7 +3,7 @@
   flex-direction: row !important;
   justify-content: flex-end !important;
   align-items: center !important;
-  max-width: 30%;
+
   gap: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -19,6 +19,48 @@
   }
 }
 
+.data-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgb(243, 239, 239);
+
+  p {
+    display: flex;
+    border: 1px solid rgb(243, 239, 239);
+    gap: 2px;
+    font-size: 1rem;
+    margin: 0 10px;
+  }
+
+  input {
+    margin: 0 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem; /* Ajusta proporcionalmente */
+  }
+
+  .button {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0;
+    padding-bottom: 4px;
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+}
+
 .filter-form {
   display: none;
 
@@ -28,6 +70,13 @@
 
   .button:hover {
     background: #b98d67 !important;
+  }
+
+  .button-clean {
+    background: #686563 !important;
+  }
+  .button-clean:hover {
+    background: #918e8c !important;
   }
 }
 
@@ -48,5 +97,8 @@
 
   .filter-form {
     display: block;
+  }
+  .data-filter {
+    display: none;
   }
 }

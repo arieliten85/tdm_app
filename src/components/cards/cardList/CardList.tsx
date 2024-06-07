@@ -1,6 +1,5 @@
 import "./cardList.scss";
 import { useEffect, useState } from "react";
-
 import { Productos, buyProductProps } from "../../../types/types";
 import { Modal, Button } from "react-bootstrap";
 import { Counter } from "../../../components/counter/Counter";
@@ -10,12 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { phoneNumber } from "../../../api/whatapp";
 import { formatPrice } from "../../../components/utils/formatPrice ";
-import { Filter } from "../../../components/filter/Filter";
-import { NotFoundData } from "../../../components/utililidades/Components";
-import { useProductsContext } from "../../../context/ProductProvider";
-export function CardList({ productos }: Productos) {
-  const { error } = useProductsContext();
 
+export function CardList({ productos }: Productos) {
   const { count, increment, decrement, reset } = useCounter(0);
   const [total, setTotal] = useState<number>(0);
   const [selectedProduct, setSelectedProduct] =
@@ -66,35 +61,30 @@ Por favor, ¿podrías confirmarme si hay stock?
 
   return (
     <>
-      {error && <NotFoundData />}
-
-      <div className="productos-home">
-        <Filter />
-        <div className="wrapper">
-          {productos.map((producto) => (
-            <div key={producto.id} onClick={() => handleCardClick(producto)}>
-              <CardItem
-                id={producto.id}
-                img={producto.img}
-                title={producto.title}
-                description={producto.description}
-                price={producto.price}
-              />
-            </div>
-          ))}
-
-          {selectedProduct && (
-            <ModalCards
-              buyProduct={buyProduct}
-              count={count}
-              decrement={decrement}
-              handleClose={handleClose}
-              increment={increment}
-              selectedProduct={selectedProduct}
-              total={total}
+      <div className="wrapper">
+        {productos.map((producto) => (
+          <div key={producto.id} onClick={() => handleCardClick(producto)}>
+            <CardItem
+              id={producto.id}
+              img={producto.img}
+              title={producto.title}
+              description={producto.description}
+              price={producto.price}
             />
-          )}
-        </div>
+          </div>
+        ))}
+
+        {selectedProduct && (
+          <ModalCards
+            buyProduct={buyProduct}
+            count={count}
+            decrement={decrement}
+            handleClose={handleClose}
+            increment={increment}
+            selectedProduct={selectedProduct}
+            total={total}
+          />
+        )}
       </div>
     </>
   );

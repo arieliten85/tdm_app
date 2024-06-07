@@ -4,7 +4,7 @@
 }
 
 .container {
-  max-width: 80rem;
+  //max-width: 80rem;
   height: auto;
   margin: 0 auto;
   padding: 0 1.25rem;
@@ -67,6 +67,45 @@
   height: auto;
   padding: 10px;
 }
+
+//---------------------
+
+// MENU PRODUCTOS----
+.menu-item-product {
+  position: relative;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+.subMenu-productos {
+  position: absolute;
+  top: 40px;
+  left: -15px;
+  display: none;
+  background: hsl(0, 9%, 98%);
+  transition: opacity 0.5s ease;
+
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.24);
+  padding: 10px;
+}
+.subMenu-productos li {
+  padding: 5px 0;
+  margin: 10px;
+  width: 100%;
+}
+.subMenu-productos li p {
+  text-transform: uppercase;
+  width: max-content;
+}
+
+.subMenu-productos-active {
+  display: block;
+}
+
+//----FIN MENU PRODUCTOS
+//--------------
 
 @media only screen and (min-width: 62rem) {
   .navbar {
@@ -171,7 +210,7 @@
   left: 0;
   width: 100%;
   height: auto;
-  overflow: hidden;
+
   padding-block: 3rem 2rem;
   background: var(--color-white-100);
   box-shadow: var(--shadow-medium);
@@ -180,7 +219,7 @@
 
 .menu.is-active {
   top: 0;
-  width: 100%;
+  //width: 100%;
   height: inherit;
   z-index: 1;
 }
@@ -231,7 +270,7 @@
   .menu-inner {
     display: flex;
     flex-direction: row;
-    column-gap: 1.25rem;
+    //column-gap: 1.25rem;
     margin: 0 auto;
     padding: 0 !important;
   }

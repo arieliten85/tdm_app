@@ -6,7 +6,7 @@ import {
 } from "../../components/utililidades/Components";
 
 export const Productos = () => {
-  const { filteredProducts, loading } = useProductsContext();
+  const { products, loading } = useProductsContext();
 
   return (
     <div
@@ -22,8 +22,8 @@ export const Productos = () => {
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
             <h1 className="w-100 text-center">Productos</h1>
 
-            {!filteredProducts.length && <NotFoundData />}
-            <CardList productos={filteredProducts} />
+            {!products.length && <NotFoundData />}
+            <CardList productos={products} />
           </div>
         )}
       </div>
