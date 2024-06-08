@@ -82,6 +82,7 @@
   position: absolute;
   top: 40px;
   left: -15px;
+  z-index: 1;
   display: none;
   background: hsl(0, 9%, 98%);
   transition: opacity 0.5s ease;
@@ -117,16 +118,22 @@
   }
 }
 
+.container-brand {
+  border: rgb(157, 255, 0) solid;
+  width: fit-content;
+}
+
 .brand {
-  position: relative;
-  top: 5px;
+  // position: relative;
+  // top: 5px;
   font-family: "Borel", cursive;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -1px;
   color: var(--color-brown-500);
-  width: fit-content;
+
+  border: rgb(119, 0, 255) solid;
 }
 
 .search {
@@ -265,6 +272,8 @@
     background: none;
     box-shadow: none;
     transition: none;
+
+    border: rgb(119, 0, 255) solid;
   }
 
   .menu-inner {
