@@ -140,6 +140,7 @@
   letter-spacing: -1px;
   color: var(--color-brown-500);
   width: fit-content;
+  z-index: 2;
 }
 
 .search {
@@ -231,7 +232,7 @@
 }
 
 .menu.is-active {
-  top: 0;
+  top: 50px;
   //width: 100%;
   height: inherit;
   z-index: 1;
