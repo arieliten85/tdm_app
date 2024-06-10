@@ -71,9 +71,25 @@ button {
   outline: none;
   background: none;
   box-shadow: none;
+  font-size: 14px !important;
 }
 p {
   margin: 0 !important;
+  font-size: 14px !important;
+}
+input:focus,
+select:focus,
+select,
+input.form-control:focus {
+  outline: none !important;
+  border-color: rgb(218, 168, 103);
+  outline-width: 0 !important;
+
+  box-shadow: none;
+
+  -moz-box-shadow: none;
+
+  -webkit-box-shadow: none;
 }
 
 .app {

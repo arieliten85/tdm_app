@@ -1,66 +1,18 @@
-export const productos = [
+export const imagesData = [
   {
-    id: "01",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_V38fYdTpZZZWBKm2zsmdl2TLhkSowMgietl9YwQg65Bz0p2ltsrousuxyvW6aGwTG8c&usqp=CAU",
-    title: "Cookies",
-    description:
-      "¡Irresistible! Nuestra cookie, con chispas de chocolate, te invita a una experiencia de sabor única. ¡Ordénala ahora y déjate tentar!",
-    price: "$2.50",
-  },
-  {
-    id: "02",
-    img: "https://vinomanos.com/wp-content/uploads/2019/11/brownie.jpg",
-    title: "Brownie Tentación",
-    description:
-      "Una tentación irresistible! Nuestro brownie, con su textura densa y exquisito sabor a chocolate, te invita a disfrutar de un buen momento",
-    price: "$3.00",
-  },
-  {
-    id: "03",
-    img: "https://media.airedesantafe.com.ar/p/c3bcc6e6562c6e77ac34966c5e42c51f/adjuntos/268/imagenes/002/698/0002698406/1200x675/smart/pastafrola.png",
-    title: "Pastafrola Artesanal",
-    description:
-      "¡Clásica y deliciosa! Nuestra pastafrola combina una base crujiente con dulce de membrillo casero. ¡Ordénala ahora y disfruta de un sabor auténtico en cada bocado!",
-    price: "$4.50",
-  },
-  {
-    id: "04",
-    img: "https://chocolateaguila.com/archivos/recetas/receta-262_budin-de-zanahorias.jpg",
-    title: "Budín de Zanahoria",
-    description:
-      "Nuestro budín de zanahoria, con su suave textura y el toque cítrico del glaseado de limón, te invita a un festín de sabores caseros. Cada bocado es una explosión de sabor que te dejará deseando más.",
-    price: "$3.50",
-  },
-  {
-    id: "05",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_V38fYdTpZZZWBKm2zsmdl2TLhkSowMgietl9YwQg65Bz0p2ltsrousuxyvW6aGwTG8c&usqp=CAU",
-    title: "Galletas de la Abuela",
-    description:
-      "Revive los mejores recuerdos con nuestras galletas de la abuela. Repletas de chispas de chocolate y horneadas con amor, son el acompañamiento perfecto para tu café o té. ¡Ordénalas ahora y disfruta de un sabor nostálgico!",
-    price: "$2.50",
-  },
-  {
-    id: "06",
-    img: "https://vinomanos.com/wp-content/uploads/2019/11/brownie.jpg",
-    title: "Brownie de Ensueño",
-    description:
-      "Sumérgete en la decadencia con nuestro brownie de ensueño. Con una textura fudgy y un intenso sabor a chocolate, es el postre ideal para cualquier amante del cacao. ¡No te resistas y pruébalo hoy mismo!",
-    price: "$3.00",
-  },
-  {
-    id: "07",
-    img: "https://media.airedesantafe.com.ar/p/c3bcc6e6562c6e77ac34966c5e42c51f/adjuntos/268/imagenes/002/698/0002698406/1200x675/smart/pastafrola.png",
-    title: "Pastafrola Tradicional",
-    description:
-      "Nuestra pastafrola tradicional, con su base crocante y dulce de membrillo artesanal, te transporta a los sabores de la infancia. ¡Ordénala y disfruta de cada mordisco!",
-    price: "$4.50",
-  },
-  {
-    id: "08",
-    img: "https://media.airedesantafe.com.ar/p/c3bcc6e6562c6e77ac34966c5e42c51f/adjuntos/268/imagenes/002/698/0002698406/1200x675/smart/pastafrola.png",
-    title: "Pastafrola Tradicional",
-    description:
-      "Nuestra pastafrola tradicional, con su base crocante y dulce de membrillo artesanal, te transporta a los sabores de la infancia. ¡Ordénala y disfruta de cada mordisco!",
-    price: "$6.50",
+    id: 1,
+    mainImage: {
+      src: "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/406434121_1028918791482168_8429942378878155040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=plV5239HL28Q7kNvgGSFFVp&_nc_ht=scontent.faep6-1.fna&oh=00_AYBVghptUVTlBCzQS4Wv8DJfkarnI4qPMKqVLFeEEZqCWA&oe=66655DCA",
+      title: "Alfajores de maicena",
+      description: "Temática Merlina",
+      price: "$4.50",
+      tags: ["maza", "membrillo", "vainilla"],
+      category: "",
+    },
+    optionalImages: [
+      {
+        src: "https://scontent.faep6-2.fna.fbcdn.net/v/t39.30808-6/407401784_1028918794815501_6393256074078690350_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=i1Zrh6tzf5UQ7kNvgFuMuBd&_nc_ht=scontent.faep6-2.fna&oh=00_AYDSuPFsItEE_EJ_BceIOsi3fU4S-7HSSlYQSFx3MZjH_g&oe=66654712",
+      },
+    ],
   },
 ];

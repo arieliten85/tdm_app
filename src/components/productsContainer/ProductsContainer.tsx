@@ -5,10 +5,12 @@ import {
   ShowSpinner,
   TitleCategory,
 } from "../utililidades/Components";
-import { useProductsContext } from "../../context/ProductProvider";
+
+import { useFilterProduct } from "../../components/hook/useFilterProduct";
 
 export default function ProductsContainer() {
-  const { error, products, loading } = useProductsContext();
+  const { filteredProduct, loading, errorMessage } = useFilterProduct();
+
   return (
     <>
       <div className="productos-home">
@@ -17,11 +19,11 @@ export default function ProductsContainer() {
         ) : (
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
             <TitleCategory title="Productos" />
-            {error && <NotFoundData />}
-            {!products.length && <NotFoundData />}
+
+            {errorMessage && <NotFoundData />}
             <div className="productos-home">
               <Filter />
-              <CardList productos={products} />
+              <CardList productos={filteredProduct} />
             </div>
           </div>
         )}

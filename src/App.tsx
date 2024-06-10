@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "./utils/ScrollToTop";
 import { Home } from "./pages/Home";
-import { DetailsContainer } from "./components/details/detailsContainer/DetailsContainer";
+//import { DetailsContainer } from "./components/details/detailsContainer/DetailsContainer";
 import { WhatsAppButton } from "./components/whatsAppButton/WhatsAppButton";
 import { Navigation } from "./components/navigation/Navigation";
 import { Nosotros } from "./components/nosotros/Nosotros";
@@ -22,7 +22,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Productos />} />
-          <Route path="/producto/:id" element={<DetailsContainer />} />
+          {/* <Route path="/producto/:id" element={<DetailsContainer />} /> */}
           <Route path="/galeria" element={<Gallery />} />
           <Route path="/comoComprar" element={<HowBuy />} />
           <Route path="/nosotros" element={<Nosotros />} />

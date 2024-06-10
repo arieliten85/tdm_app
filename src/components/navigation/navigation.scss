@@ -66,9 +66,15 @@
   align-content: center;
   height: auto;
   padding: 10px;
+
+  max-width: 90% !important;
+  margin: 0 auto !important;
 }
 
 //---------------------
+.menu-item {
+  width: max-content;
+}
 
 // MENU PRODUCTOS----
 .menu-item-product {
@@ -77,12 +83,15 @@
 
   display: flex;
   align-items: center;
+  margin-bottom: 9px !important;
+  svg {
+    width: 10px;
+  }
 }
 .subMenu-productos {
   position: absolute;
   top: 40px;
   left: -15px;
-  z-index: 1;
   display: none;
   background: hsl(0, 9%, 98%);
   transition: opacity 0.5s ease;
@@ -117,23 +126,20 @@
     margin: 0 auto;
   }
 }
-
 .container-brand {
-  border: rgb(157, 255, 0) solid;
   width: fit-content;
 }
 
 .brand {
-  // position: relative;
-  // top: 5px;
+  position: relative;
+  top: 5px;
   font-family: "Borel", cursive;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -1px;
   color: var(--color-brown-500);
-
-  border: rgb(119, 0, 255) solid;
+  width: fit-content;
 }
 
 .search {
@@ -171,7 +177,7 @@
 .search-input {
   display: block;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: inherit;
   width: 100%;
@@ -190,7 +196,7 @@
 }
 .search-submit {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   margin-top: 0.25rem;
   color: var(--color-white-500);
@@ -237,6 +243,7 @@
   align-items: center;
   justify-content: center;
   row-gap: 1.25rem;
+  padding: 0 !important;
 }
 
 .menu-link {
@@ -247,7 +254,7 @@
   text-transform: uppercase !important;
   color: #6d4c41;
   transition: all 0.35s ease-in-out;
-  padding: 0.5rem; /* Añadir padding para mejorar la visualización del fondo */
+  padding: 0.5rem;
 }
 
 .menu-link:hover {
@@ -264,29 +271,27 @@
   .menu {
     position: relative;
     justify-self: end;
-    top: 0;
-    left: inherit;
-    width: 120%;
+    top: 4px;
+    left: 71px;
+    width: 159%;
     height: auto;
     padding-block: 0;
     background: none;
     box-shadow: none;
     transition: none;
-
-    border: rgb(119, 0, 255) solid;
   }
 
   .menu-inner {
     display: flex;
     flex-direction: row;
-    //column-gap: 1.25rem;
+    align-items: center;
+    column-gap: 1.25rem;
     margin: 0 auto;
     padding: 0 !important;
   }
-
-  .menu-link {
-    text-transform: capitalize;
-  }
+}
+.menu-link {
+  font-size: 12px;
 }
 
 .burger {

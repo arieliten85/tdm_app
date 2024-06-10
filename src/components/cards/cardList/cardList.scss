@@ -18,7 +18,6 @@ $clr-gray700: #161d34;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   //height: 100vh !important;
 }
@@ -85,6 +84,7 @@ $clr-gray700: #161d34;
     font-family: Oxygen, sans-serif;
     font-weight: bold;
     font-size: 14px;
+
     color: white;
 
     background-color: var(--color-brown-500);
@@ -125,6 +125,7 @@ $clr-gray700: #161d34;
     color: white;
   }
 }
+
 .icon-whatsapp {
   font-size: 20px;
   position: relative;
@@ -135,28 +136,34 @@ $clr-gray700: #161d34;
 //// MODAL
 ///
 .modal {
-  top: 60px !important;
+  //  top: 60px !important;
 }
 
 .modal-header {
   padding: 10px !important;
 }
+
 .modal-content {
-  max-width: 300px;
+  max-width: 100%;
+  width: 95%;
+  max-height: 90vh;
   height: auto;
   margin: 0 auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
+
 .modal-image-container {
-  height: 200px;
+  width: 100%;
+  max-height: 60vh;
+  overflow: hidden;
 }
 
 .modal-body {
-  padding: 0;
+  padding: 0 !important;
 
   .desc {
-    text-align: justify;
-
-    font-size: 17px;
     text-align: justify;
     font-size: 14px;
     line-height: 17px;
@@ -169,32 +176,36 @@ $clr-gray700: #161d34;
     font-size: 17px;
   }
 }
+
 .modal-body-container {
-  margin: 10px 10px 0 10px !important;
+  margin: 10px !important;
 }
+
 .modal-image {
   width: 100%;
   height: 100%;
+  object-fit: contain; /* Ensures the image retains its aspect ratio */
 }
 
 .modal-footer {
   padding: 0 !important;
-
   margin: 0 10px 20px 10px !important;
 }
+
 .modal-footer-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 !important;
-  // padding-bottom: 10px !important;
 }
+
 .info-price {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin: 10px 0 15px 0 !important;
+
   .price {
     text-align: start;
     font-weight: 400;
@@ -235,14 +246,11 @@ $clr-gray700: #161d34;
   .wrapper {
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    // width: 68%;
     max-width: 70%;
-
     padding: 0 !important;
   }
 
   .card {
-    //width: 250px !important;
     min-height: 240px;
 
     &__container__img {

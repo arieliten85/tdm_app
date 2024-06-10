@@ -1,23 +1,26 @@
 import "./filter.scss";
 import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import { useProductsContext } from "../../context/ProductProvider";
+import { useFilterProduct } from "../../components/hook/useFilterProduct";
 
 export const Filter = () => {
+  const navigate = useNavigate();
+
+  // CAPTURO LOS PARAMETRO DE BUSQUEDA
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-
   const isMinPriceParams = searchParams.get("min_price");
   const isMaxPriceParams = searchParams.get("max_price");
+  //CONTEXTO
+  const { clearFilters } = useFilterProduct();
 
-  const { clearFilters } = useProductsContext();
+  //ESTADOS
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 
@@ -28,6 +31,7 @@ export const Filter = () => {
     setShow(true);
   };
 
+  //FUNCIONES
   const handleCleanFilter = () => {
     clearFilters();
     setMinPrice("");
@@ -43,6 +47,7 @@ export const Filter = () => {
     handleClose();
   };
 
+  //ESTADOS
   useEffect(() => {
     if (isMinPriceParams && isMaxPriceParams) {
       setMinPrice(isMinPriceParams);
@@ -51,7 +56,7 @@ export const Filter = () => {
   }, [isMinPriceParams, isMaxPriceParams]);
 
   return (
-    <div className="d-flex  gap-2 justify-content-center align-items-center">
+    <div className="d-flex  gap-2 justify-content-center align-items-start">
       <div className="filter " onClick={handleShow}>
         <p className=" ">Filtrar</p>
         <FaFilter className="icon" />
@@ -97,13 +102,16 @@ export const Filter = () => {
 
       <Modal show={show} onHide={handleClose} className="modal-filter">
         <Modal.Header closeButton>
-          <Modal.Title>Filtrar por:</Modal.Title>
+          <p className="fs-5 fw-normal">Filtrar por:</p>
         </Modal.Header>
-        <Modal.Body>
-          <Form className="p-2">
+        <Modal.Body className="p-2">
+          <ProductFilterByCategory />
+          <p className="fs-5 fw-normal">Precio</p>
+          <Form className="d-flex gap-2 align-items-center mt-3 ">
             <Form.Group controlId="formMinPrice">
-              <Form.Label>Precio mínimo</Form.Label>
+              <p className="pb-1">Desde</p>
               <Form.Control
+                className="p-1 px-2"
                 type="tel"
                 placeholder="min"
                 value={minPrice}
@@ -111,8 +119,9 @@ export const Filter = () => {
               />
             </Form.Group>
             <Form.Group controlId="formMaxPrice">
-              <Form.Label>Precio máximo</Form.Label>
+              <p className="pb-1">Hasta</p>
               <Form.Control
+                className="p-1 px-2"
                 type="tel"
                 placeholder="max"
                 value={maxPrice}
@@ -122,12 +131,12 @@ export const Filter = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="mt-3 button" onClick={handleFilter}>
-            Filtrar
+          <Button className="mt-3 button " onClick={handleFilter}>
+            APLICAR
           </Button>
-          <Button className="mt-3 button" onClick={handleCleanFilter}>
+          {/* <Button className="mt-3 button" onClick={handleCleanFilter}>
             limpiar filtros
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </div>
@@ -162,6 +171,29 @@ const ShowFilterValue = ({
       ) : (
         ""
       )}
+    </>
+  );
+};
+
+export const ProductFilterByCategory = () => {
+  return (
+    <>
+      <ul className="list-group">
+        <Link to={"/tematicas"}>
+          <li className="list-group-item bg-secondary text-white">
+            Tortas tematicas
+          </li>
+        </Link>
+        <Link to={"/Budines"}>
+          <li className="list-group-item bg-secondary text-white ">Budines</li>
+        </Link>
+        <Link to={"/Tartas"}>
+          <li className="list-group-item bg-secondary text-white">Tartas</li>
+        </Link>
+        <Link to={"/Bombones"}>
+          <li className="list-group-item bg-secondary text-white ">Bombones</li>
+        </Link>
+      </ul>
     </>
   );
 };
