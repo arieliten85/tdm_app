@@ -88,6 +88,14 @@
   .button:hover {
     background: #b98d67 !important;
   }
+
+  .modal-body {
+    padding: 10px !important;
+  }
+}
+
+.modal-backdrop {
+  z-index: -1 !important;
 }
 
 @media screen and (min-width: 1240px) {

@@ -1,9 +1,7 @@
-import { useFilterProduct } from "../../components/hook/useFilterProduct";
 import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NotFoundData = () => {
-  const { errorMessage } = useFilterProduct();
   return (
     <div className=" mt-3 ">
       <h1
@@ -15,7 +13,7 @@ export const NotFoundData = () => {
           fontWeight: "bold",
         }}
       >
-        {errorMessage}
+        No se encontraron resultados para su búsqueda.
       </h1>
     </div>
   );

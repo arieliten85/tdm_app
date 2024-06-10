@@ -56,7 +56,7 @@ export const Filter = () => {
   }, [isMinPriceParams, isMaxPriceParams]);
 
   return (
-    <div className="d-flex  gap-2 justify-content-center align-items-start">
+    <div className="d-flex  gap-2 justify-content-center align-items-center">
       <div className="filter " onClick={handleShow}>
         <p className=" ">Filtrar</p>
         <FaFilter className="icon" />
@@ -104,7 +104,7 @@ export const Filter = () => {
         <Modal.Header closeButton>
           <p className="fs-5 fw-normal">Filtrar por:</p>
         </Modal.Header>
-        <Modal.Body className="p-2">
+        <Modal.Body className="p-5">
           <ProductFilterByCategory />
           <p className="fs-5 fw-normal">Precio</p>
           <Form className="d-flex gap-2 align-items-center mt-3 ">
@@ -178,22 +178,29 @@ const ShowFilterValue = ({
 export const ProductFilterByCategory = () => {
   return (
     <>
-      <ul className="list-group">
-        <Link to={"/tematicas"}>
-          <li className="list-group-item bg-secondary text-white">
-            Tortas tematicas
-          </li>
-        </Link>
-        <Link to={"/Budines"}>
-          <li className="list-group-item bg-secondary text-white ">Budines</li>
-        </Link>
-        <Link to={"/Tartas"}>
-          <li className="list-group-item bg-secondary text-white">Tartas</li>
-        </Link>
-        <Link to={"/Bombones"}>
-          <li className="list-group-item bg-secondary text-white ">Bombones</li>
-        </Link>
-      </ul>
+      <nav>
+        <p className="fs-5 fw-normal pb-2">Categoria</p>
+        <ul className="list-group">
+          <Link to={"/tematicas"}>
+            <li className="list-group-item bg-secondary text-white">
+              Tortas tematicas
+            </li>
+          </Link>
+          <Link to={"/Budines"}>
+            <li className="list-group-item bg-secondary text-white ">
+              Budines
+            </li>
+          </Link>
+          <Link to={"/Tartas"}>
+            <li className="list-group-item bg-secondary text-white">Tartas</li>
+          </Link>
+          <Link to={"/Bombones"}>
+            <li className="list-group-item bg-secondary text-white ">
+              Bombones
+            </li>
+          </Link>
+        </ul>
+      </nav>
     </>
   );
 };
