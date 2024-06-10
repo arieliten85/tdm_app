@@ -1,3 +1,4 @@
+// Navigation.jsx
 import React, { useState, useEffect } from "react";
 import "./navigation.scss";
 import { FaSearch, FaChevronDown } from "react-icons/fa";
@@ -5,7 +6,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const Navigation: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Hook para obtener la ubicación actual
+  const location = useLocation();
   const [menuActive, setMenuActive] = useState(false);
   const [menuProductActive, setMenuProductActive] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(true);
@@ -15,6 +16,7 @@ export const Navigation: React.FC = () => {
     setMenuActive(!menuActive);
     setMenuProductActive(false);
   };
+
   const toggleMenuProducts = () => {
     setMenuProductActive(!menuProductActive);
   };
@@ -24,7 +26,6 @@ export const Navigation: React.FC = () => {
     setMenuActive(false);
   };
 
-  // EFECTO HIDE SEARCH
   useEffect(() => {
     let lastScrollTop = 0;
 
@@ -68,81 +69,49 @@ export const Navigation: React.FC = () => {
         </div>
         <div className={`menu ${menuActive ? "is-active" : ""}`} id="menu">
           <ul className="menu-inner">
-            <li className="menu-item">
-              <Link
-                to="/"
-                onClick={closeMenu}
-                className={`menu-link ${
-                  location.pathname === "/" ? "active" : ""
-                }`}
-              >
-                inicio
-              </Link>
-            </li>
-
-            <li
-              className="menu-item menu-item-product"
-              onClick={toggleMenuProducts}
-            >
-              <p
-                className={`menu-link  ${
-                  location.pathname === "/productos" ? "active" : ""
-                }`}
-              >
-                Productos
-              </p>
-              <FaChevronDown />
-
-              <ul
-                className={`subMenu-productos ${
-                  menuProductActive ? "subMenu-productos-active" : ""
-                }`}
-              >
-                <li>
-                  <Link to={"/tematicas"} onClick={closeMenu}>
-                    <p>tortas tematicas</p>
+            {routes.map((route) =>
+              route.subRoutes ? (
+                <li
+                  key={route.path}
+                  className="menu-item menu-item-product"
+                  onClick={toggleMenuProducts}
+                >
+                  <p
+                    className={`menu-link ${
+                      location.pathname.startsWith(route.path) ? "active" : ""
+                    }`}
+                  >
+                    {route.label}
+                  </p>
+                  <FaChevronDown />
+                  <ul
+                    className={`subMenu-productos ${
+                      menuProductActive ? "subMenu-productos-active" : ""
+                    }`}
+                  >
+                    {route.subRoutes.map((subRoute) => (
+                      <li key={subRoute.path}>
+                        <Link to={subRoute.path} onClick={closeMenu}>
+                          <p>{subRoute.label}</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ) : (
+                <li key={route.path} className="menu-item">
+                  <Link
+                    to={route.path}
+                    onClick={closeMenu}
+                    className={`menu-link ${
+                      location.pathname === route.path ? "active" : ""
+                    }`}
+                  >
+                    {route.label}
                   </Link>
                 </li>
-                <li>
-                  <Link to={"/budines"} onClick={closeMenu}>
-                    <p>budines</p>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-
-            <li className="menu-item">
-              <Link
-                to="/galeria"
-                onClick={closeMenu}
-                className={`menu-link ${
-                  location.pathname === "/galeria" ? "active" : ""
-                }`}
-              >
-                Galeria
-              </Link>
-            </li>
-            <li className="menu-item">
-              <Link
-                to="/comoComprar"
-                onClick={closeMenu}
-                className={`menu-link ${
-                  location.pathname === "/comoComprar" ? "active" : ""
-                }`}
-              >
-                Como comprar
-              </Link>
-            </li>
-            <li className="menu-item" onClick={closeMenu}>
-              <Link
-                to="/nosotros"
-                className={`menu-link ${
-                  location.pathname === "/nosotros" ? "active" : ""
-                }`}
-              >
-                Nosotros
-              </Link>
-            </li>
+              )
+            )}
           </ul>
         </div>
         <div className={`search ${!isSearchVisible ? "search-hide" : ""}`}>
@@ -160,7 +129,7 @@ export const Navigation: React.FC = () => {
             {!searchValue ? (
               <FaSearch className="search-submit" />
             ) : (
-              <p className="  ir-search" onClick={handleSearch}>
+              <p className="ir-search" onClick={handleSearch}>
                 IR
               </p>
             )}
@@ -179,3 +148,21 @@ export const Navigation: React.FC = () => {
     </header>
   );
 };
+
+// routes.js
+export const routes = [
+  { path: "/", label: "Inicio", exact: true },
+  {
+    path: "/productos",
+    label: "Productos",
+    exact: false,
+    subRoutes: [
+      { path: "/tematicas", label: "Tortas Tematicas" },
+      { path: "/budines", label: "Budines" },
+      { path: "/eventosespeciales", label: "Eventos especiales" },
+    ],
+  },
+  { path: "/galeria", label: "Galeria", exact: false },
+  { path: "/comoComprar", label: "Como Comprar", exact: false },
+  { path: "/nosotros", label: "Nosotros", exact: false },
+];

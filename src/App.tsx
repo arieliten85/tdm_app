@@ -18,11 +18,10 @@ export function App() {
     <div className="app">
       <ScrollToTop>
         <Navigation />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Productos />} />
-          <Route path="/producto/:id" element={<DetailsContainer />} />
+          <Route path="/productos/:title" element={<DetailsContainer />} />
           <Route path="/galeria" element={<Gallery />} />
           <Route path="/comoComprar" element={<HowBuy />} />
           <Route path="/nosotros" element={<Nosotros />} />

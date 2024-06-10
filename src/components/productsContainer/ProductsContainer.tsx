@@ -7,6 +7,7 @@ import {
 } from "../utililidades/Components";
 
 import { useFilterProduct } from "../../components/hook/useFilterProduct";
+import { Breadcrumb } from "../../components/breadcrumbs/Breadcrumbs";
 
 export default function ProductsContainer() {
   const { filteredProduct, loading, errorMessage } = useFilterProduct();
@@ -18,6 +19,7 @@ export default function ProductsContainer() {
           <ShowSpinner />
         ) : (
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+            <Breadcrumb />
             <TitleCategory title="Productos" />
 
             {errorMessage && <NotFoundData />}

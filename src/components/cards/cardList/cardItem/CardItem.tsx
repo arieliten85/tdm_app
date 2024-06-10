@@ -3,7 +3,7 @@ import "../cardList.scss";
 import { Link } from "react-router-dom";
 export function CardItem(props: ProductoProps) {
   return (
-    <Link to={`/producto/${props.id}`}>
+    <Link to={`/productos/${props.title}`}>
       <div className="card">
         <div className="card__container__img">
           <img src={props.img} className="card__image" alt="Card" />
