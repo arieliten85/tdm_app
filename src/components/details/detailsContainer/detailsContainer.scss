@@ -1,0 +1,140 @@
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  //max-height: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  position: relative; /* Necesario para posicionar el ícono de manera absoluta */
+}
+
+.container-image {
+  width: 100%;
+  height: 60%;
+  max-height: 600px;
+  overflow: hidden;
+  position: relative; /* Necesario para posicionar el ícono de manera absoluta */
+}
+
+.container-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.container-info {
+  padding: 16px;
+  background-color: #fff;
+}
+
+.container-info h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1d1c1c;
+}
+.container-info .price {
+  font-weight: bold !important;
+  margin: 8px 0;
+  font-size: 1.5rem !important;
+  color: #363535 !important;
+}
+
+.container-info .seccion {
+  font-weight: bold !important;
+  margin: 8px 0;
+  font-size: 1.2rem !important;
+  color: #363535 !important;
+}
+
+.container-info p {
+  margin: 8px 0;
+  font-size: 1rem !important;
+  color: #666;
+}
+
+/* Media Query para pantallas anchas */
+@media (min-width: 620px) {
+  .card-detail {
+    padding: 20px;
+    gap: 50px;
+    flex-direction: row;
+    max-width: none;
+    height: auto;
+    justify-content: center;
+  }
+
+  .container-image {
+    width: 440px;
+    height: auto;
+    border-bottom: none;
+  }
+
+  .container-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .container-info {
+    width: 400px;
+    height: auto;
+    display: flex;
+
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+/* Estilos para la imagen completa */
+.full-image {
+  width: 100%;
+  height: auto;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+}

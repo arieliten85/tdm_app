@@ -7,7 +7,7 @@ import { CounterProps } from "types/types";
 export const Counter = ({ count, increment, decrement }: CounterProps) => {
   return (
     <div className="counter-container">
-      <div className="counter-title">Cantidad</div>
+      <div className="counter-title fs-5">Cantidad</div>
       <Button className="counter-btn" onClick={decrement}>
         <FontAwesomeIcon icon={faChevronDown} />
       </Button>

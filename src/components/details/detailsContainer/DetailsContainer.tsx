@@ -1,10 +1,164 @@
+import { useEffect, useState } from "react";
+import { useProductsContext } from "../../../context/ProductProvider";
+import { useParams } from "react-router-dom";
+import "./detailsContainer.scss";
+import { ProductoProps, buyProductProps } from "../../../types/types";
+import { FaEye, FaTimes } from "react-icons/fa"; // Importa los íconos
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
+import { Button } from "react-bootstrap";
+import { faCreditCard, faStore } from "@fortawesome/free-solid-svg-icons";
+import { formatPrice } from "../../../components/utils/formatPrice ";
+import { phoneNumber } from "../../../api/whatapp";
+import { useCounter } from "../../../components/hook/useCounter";
+import { Counter } from "../../../components/counter/Counter";
+
+export const DetailsContainer = () => {
+  const { count, increment, decrement } = useCounter(0);
+  const [total, setTotal] = useState<number>(0);
+  const { id } = useParams();
+  const [producto, setProducto] = useState<ProductoProps>({
+    id: "",
+    title: "",
+    price: "",
+    description: "",
+    img: "",
+  });
+
+  const [showFullImage, setShowFullImage] = useState(false);
+
+  const { products: allProducts } = useProductsContext();
+
+  useEffect(() => {
+    if (allProducts) {
+      allProducts.map((prod) => {
+        if (prod.id === id) {
+          setProducto(prod);
+        }
+      });
+    }
+  }, [id, allProducts]);
+
+  const handleIconClick = () => {
+    setShowFullImage(!showFullImage);
+  };
+
+  const buyProduct = (
+    product: buyProductProps,
+    count: number,
+    total: number
+  ) => {
+    const message = `¡Hola!
+
+ Me gustaría encargarte el siguiente producto:
+---------------------------------------
+ *Producto*: ${product.title}
+ *Precio*: ${product.price} c/u
+ *Cantidad*: ${count}
+ *Total*: ${formatPrice(total)}
+---------------------------------------
+
+Por favor, ¿podrías confirmarme si hay stock?
+¡Gracias!
+    `;
+
+    const formattedMessage = encodeURIComponent(message);
+
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${formattedMessage}`,
+      "_blank"
+    );
+  };
+
+  useEffect(() => {
+    if (producto) {
+      const newTotal = count * Number(producto.price.substring(1));
+      setTotal(newTotal);
+    }
+  }, [count, producto]);
+
+  console.log(total);
+
+  return (
+    <div className="card-detail">
+      <div className="container-image" onClick={handleIconClick}>
+        <img src={producto.img} className={showFullImage ? "full-image" : ""} />
+        <FaEye className="eye-icon" />
+      </div>
+      <div className="container-info">
+        <h2>{producto.title}</h2>
+
+        <p className="price my-2">{producto.price}</p>
+        <p className="mb-3">{producto.description}</p>
+
+        <Counter count={count} increment={increment} decrement={decrement} />
+        <div className="my-4">
+          <Button
+            className="card__btn_whatsapp"
+            onClick={() => buyProduct(producto, count, total)}
+          >
+            Comprar
+            <FontAwesomeIcon icon={faWhatsapp} className="icon-whatsapp" />
+          </Button>
+        </div>
+
+        <div className="container-pago my-2">
+          <div>
+            <p className="seccion">
+              <FontAwesomeIcon className="fs-5" icon={faCreditCard} />
+              {"  "} Forma de pago
+            </p>
+          </div>
+
+          <p className="border p-2 my-2">Traferencia por mecado pago</p>
+        </div>
+        <div className="container-local my-2">
+          <div>
+            <p className="seccion">
+              <FontAwesomeIcon className="fs-5" icon={faStore} />
+              {"  "} Nuestro local
+            </p>
+          </div>
+
+          <p className="border p-2 my-2">
+            TODO DULCE MARY: Rio de janeiro 2678, Lanús Oeste, POR FAVOR SIEMPRE
+            CONSULTAR LA DISPONIBILIDAD DE STOCK. En el local manejamos un stock
+            limitado.
+          </p>
+        </div>
+
+        <div className="container-compartir my-2">
+          <div>
+            <p className="seccion"> COMPARTIR</p>
+            <FontAwesomeIcon icon={faFacebook} className="icon-whatsapp m-1" />
+            <FontAwesomeIcon icon={faInstagram} className="icon-whatsapp m-1" />
+            <FontAwesomeIcon icon={faWhatsapp} className="icon-whatsapp m-1" />
+          </div>
+        </div>
+      </div>
+
+      {/* MODAL */}
+      {showFullImage && (
+        <div className="modal" onClick={handleIconClick}>
+          <FaTimes className="close-icon" onClick={handleIconClick} />
+          <img src={producto.img} className="modal-image" />
+        </div>
+      )}
+    </div>
+  );
+};
+
 // import { useParams } from "react-router-dom";
 // import { useEffect, useState } from "react";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 // import { Button } from "react-bootstrap";
-// import { useProductsContext } from "../../../context/ProductProvider";
+// import { useProductsContext } from '../../../context/ProductProvider';
 
 // interface ProductoProps {
 //   id: string;
