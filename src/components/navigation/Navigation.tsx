@@ -51,6 +51,11 @@ export const Navigation: React.FC = () => {
     if (searchValue) {
       navigate(`/search/?q=${searchValue}`);
       setSearchValue("");
+
+      const topElement = document.getElementById("top");
+      if (topElement) {
+        topElement.focus();
+      }
     }
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -60,7 +65,7 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <header className="header" id="header">
+    <header className="header " id="header top">
       <nav className="navbar container">
         <div className="container-brand">
           <Link to={"/"}>

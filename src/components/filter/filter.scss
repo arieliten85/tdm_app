@@ -5,13 +5,14 @@
   align-items: center !important;
 
   gap: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   cursor: pointer;
 
   p {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 1.2rem !important;
+    text-transform: uppercase;
+    font-weight: 500;
   }
 
   .button {
@@ -21,48 +22,46 @@
 
 .data-filter {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   gap: 5px;
-  border: 1px solid rgb(243, 239, 239);
+  border: 1px solid #c59c76a2;
+  color: #c59c76fd;
+  padding: 5px;
+  max-width: 170px !important;
+
+  span {
+    color: #c59c76fd;
+  }
 
   p {
     display: flex;
-    border: 1px solid rgb(243, 239, 239);
+    color: white;
+
     gap: 2px;
     font-size: 1rem;
     margin: 0 10px;
   }
 
   input {
-    margin: 0 10px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1rem; /* Ajusta proporcionalmente */
+    font-size: 1rem;
   }
 
-  .button {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: 0;
-    padding-bottom: 4px;
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
+  .icon-close {
     cursor: pointer;
-
-    &:hover {
-      background-color: red;
-      color: white;
-    }
+    color: #131212fd;
   }
 }
 
 .filter-form {
   display: none;
+  label {
+    margin-bottom: 2px !important;
+    margin-top: 10px !important;
+  }
 
   .button {
     background: #caa07a !important;
@@ -91,11 +90,47 @@
 
   .modal-body {
     padding: 10px !important;
+
+    li {
+      border: none;
+      text-transform: uppercase;
+      color: #462d1d !important;
+      background-color: #ca9f7aa4 !important;
+      margin: 0 !important;
+    }
+  }
+}
+.data-filter-container-mobile {
+  width: 100%;
+  padding-left: 7px;
+  padding-block: 10px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 }
 
 .modal-backdrop {
   z-index: -1 !important;
+}
+
+.pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 !important;
+  gap: 10px;
+
+  li {
+    padding: 10px;
+  }
+}
+
+.pills-container li {
+  display: inline-block;
+  margin: 0 5px; /* Margen entre los elementos */
 }
 
 @media screen and (min-width: 1240px) {
@@ -106,7 +141,8 @@
   .filter-form {
     display: block;
   }
-  .data-filter {
-    display: none;
+
+  .data-filter-container-mobile {
+    display: none !important;
   }
 }

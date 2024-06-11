@@ -101,6 +101,7 @@ export const useFilterProduct = () => {
         setTimeout(() => {
           setLoading(false);
           setFilteredProduct(rangePriceResults);
+          setErrorMessage("");
         }, 500);
       }
     }
@@ -108,7 +109,7 @@ export const useFilterProduct = () => {
 
   const clearFilters = () => {
     setLoading(true);
-
+    setErrorMessage("");
     setFilteredProduct(apiProducts);
     searchParams.delete("q");
     searchParams.delete("min_price");

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const NotFoundData = () => {
   return (
-    <div className=" mt-3 ">
+    <div className="  mt-3">
       <h1
         className=" text-center p-3 text-white "
         style={{

@@ -10,8 +10,9 @@ import { Footer } from "./components/footer/Footer";
 import { HowBuy } from "./components/howBuy/HowBuy";
 import { Gallery } from "./components/galery/Gallery";
 
-import { Productos } from "./pages/Productos";
 import { DetailsContainer } from "./components/details/detailsContainer/DetailsContainer";
+import { ProductosPage } from "./pages/ProductosPage";
+import { SearchPage } from "./pages/SearchPage";
 
 export function App() {
   return (
@@ -20,12 +21,12 @@ export function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/productos" element={<Productos />} />
+          <Route path="/productos" element={<ProductosPage />} />
           <Route path="/productos/:title" element={<DetailsContainer />} />
           <Route path="/galeria" element={<Gallery />} />
           <Route path="/comoComprar" element={<HowBuy />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/search" element={<Productos />} />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
 
         <Footer />

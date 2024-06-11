@@ -3,7 +3,7 @@ import { useProductsContext } from "../../../context/ProductProvider";
 import { useParams } from "react-router-dom";
 import "./detailsContainer.scss";
 import { ProductoProps, buyProductProps } from "../../../types/types";
-import { FaEye, FaTimes } from "react-icons/fa"; // Importa los íconos
+import { FaEye, FaTimes } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -11,7 +11,7 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { Button } from "react-bootstrap";
-import { faCreditCard, faStore } from "@fortawesome/free-solid-svg-icons";
+import { faCreditCard, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { formatPrice } from "../../../components/utils/formatPrice ";
 import { phoneNumber } from "../../../api/whatapp";
 import { useCounter } from "../../../components/hook/useCounter";
@@ -123,15 +123,30 @@ Por favor, ¿podrías confirmarme si hay stock?
           <div className="container-local my-2">
             <div>
               <p className="seccion">
-                <FontAwesomeIcon className="fs-5" icon={faStore} />
-                {"  "} Nuestro local
+                <FontAwesomeIcon
+                  style={{
+                    backgroundColor: "black",
+                    borderRadius: "20px",
+                    width: "10px",
+                    height: "10px",
+                    fontSize: "49px",
+                  }}
+                  className="   p-2 text-white"
+                  icon={faInfo}
+                />
+                {"  "} Info
               </p>
             </div>
 
-            <p className="border p-2 my-2">
-              TODO DULCE MARY: Rio de janeiro 2678, Lanús Oeste, POR FAVOR
-              SIEMPRE CONSULTAR LA DISPONIBILIDAD DE STOCK. En el local
-              manejamos un stock limitado.
+            <p
+              className="border p-2 my-2 text-uppercase text-secondary"
+              style={{
+                backgroundColor: "#80808040",
+              }}
+            >
+              Por favor, siempre consulte la disponibilidad de stock. Para los
+              productos especiales, se requiere realizar el pedido con al menos
+              5 días de anticipación.
             </p>
           </div>
 

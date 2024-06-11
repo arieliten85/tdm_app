@@ -7,7 +7,7 @@
   height: auto;
   //max-height: 600px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   transition: transform 0.2s;
   position: relative; /* Necesario para posicionar el ícono de manera absoluta */
 }
@@ -67,7 +67,7 @@
 .container-info p {
   margin: 8px 0;
   font-size: 1rem !important;
-  color: #666;
+  color: #666 !important;
 }
 
 /* Media Query para pantallas anchas */

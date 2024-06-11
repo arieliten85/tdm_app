@@ -6,8 +6,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import { useFilterProduct } from "../../components/hook/useFilterProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-export const Filter = () => {
+export const ProductFilter = () => {
   const navigate = useNavigate();
 
   // CAPTURO LOS PARAMETRO DE BUSQUEDA
@@ -15,13 +17,13 @@ export const Filter = () => {
   const searchParams = new URLSearchParams(location.search);
   const isMinPriceParams = searchParams.get("min_price");
   const isMaxPriceParams = searchParams.get("max_price");
-  //CONTEXTO
+
+  // CONTEXTO
   const { clearFilters } = useFilterProduct();
 
-  //ESTADOS
+  // ESTADOS
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -31,12 +33,13 @@ export const Filter = () => {
     setShow(true);
   };
 
-  //FUNCIONES
+  // FUNCIONES
   const handleCleanFilter = () => {
     clearFilters();
-    setMinPrice("");
-    setMaxPrice("");
+
+    navigate("/productos");
   };
+
   const handleFilter = () => {
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
@@ -47,29 +50,49 @@ export const Filter = () => {
     handleClose();
   };
 
-  //ESTADOS
+  // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
     if (isMinPriceParams && isMaxPriceParams) {
       setMinPrice(isMinPriceParams);
       setMaxPrice(isMaxPriceParams);
+    } else {
+      setMinPrice("");
+      setMaxPrice("");
     }
   }, [isMinPriceParams, isMaxPriceParams]);
 
   return (
-    <div className="d-flex  gap-2 justify-content-center align-items-center">
-      <div className="filter " onClick={handleShow}>
-        <p className=" ">Filtrar</p>
-        <FaFilter className="icon" />
-      </div>
+    <>
+      {!isMinPriceParams && !isMaxPriceParams && (
+        <div className="filter" onClick={handleShow}>
+          <p className=" ">Filtrar</p>
+          <FaFilter className="icon" />
+        </div>
+      )}
 
-      <ShowFilterValue
-        clearFilters={clearFilters}
-        isMaxPriceParams={isMaxPriceParams}
-        isMinPriceParams={isMinPriceParams}
-      />
+      <div className="data-filter-container-mobile">
+        <ShowFilterValue
+          clearFilters={clearFilters}
+          isMaxPriceParams={isMaxPriceParams}
+          isMinPriceParams={isMinPriceParams}
+        />
+      </div>
 
       <div className="filter-form border p-3">
         <h4>Filtrar por:</h4>
+
+        <div className="data-filter-container">
+          <p className="mt-3 " onClick={handleCleanFilter}>
+            limpiar filtros
+          </p>
+
+          <ShowFilterValue
+            clearFilters={clearFilters}
+            isMaxPriceParams={isMaxPriceParams}
+            isMinPriceParams={isMinPriceParams}
+          />
+        </div>
+
         <Form>
           <Form.Group controlId="formMinPrice">
             <Form.Label>Precio mínimo</Form.Label>
@@ -80,6 +103,7 @@ export const Filter = () => {
               onChange={(e) => setMinPrice(e.target.value)}
             />
           </Form.Group>
+
           <Form.Group controlId="formMaxPrice">
             <Form.Label>Precio máximo</Form.Label>
             <Form.Control
@@ -89,12 +113,9 @@ export const Filter = () => {
               onChange={(e) => setMaxPrice(e.target.value)}
             />
           </Form.Group>
-          <div className="w-100 border d-flex justify-content-between">
+          <div className="w-100 d-flex justify-content-between">
             <Button className="mt-3 button" onClick={handleFilter}>
               Filtrar
-            </Button>
-            <Button className="mt-3 button-clean" onClick={handleCleanFilter}>
-              limpiar filtros
             </Button>
           </div>
         </Form>
@@ -131,17 +152,15 @@ export const Filter = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="mt-3 button " onClick={handleFilter}>
+          <Button className="mt-3 button" onClick={handleFilter}>
             APLICAR
           </Button>
-          {/* <Button className="mt-3 button" onClick={handleCleanFilter}>
-            limpiar filtros
-          </Button> */}
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
+
 interface ShowFilterValueProps {
   isMinPriceParams: string | null;
   isMaxPriceParams: string | null;
@@ -151,25 +170,24 @@ interface ShowFilterValueProps {
 const ShowFilterValue = ({
   isMinPriceParams,
   isMaxPriceParams,
+
   clearFilters,
 }: ShowFilterValueProps) => {
   return (
     <>
-      {isMinPriceParams && isMaxPriceParams ? (
-        <div className="data-filter">
-          <p>
-            min: <span>{isMinPriceParams}</span>
-          </p>
-          -
-          <p>
-            max <span>{isMaxPriceParams}</span>
-          </p>
-          <button className="button" onClick={clearFilters}>
-            x
-          </button>
+      {isMinPriceParams && isMaxPriceParams && (
+        <div>
+          <p className="text-dark fs-5 fw-normal">Filtros Aplicados:</p>
+          <div className="data-filter text-center">
+            min: <span>{isMinPriceParams}</span> - max
+            <span>{isMaxPriceParams}</span>
+            <FontAwesomeIcon
+              icon={faClose}
+              className="icon-close"
+              onClick={clearFilters}
+            />
+          </div>
         </div>
-      ) : (
-        ""
       )}
     </>
   );
@@ -179,23 +197,21 @@ export const ProductFilterByCategory = () => {
   return (
     <>
       <nav>
-        <p className="fs-5 fw-normal pb-2">Categoria</p>
-        <ul className="list-group">
+        <p className="fs-5 fw-normal pb-2">Categorías</p>
+        <ul className="list-unstyled pills-container">
           <Link to={"/tematicas"}>
             <li className="list-group-item bg-secondary text-white">
               Tortas tematicas
             </li>
           </Link>
           <Link to={"/Budines"}>
-            <li className="list-group-item bg-secondary text-white ">
-              Budines
-            </li>
+            <li className="list-group-item bg-secondary text-white">Budines</li>
           </Link>
           <Link to={"/Tartas"}>
             <li className="list-group-item bg-secondary text-white">Tartas</li>
           </Link>
           <Link to={"/Bombones"}>
-            <li className="list-group-item bg-secondary text-white ">
+            <li className="list-group-item bg-secondary text-white">
               Bombones
             </li>
           </Link>
