@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGetParamsLocation } from "../../hook/useGetParamsLocation";
 import { useProductsContext } from "../../context/ProductProvider";
+import { apiRootNavLink } from "../../api/apiRootNavLink";
 
 export const ProductFilter = () => {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ export const ProductFilter = () => {
           <p className="fs-5 fw-normal">Filtrar por:</p>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <ProductFilterByCategory />
+          <ProductFilterByCategory handleClose={handleClose} />
           <p className="fs-5 fw-normal">Precio</p>
           <Form className="d-flex gap-2 align-items-center mt-3 ">
             <Form.Group controlId="formMinPrice">
@@ -184,31 +185,24 @@ const ShowFilterValue = ({
     </>
   );
 };
-
-export const ProductFilterByCategory = () => {
+interface ProductFilterByCategoryProps {
+  handleClose: () => void;
+}
+export const ProductFilterByCategory = ({
+  handleClose,
+}: ProductFilterByCategoryProps) => {
   return (
-    <>
-      <nav>
-        <p className="fs-5 fw-normal pb-2">Categorías</p>
-        <ul className="list-unstyled pills-container">
-          <Link to={"/tematicas"}>
+    <nav>
+      <p className="fs-5 fw-normal pb-2">Categorías</p>
+      <ul className="list-unstyled pills-container">
+        {apiRootNavLink[1].subRoutes?.map((cat) => (
+          <Link to={`${cat.path}`} onClick={handleClose} key={cat.path}>
             <li className="list-group-item bg-secondary text-white">
-              Tortas tematicas
+              {cat.label}
             </li>
           </Link>
-          <Link to={"/Budines"}>
-            <li className="list-group-item bg-secondary text-white">Budines</li>
-          </Link>
-          <Link to={"/Tartas"}>
-            <li className="list-group-item bg-secondary text-white">Tartas</li>
-          </Link>
-          <Link to={"/Bombones"}>
-            <li className="list-group-item bg-secondary text-white">
-              Bombones
-            </li>
-          </Link>
-        </ul>
-      </nav>
-    </>
+        ))}
+      </ul>
+    </nav>
   );
 };

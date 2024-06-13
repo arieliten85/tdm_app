@@ -29,10 +29,6 @@ export const ProductosPage = () => {
     }
   }, [categoria, products]);
 
-  console.log("errorMessage", errorMessage);
-  console.log("error", error);
-  console.log("products", products);
-
   if (loading) {
     return <ShowSpinner />;
   }

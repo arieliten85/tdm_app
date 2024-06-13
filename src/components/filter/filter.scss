@@ -3,21 +3,20 @@
   flex-direction: row !important;
   justify-content: flex-end !important;
   align-items: center !important;
-
   gap: 20px;
   padding-top: 10px;
   padding-bottom: 5px;
   cursor: pointer;
+}
 
-  p {
-    font-size: 1.2rem !important;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
+.filter p {
+  font-size: 1.2rem !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 
-  .button {
-    background: #caa07a !important;
-  }
+.filter .button {
+  background: #caa07a !important;
 }
 
 .data-filter {
@@ -29,88 +28,88 @@
   color: #c59c76fd;
   padding: 5px;
   max-width: 170px !important;
+}
 
-  span {
-    color: #c59c76fd;
-  }
+.data-filter span {
+  color: #c59c76fd;
+}
 
-  p {
-    display: flex;
-    color: white;
+.data-filter p {
+  display: flex;
+  color: white;
+  gap: 2px;
+  font-size: 1rem;
+  margin: 0 10px;
+}
 
-    gap: 2px;
-    font-size: 1rem;
-    margin: 0 10px;
-  }
+.data-filter input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
 
-  input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-
-  .icon-close {
-    cursor: pointer;
-    color: #131212fd;
-  }
+.data-filter .icon-close {
+  cursor: pointer;
+  color: #131212fd;
 }
 
 .filter-form {
   display: none;
-  label {
-    margin-bottom: 2px !important;
-    margin-top: 10px !important;
-  }
-
-  .button {
-    background: #caa07a !important;
-  }
-
-  .button:hover {
-    background: #b98d67 !important;
-  }
-
-  .button-clean {
-    background: #686563 !important;
-  }
-  .button-clean:hover {
-    background: #918e8c !important;
-  }
 }
 
-.modal-filter {
-  .button {
-    background: #caa07a !important;
-  }
-
-  .button:hover {
-    background: #b98d67 !important;
-  }
-
-  .modal-body {
-    padding: 10px !important;
-
-    li {
-      border: none;
-      text-transform: uppercase;
-      color: #462d1d !important;
-      background-color: #ca9f7aa4 !important;
-      margin: 0 !important;
-    }
-  }
+.filter-form label {
+  margin-bottom: 2px !important;
+  margin-top: 10px !important;
 }
+
+.filter-form .button {
+  background: #caa07a !important;
+}
+
+.filter-form .button:hover {
+  background: #b98d67 !important;
+}
+
+.filter-form .button-clean {
+  background: #686563 !important;
+}
+
+.filter-form .button-clean:hover {
+  background: #918e8c !important;
+}
+
+.modal-filter .button {
+  background: #caa07a !important;
+}
+
+.modal-filter .button:hover {
+  background: #b98d67 !important;
+}
+
+.modal-filter .modal-body {
+  padding: 10px !important;
+}
+
+.modal-filter .modal-body li {
+  border: none;
+  text-transform: uppercase;
+  color: #462d1d !important;
+  background-color: #ca9f7aa4 !important;
+  margin: 0 !important;
+}
+
 .data-filter-container-mobile {
   width: 100%;
   padding-left: 7px;
   padding-block: 10px;
+}
 
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
+.data-filter-container-mobile div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .modal-backdrop {
@@ -122,15 +121,14 @@
   flex-wrap: wrap;
   margin: 0 !important;
   gap: 10px;
-
-  li {
-    padding: 10px;
-  }
+  padding: 0;
+  list-style: none; /* Remueve los puntos de la lista */
 }
 
 .pills-container li {
   display: inline-block;
   margin: 0 5px; /* Margen entre los elementos */
+  padding: 10px;
 }
 
 @media screen and (min-width: 1240px) {
