@@ -14,7 +14,7 @@ export function CardList({ productos }: ApiProductos) {
           <div key={producto.id}>
             <CardItem
               id={producto.id}
-              img={producto.image}
+              image={producto.image}
               title={producto.title}
               description={producto.description}
               price={producto.price}

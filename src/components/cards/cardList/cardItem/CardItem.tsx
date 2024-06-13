@@ -1,12 +1,13 @@
-import { ProductoProps } from "types/types";
+import { ApiProductoProps } from "../../../../types/types";
 import "../cardList.scss";
 import { Link } from "react-router-dom";
-export function CardItem(props: ProductoProps) {
+
+export function CardItem(props: ApiProductoProps) {
   return (
     <Link to={`/productos/${props.title}`}>
       <div className="card">
         <div className="card__container__img">
-          <img src={props.img} className="card__image" alt="Card" />
+          <img src={props.image} className="card__image" alt="Card" />
         </div>
         <div className="card__info">
           <div className="card__info__text">
