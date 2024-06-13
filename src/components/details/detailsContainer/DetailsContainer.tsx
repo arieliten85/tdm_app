@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useProductsContext } from "../../../context/ProductProvider";
+
 import { useParams } from "react-router-dom";
 import "./detailsContainer.scss";
-import { ProductoProps, buyProductProps } from "../../../types/types";
+import { ApiProductoProps, buyProductProps } from "../../../types/types";
 import { FaEye, FaTimes } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,28 +14,32 @@ import { Button } from "react-bootstrap";
 import { faCreditCard, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { formatPrice } from "../../../components/utils/formatPrice ";
 import { phoneNumber } from "../../../api/whatapp";
-import { useCounter } from "../../../components/hook/useCounter";
+
 import { Counter } from "../../../components/counter/Counter";
 import { Breadcrumb } from "../../../components/breadcrumbs/Breadcrumbs";
+import { useCounter } from "../../../hook/useCounter";
+import { useProductsContext } from "../../../context/ProductProvider";
 
 export const DetailsContainer = () => {
   const { count, increment, decrement } = useCounter(0);
   const [total, setTotal] = useState<number>(0);
   const { title } = useParams();
-  const [producto, setProducto] = useState<ProductoProps>({
+  const [producto, setProducto] = useState<ApiProductoProps>({
     id: "",
     title: "",
     price: "",
     description: "",
-    img: "",
+    image: "",
   });
 
   const [showFullImage, setShowFullImage] = useState(false);
 
   const { products: allProducts } = useProductsContext();
 
+  console.log(title);
+
   useEffect(() => {
-    if (allProducts) {
+    if (allProducts && title) {
       allProducts.map((prod) => {
         if (prod.title === title) {
           setProducto(prod);
@@ -88,7 +92,7 @@ Por favor, ¿podrías confirmarme si hay stock?
       <div className="card-detail">
         <div className="container-image" onClick={handleIconClick}>
           <img
-            src={producto.img}
+            src={producto.image}
             className={showFullImage ? "full-image" : ""}
           />
           <FaEye className="eye-icon" />
@@ -173,7 +177,7 @@ Por favor, ¿podrías confirmarme si hay stock?
         {showFullImage && (
           <div className="modal" onClick={handleIconClick}>
             <FaTimes className="close-icon" onClick={handleIconClick} />
-            <img src={producto.img} className="modal-image" />
+            <img src={producto.image} className="modal-image" />
           </div>
         )}
       </div>

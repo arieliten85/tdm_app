@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom"; // Importar Link desde React Router
 import { FaInstagram, FaFacebook, FaMapMarkerAlt } from "react-icons/fa";
 import "./footer.scss";
 
 import logo from "../../assets/TodoDulceMary_sin_fondo.png";
+import { MenuLinks } from "../../components/navigation/MenuLinks";
+import { apiRootNavLink } from "../../api/apiRootNavLink";
+import { useMenuState } from "../../hook/useMenuState";
 
 export function Footer() {
+  const { menuProductActive, toggleMenuProducts, closeMenu } = useMenuState();
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -14,20 +18,12 @@ export function Footer() {
         <div className="footer-column">
           <h4>Navegación</h4>
           <nav className="footer-nav">
-            <ul>
-              <li>
-                <Link to="#home">Inicio</Link>
-              </li>
-              <li>
-                <Link to="#about">Productos</Link>
-              </li>
-              <li>
-                <Link to="#contact">Cómo comprar</Link>
-              </li>
-              <li>
-                <Link to="#contact">Nosotros</Link>
-              </li>
-            </ul>
+            <MenuLinks
+              routes={apiRootNavLink}
+              menuProductActive={menuProductActive}
+              toggleMenuProducts={toggleMenuProducts}
+              closeMenu={closeMenu}
+            />
           </nav>
         </div>
 

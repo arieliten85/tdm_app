@@ -4,12 +4,12 @@ import {
   TitleCategory,
 } from "../components/utililidades/Components";
 
-import { useFilterProduct } from "../components/hook/useFilterProduct";
 import ProductsList from "../components/ProductList/ProductList";
 import { Breadcrumb } from "../components/breadcrumbs/Breadcrumbs";
+import { useProductsContext } from "../context/ProductProvider";
 
 export const SearchPage = () => {
-  const { loading, errorMessage, filteredProduct } = useFilterProduct();
+  const { loading, products, error, errorMessage } = useProductsContext();
 
   if (loading) {
     return <ShowSpinner />;
@@ -22,10 +22,12 @@ export const SearchPage = () => {
           <TitleCategory title="Productos" />
           <Breadcrumb />
 
-          {errorMessage ? (
+          {errorMessage && error ? (
             <NotFoundData />
           ) : (
-            <ProductsList productos={filteredProduct} />
+            <>
+              <ProductsList productos={products} />
+            </>
           )}
         </div>
       </div>

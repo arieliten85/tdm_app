@@ -14,6 +14,10 @@ import {
 export function Home() {
   const { products, loading } = useProductsContext();
 
+  const productosVentaRapida = products.filter(
+    (producto) => producto.tags && producto.tags.includes("ventaRapida")
+  );
+
   if (loading) {
     return <ShowSpinner />;
   }
@@ -23,7 +27,7 @@ export function Home() {
       <div className="flex-center-column">
         <InfoText />
         <TitleCategory title="Listo para retirar" />
-        <CardList productos={products} />
+        <CardList productos={productosVentaRapida} />
         <AllProductsButton />
       </div>
     </>

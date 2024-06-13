@@ -1,8 +1,12 @@
 import "./cardList.scss";
-import { Productos } from "../../../types/types";
+import { ApiProductoProps } from "../../../types/types";
 import { CardItem } from "./cardItem/CardItem";
 
-export function CardList({ productos }: Productos) {
+interface ApiProductos {
+  productos: ApiProductoProps[];
+}
+
+export function CardList({ productos }: ApiProductos) {
   return (
     <>
       <div className="wrapper">
@@ -10,7 +14,7 @@ export function CardList({ productos }: Productos) {
           <div key={producto.id}>
             <CardItem
               id={producto.id}
-              img={producto.img}
+              img={producto.image}
               title={producto.title}
               description={producto.description}
               price={producto.price}

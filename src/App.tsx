@@ -23,6 +23,8 @@ export function App() {
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<ProductosPage />} />
           <Route path="/productos/:title" element={<DetailsContainer />} />
+          <Route path="/:categoria" element={<ProductosPage />} />
+
           <Route path="/galeria" element={<Gallery />} />
           <Route path="/comoComprar" element={<HowBuy />} />
           <Route path="/nosotros" element={<Nosotros />} />

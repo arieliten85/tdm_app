@@ -1,25 +1,24 @@
 import "./filter.scss";
 import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import { useFilterProduct } from "../../components/hook/useFilterProduct";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { useGetParamsLocation } from "../../hook/useGetParamsLocation";
+import { useProductsContext } from "../../context/ProductProvider";
 
 export const ProductFilter = () => {
   const navigate = useNavigate();
 
   // CAPTURO LOS PARAMETRO DE BUSQUEDA
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const isMinPriceParams = searchParams.get("min_price");
-  const isMaxPriceParams = searchParams.get("max_price");
+  const { minPriceParamas, maxPriceParamas } = useGetParamsLocation();
 
   // CONTEXTO
-  const { clearFilters } = useFilterProduct();
+  const { clearFilters } = useProductsContext();
 
   // ESTADOS
   const [minPrice, setMinPrice] = useState("");
@@ -31,13 +30,6 @@ export const ProductFilter = () => {
     setMinPrice("");
     setMaxPrice("");
     setShow(true);
-  };
-
-  // FUNCIONES
-  const handleCleanFilter = () => {
-    clearFilters();
-
-    navigate("/productos");
   };
 
   const handleFilter = () => {
@@ -52,18 +44,18 @@ export const ProductFilter = () => {
 
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
-    if (isMinPriceParams && isMaxPriceParams) {
-      setMinPrice(isMinPriceParams);
-      setMaxPrice(isMaxPriceParams);
+    if (minPriceParamas && maxPriceParamas) {
+      setMinPrice(minPriceParamas);
+      setMaxPrice(maxPriceParamas);
     } else {
       setMinPrice("");
       setMaxPrice("");
     }
-  }, [isMinPriceParams, isMaxPriceParams]);
+  }, [minPriceParamas, maxPriceParamas]);
 
   return (
     <>
-      {!isMinPriceParams && !isMaxPriceParams && (
+      {!minPriceParamas && !maxPriceParamas && (
         <div className="filter" onClick={handleShow}>
           <p className=" ">Filtrar</p>
           <FaFilter className="icon" />
@@ -73,8 +65,8 @@ export const ProductFilter = () => {
       <div className="data-filter-container-mobile">
         <ShowFilterValue
           clearFilters={clearFilters}
-          isMaxPriceParams={isMaxPriceParams}
-          isMinPriceParams={isMinPriceParams}
+          maxPriceParamas={maxPriceParamas}
+          minPriceParamas={minPriceParamas}
         />
       </div>
 
@@ -82,14 +74,14 @@ export const ProductFilter = () => {
         <h4>Filtrar por:</h4>
 
         <div className="data-filter-container">
-          <p className="mt-3 " onClick={handleCleanFilter}>
+          <p className="mt-3 " onClick={clearFilters}>
             limpiar filtros
           </p>
 
           <ShowFilterValue
             clearFilters={clearFilters}
-            isMaxPriceParams={isMaxPriceParams}
-            isMinPriceParams={isMinPriceParams}
+            maxPriceParamas={maxPriceParamas}
+            minPriceParamas={minPriceParamas}
           />
         </div>
 
@@ -162,25 +154,25 @@ export const ProductFilter = () => {
 };
 
 interface ShowFilterValueProps {
-  isMinPriceParams: string | null;
-  isMaxPriceParams: string | null;
+  minPriceParamas: string | null;
+  maxPriceParamas: string | null;
   clearFilters: () => void;
 }
 
 const ShowFilterValue = ({
-  isMinPriceParams,
-  isMaxPriceParams,
+  minPriceParamas,
+  maxPriceParamas,
 
   clearFilters,
 }: ShowFilterValueProps) => {
   return (
     <>
-      {isMinPriceParams && isMaxPriceParams && (
+      {minPriceParamas && maxPriceParamas && (
         <div>
           <p className="text-dark fs-5 fw-normal">Filtros Aplicados:</p>
           <div className="data-filter text-center">
-            min: <span>{isMinPriceParams}</span> - max
-            <span>{isMaxPriceParams}</span>
+            min: <span>{minPriceParamas}</span> - max
+            <span>{maxPriceParamas}</span>
             <FontAwesomeIcon
               icon={faClose}
               className="icon-close"

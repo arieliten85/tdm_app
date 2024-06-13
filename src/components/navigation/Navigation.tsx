@@ -1,71 +1,35 @@
-// Navigation.jsx
-import React, { useState, useEffect } from "react";
 import "./navigation.scss";
-import { FaSearch, FaChevronDown } from "react-icons/fa";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { MenuLinks } from "./MenuLinks";
+import { SearchBar } from "../../components/search/SearchBar";
+import { useMenuState } from "../../hook/useMenuState";
+import { useSearch } from "../../hook/useSearch";
+import { useScrollVisibility } from "../../hook/useScrollVisibility";
+import { apiRootNavLink } from "../../api/apiRootNavLink";
+import { useEffect } from "react";
+import { useGetParamsLocation } from "../../hook/useGetParamsLocation";
 
-export const Navigation: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [menuActive, setMenuActive] = useState(false);
-  const [menuProductActive, setMenuProductActive] = useState(false);
-  const [isSearchVisible, setIsSearchVisible] = useState(true);
-  const [searchValue, setSearchValue] = useState<string>("");
+export const Navigation = () => {
+  const {
+    menuActive,
+    menuProductActive,
+    toggleMenu,
+    toggleMenuProducts,
+    closeMenu,
+  } = useMenuState();
+  const { location } = useGetParamsLocation();
+  const { searchValue, setSearchValue, handleSearch, handleKeyDown } =
+    useSearch();
 
-  const toggleMenu = () => {
-    setMenuActive(!menuActive);
-    setMenuProductActive(false);
-  };
+  const isSearchVisible = useScrollVisibility();
 
-  const toggleMenuProducts = () => {
-    setMenuProductActive(!menuProductActive);
-  };
-
-  const closeMenu = () => {
-    setMenuProductActive(false);
-    setMenuActive(false);
-  };
-
+  // BORRA EL VALOR DEL INPUT AL CAMBIAR DE RUTA
   useEffect(() => {
-    let lastScrollTop = 0;
-
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-      if (scrollTop > lastScrollTop) {
-        setIsSearchVisible(false);
-      } else {
-        setIsSearchVisible(true);
-      }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleSearch = () => {
-    if (searchValue) {
-      navigate(`/search/?q=${searchValue}`);
-      setSearchValue("");
-
-      const topElement = document.getElementById("top");
-      if (topElement) {
-        topElement.focus();
-      }
-    }
-  };
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
+    setSearchValue("");
+  }, [location, setSearchValue]);
 
   return (
-    <header className="header " id="header top">
+    <header className="header" id="header top">
       <nav className="navbar container">
         <div className="container-brand">
           <Link to={"/"}>
@@ -73,73 +37,22 @@ export const Navigation: React.FC = () => {
           </Link>
         </div>
         <div className={`menu ${menuActive ? "is-active" : ""}`} id="menu">
-          <ul className="menu-inner">
-            {routes.map((route) =>
-              route.subRoutes ? (
-                <li
-                  key={route.path}
-                  className="menu-item menu-item-product"
-                  onClick={toggleMenuProducts}
-                >
-                  <p
-                    className={`menu-link ${
-                      location.pathname.startsWith(route.path) ? "active" : ""
-                    }`}
-                  >
-                    {route.label}
-                  </p>
-                  <FaChevronDown />
-                  <ul
-                    className={`subMenu-productos ${
-                      menuProductActive ? "subMenu-productos-active" : ""
-                    }`}
-                  >
-                    {route.subRoutes.map((subRoute) => (
-                      <li key={subRoute.path}>
-                        <Link to={subRoute.path} onClick={closeMenu}>
-                          <p>{subRoute.label}</p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ) : (
-                <li key={route.path} className="menu-item">
-                  <Link
-                    to={route.path}
-                    onClick={closeMenu}
-                    className={`menu-link ${
-                      location.pathname === route.path ? "active" : ""
-                    }`}
-                  >
-                    {route.label}
-                  </Link>
-                </li>
-              )
-            )}
-          </ul>
+          <MenuLinks
+            routes={apiRootNavLink}
+            menuProductActive={menuProductActive}
+            toggleMenuProducts={toggleMenuProducts}
+            closeMenu={closeMenu}
+          />
         </div>
-        <div className={`search ${!isSearchVisible ? "search-hide" : ""}`}>
-          <div className="search-form">
-            <input
-              type="text"
-              name="search"
-              className="search-input"
-              placeholder="Buscar"
-              autoFocus
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            {!searchValue ? (
-              <FaSearch className="search-submit" />
-            ) : (
-              <p className="ir-search" onClick={handleSearch}>
-                IR
-              </p>
-            )}
-          </div>
-        </div>
+
+        <SearchBar
+          isVisible={isSearchVisible}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          handleSearch={handleSearch}
+          handleKeyDown={handleKeyDown}
+        />
+
         <div
           className={`burger ${menuActive ? "is-active" : ""}`}
           id="burger"
@@ -153,21 +66,3 @@ export const Navigation: React.FC = () => {
     </header>
   );
 };
-
-// routes.js
-export const routes = [
-  { path: "/", label: "Inicio", exact: true },
-  {
-    path: "/productos",
-    label: "Productos",
-    exact: false,
-    subRoutes: [
-      { path: "/tematicas", label: "Tortas Tematicas" },
-      { path: "/budines", label: "Budines" },
-      { path: "/eventosespeciales", label: "Eventos especiales" },
-    ],
-  },
-  { path: "/galeria", label: "Galeria", exact: false },
-  { path: "/comoComprar", label: "Como Comprar", exact: false },
-  { path: "/nosotros", label: "Nosotros", exact: false },
-];

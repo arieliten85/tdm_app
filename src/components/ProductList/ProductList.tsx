@@ -1,9 +1,9 @@
 import { CardList } from "../cards/cardList/CardList";
 
-import { ProductoProps } from "types/types";
+import { ApiProductoProps } from "types/types";
 
 interface Props {
-  productos: ProductoProps[];
+  productos: ApiProductoProps[];
 }
 
 export default function ProductsList({ productos }: Props) {
