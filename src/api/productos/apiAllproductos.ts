@@ -2,40 +2,36 @@ export const apiAllproductos = [
   {
     id: 1,
     image:
-      "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/406434121_1028918791482168_8429942378878155040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=plV5239HL28Q7kNvgGSFFVp&_nc_ht=scontent.faep6-1.fna&oh=00_AYBVghptUVTlBCzQS4Wv8DJfkarnI4qPMKqVLFeEEZqCWA&oe=66655DCA",
-    title: "Merlina",
-    description: "Temática Merlina",
+      "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/448112543_7994289737281866_7240600391850040773_n.jpg?stp=dst-jpg_p526x296&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdQwJ2O2xwPqeRz7AR7qlsg4olnQxze2qDiiWdDHN7alh7OlyW5ygt1OxLLIqvjp9ZKgIdiVvIv_9fgpJveAPg&_nc_ohc=Ap6rv5x9pOIQ7kNvgEnZr1Q&_nc_ht=scontent.faep6-1.fna&oh=00_AYB1JBquOI2b7d792NUyWBfr8wwfTsYuUGxgyFYt_PIjqQ&oe=667109DF",
+    title: "Geminis baby",
+    description: "Horoscopo geminis baby",
     price: "$2.50",
-    tags: ["locos adams", "merlina", "wednesday"],
+    tags: ["Horoscopo", "baby", "geminis"],
     category: "tortas-tematicas",
     optionalImages: [
       {
         image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT861O0_biiIH_GeQMSc0p0yWXht6IBBQjNtA&s",
+          "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/448112543_7994289737281866_7240600391850040773_n.jpg?stp=dst-jpg_p526x296&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdQwJ2O2xwPqeRz7AR7qlsg4olnQxze2qDiiWdDHN7alh7OlyW5ygt1OxLLIqvjp9ZKgIdiVvIv_9fgpJveAPg&_nc_ohc=Ap6rv5x9pOIQ7kNvgEnZr1Q&_nc_ht=scontent.faep6-1.fna&oh=00_AYB1JBquOI2b7d792NUyWBfr8wwfTsYuUGxgyFYt_PIjqQ&oe=667109DF",
       },
       {
         image:
-          "https://dcdn.mitiendanube.com/stores/002/135/275/products/screenshot_2023-08-13-17-59-29-115_com-instagram-android-11-41bcc2007cf7f3923416934177717426-640-0.jpg",
+          "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/448112543_7994289737281866_7240600391850040773_n.jpg?stp=dst-jpg_p526x296&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdQwJ2O2xwPqeRz7AR7qlsg4olnQxze2qDiiWdDHN7alh7OlyW5ygt1OxLLIqvjp9ZKgIdiVvIv_9fgpJveAPg&_nc_ohc=Ap6rv5x9pOIQ7kNvgEnZr1Q&_nc_ht=scontent.faep6-1.fna&oh=00_AYB1JBquOI2b7d792NUyWBfr8wwfTsYuUGxgyFYt_PIjqQ&oe=667109DF",
       },
     ],
   },
   {
     id: 2,
     image:
-      "https://scontent.faep6-1.fna.fbcdn.net/v/t39.30808-6/405833160_1024620945245286_1883248972903563436_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=EY9wLzdmYNgQ7kNvgHMBYy_&_nc_ht=scontent.faep6-1.fna&oh=00_AYCawOznDgsOAZb6rsR7ZVis2okGSMaAEoR-SxW5B-tnyA&oe=666F9D1B",
-    title: "Spider-man",
-    description: "Temática Spider-man",
+      "https://scontent.faep6-2.fna.fbcdn.net/v/t39.30808-6/448220639_7994310853946421_6268873382464686466_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEmntBOXEw8OPja6AXY566_YW8gS4Ut1KhhbyBLhS3UqFBMQN8Vn-Ng2BS6hLI5ikniFTzPwvN4v_egKCw1-P6a&_nc_ohc=NJd66Y3dSQcQ7kNvgFV1gBU&_nc_ht=scontent.faep6-2.fna&oh=00_AYDZIy3s_aB_BVTDG1WqQh8z7WZXJwffZ3I13zIktOJfiQ&oe=6671220C",
+    title: "tentacion classic",
+    description: "tentacion classic",
     price: "$4.50",
     tags: ["Spider-man", "hombre araña", "avenger"],
     category: "tortas-tematicas",
     optionalImages: [
       {
         image:
-          "https://i.pinimg.com/564x/1c/40/0a/1c400a046a52f67808f680d61bddff04.jpg",
-      },
-      {
-        image:
-          "https://i.pinimg.com/564x/1c/40/0a/1c400a046a52f67808f680d61bddff04.jpg",
+          "https://scontent.faep6-2.fna.fbcdn.net/v/t39.30808-6/448220639_7994310853946421_6268873382464686466_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEmntBOXEw8OPja6AXY566_YW8gS4Ut1KhhbyBLhS3UqFBMQN8Vn-Ng2BS6hLI5ikniFTzPwvN4v_egKCw1-P6a&_nc_ohc=NJd66Y3dSQcQ7kNvgFV1gBU&_nc_ht=scontent.faep6-2.fna&oh=00_AYDZIy3s_aB_BVTDG1WqQh8z7WZXJwffZ3I13zIktOJfiQ&oe=6671220C",
       },
     ],
   },
