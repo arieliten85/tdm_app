@@ -2,7 +2,7 @@ export const InfoText = () => {
   return (
     <div className="subtitle-container">
       <h2>
-        Haz tu pedido y retíralo en el día y disfrutar de nuestra pastelería
+        Haz tu pedido y retíralo en el día y disfruta de nuestra pastelería
         casera.
       </h2>
       <p>
