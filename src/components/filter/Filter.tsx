@@ -75,7 +75,7 @@ export const ProductFilter = () => {
   return (
     <>
       <div className=" w-100  select-order-container p-2 d-flex  justify-content-between align-items-center">
-        <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-center">
+        <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-end">
           <div className=" d-flex flex-column gap-2 pb-2">
             <p>Ordenar por:</p>
             <Form.Select
@@ -222,7 +222,7 @@ const ShowFilterValue = ({
     <>
       {minPriceParamas && maxPriceParamas && (
         <>
-          <p className="text-dark   fw-normal" style={{}}>
+          <p className="text-dark pb-2   fw-normal" style={{}}>
             Filtros Aplicados:
           </p>
           <div className="data-filter text-center">
