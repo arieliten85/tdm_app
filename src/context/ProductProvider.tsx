@@ -11,6 +11,8 @@ import { ApiProductoProps } from "../types/types";
 
 import {
   getAllProducts,
+  getProductByAscending,
+  getProductByDescending,
   getProductByRangePrice,
   getProductByTitle,
 } from "../hook/useGetProducts";
@@ -44,8 +46,13 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const { searchParams, minPriceParamas, maxPriceParamas, valueTextParamas } =
-    useGetParamsLocation();
+  const {
+    searchParams,
+    minPriceParamas,
+    maxPriceParamas,
+    valueTextParamas,
+    sort_byParamas,
+  } = useGetParamsLocation();
 
   useEffect(() => {
     if (valueTextParamas) {
@@ -69,6 +76,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
         numMax: parseFloat(maxPriceParamas),
       });
 
+      //NOT-FOUND
       if (!filterProductByRangePriceResults.length) {
         setTimeout(() => {
           setLoading(false);
@@ -76,10 +84,40 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
           setErrorMessage("No se encontraron resultados para su búsqueda.");
         }, 500);
       }
+
+      if (sort_byParamas && sort_byParamas?.includes("ascending")) {
+        const productOrdeByAscending = getProductByAscending(
+          filterProductByRangePriceResults
+        );
+        setTimeout(() => {
+          setLoading(false);
+          setProducts(productOrdeByAscending);
+        }, 500);
+      }
+
+      if (sort_byParamas && sort_byParamas?.includes("descending")) {
+        const productOrdeByDescending = getProductByDescending(
+          filterProductByRangePriceResults
+        );
+        setTimeout(() => {
+          setLoading(false);
+          setProducts(productOrdeByDescending);
+        }, 500);
+      }
+
       setTimeout(() => {
         setLoading(false);
         setProducts(filterProductByRangePriceResults);
       }, 500);
+    } else if (sort_byParamas && sort_byParamas?.includes("ascending")) {
+      const productOrdeByAscending = getProductByAscending();
+      setTimeout(() => {
+        setLoading(false);
+        setProducts(productOrdeByAscending);
+      }, 500);
+    } else if (sort_byParamas?.includes("descending")) {
+      const productOrdeByDescending = getProductByDescending();
+      setProducts(productOrdeByDescending);
     } else {
       setLoading(true);
       const allProductData = getAllProducts();
@@ -99,7 +137,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
       setError(false);
       setErrorMessage("");
     };
-  }, [valueTextParamas, minPriceParamas, maxPriceParamas]);
+  }, [valueTextParamas, minPriceParamas, maxPriceParamas, sort_byParamas]);
 
   const clearFilters = () => {
     searchParams.delete("q");

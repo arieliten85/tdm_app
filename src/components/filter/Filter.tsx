@@ -1,5 +1,5 @@
 import "./filter.scss";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -25,6 +25,7 @@ export const ProductFilter = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [show, setShow] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -43,6 +44,23 @@ export const ProductFilter = () => {
     handleClose();
   };
 
+  const handleSelectChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSelectedOption(event.target.value);
+  };
+
+  // EFECTO PARA ACTUALIZAR ESTADOS
+  useEffect(() => {
+    if (selectedOption === "2") {
+      navigate(`/productos/?sort_by=price-descending`);
+    }
+    if (selectedOption === "3") {
+      navigate(`/productos/?sort_by=price-ascending`);
+    }
+    handleClose();
+  }, [selectedOption]);
+
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
     if (minPriceParamas && maxPriceParamas) {
@@ -56,34 +74,68 @@ export const ProductFilter = () => {
 
   return (
     <>
-      {!minPriceParamas && !maxPriceParamas && (
-        <div className="filter" onClick={handleShow}>
-          <p className=" ">Filtrar</p>
-          <FaFilter className="icon" />
-        </div>
-      )}
+      <div className=" w-100  select-order-container p-2 d-flex  justify-content-between align-items-center">
+        <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-center">
+          <div className=" d-flex flex-column gap-2 pb-2">
+            <p>Ordenar por:</p>
+            <Form.Select
+              aria-label="Default select example select"
+              value={selectedOption}
+              onChange={handleSelectChange}
+            >
+              <option value="1">Más Vendidos</option>
+              <option value="2">Precio: Mayor a Menor</option>
+              <option value="3">Precio: Menor a Mayor</option>
+            </Form.Select>
+          </div>
 
-      <div className="data-filter-container-mobile">
-        <ShowFilterValue
-          clearFilters={clearFilters}
-          maxPriceParamas={maxPriceParamas}
-          minPriceParamas={minPriceParamas}
-        />
+          <div className="data-filter-container-mobile">
+            <ShowFilterValue
+              clearFilters={clearFilters}
+              maxPriceParamas={maxPriceParamas}
+              minPriceParamas={minPriceParamas}
+            />
+          </div>
+        </div>
+
+        {!minPriceParamas && !maxPriceParamas && (
+          <div className=" d-flex justify-content-between align-items-end px-2">
+            <div className="filter" onClick={handleShow}>
+              <p className=" ">Filtrar</p>
+              <FaFilter className="icon" />
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="filter-form border p-3">
         <h4>Filtrar por:</h4>
+
+        <div className=" d-flex flex-column gap-2 pb-2">
+          <p>Ordenar por:</p>
+          <Form.Select
+            aria-label="Default select example select"
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
+            <option value="1">Más Vendidos</option>
+            <option value="2">Precio: Mayor a Menor</option>
+            <option value="3">Precio: Menor a Mayor</option>
+          </Form.Select>
+        </div>
 
         <div className="data-filter-container">
           <p className="mt-3 " onClick={clearFilters}>
             limpiar filtros
           </p>
 
-          <ShowFilterValue
-            clearFilters={clearFilters}
-            maxPriceParamas={maxPriceParamas}
-            minPriceParamas={minPriceParamas}
-          />
+          <div className="data-filter-container-mobile">
+            <ShowFilterValue
+              clearFilters={clearFilters}
+              maxPriceParamas={maxPriceParamas}
+              minPriceParamas={minPriceParamas}
+            />
+          </div>
         </div>
 
         <Form>
@@ -169,7 +221,7 @@ const ShowFilterValue = ({
   return (
     <>
       {minPriceParamas && maxPriceParamas && (
-        <div>
+        <>
           <p className="text-dark fs-5 fw-normal">Filtros Aplicados:</p>
           <div className="data-filter text-center">
             min: <span>{minPriceParamas}</span> - max
@@ -180,7 +232,7 @@ const ShowFilterValue = ({
               onClick={clearFilters}
             />
           </div>
-        </div>
+        </>
       )}
     </>
   );

@@ -9,7 +9,7 @@ interface FilterRangePriceProps {
 }
 
 //ARRAY PRODUCTS
-const products = apiAllproductos.concat(apiQuickStock);
+const products: ApiProductoProps[] = apiAllproductos.concat(apiQuickStock);
 
 export const getProductByTitle = (title: string) => {
   const searchValueLowercase = title.toLowerCase();
@@ -63,4 +63,21 @@ export const getProductByCategory = (categoryName: string) => {
   );
 
   return productosFiltrados;
+};
+
+export const getProductByAscending = (dataArray?: ApiProductoProps[]) => {
+  const productArray = dataArray ? dataArray : products;
+
+  const sortedProducts = [...productArray].sort((a, b) =>
+    a.price.localeCompare(b.price)
+  );
+  return sortedProducts;
+};
+
+export const getProductByDescending = (dataArray?: ApiProductoProps[]) => {
+  const productArray = dataArray ? dataArray : products;
+  const sortedProducts = [...productArray].sort((a, b) =>
+    b.price.localeCompare(a.price)
+  );
+  return sortedProducts;
 };

@@ -1,12 +1,27 @@
 .filter {
   display: flex !important;
-  flex-direction: row !important;
-  justify-content: flex-end !important;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center !important;
   gap: 20px;
   padding-top: 10px;
   padding-bottom: 5px;
   cursor: pointer;
+}
+
+input:focus,
+select:focus,
+select,
+input.form-control:focus {
+  outline: none !important;
+  outline-width: none !important;
+  border-color: rgb(155, 145, 131) !important;
+  outline-width: 0 !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  cursor: pointer !important;
 }
 
 .filter p {
@@ -100,7 +115,6 @@
 }
 
 .data-filter-container-mobile {
-  width: 100%;
   padding-left: 7px;
   padding-block: 10px;
 }
@@ -141,6 +155,12 @@
   }
 
   .data-filter-container-mobile {
+    display: none !important;
+  }
+  .select-order-container {
+    width: 0px !important;
+  }
+  .select-order {
     display: none !important;
   }
 }
