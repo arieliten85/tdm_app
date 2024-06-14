@@ -222,10 +222,11 @@ const ShowFilterValue = ({
     <>
       {minPriceParamas && maxPriceParamas && (
         <>
-          <p className="text-dark fs-5 fw-normal">Filtros Aplicados:</p>
+          <p className="text-dark   fw-normal" style={{}}>
+            Filtros Aplicados:
+          </p>
           <div className="data-filter text-center">
-            min: <span>{minPriceParamas}</span> - max
-            <span>{maxPriceParamas}</span>
+            <span>${minPriceParamas}</span> - <span>${maxPriceParamas}</span>
             <FontAwesomeIcon
               icon={faClose}
               className="icon-close"
