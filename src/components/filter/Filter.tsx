@@ -92,7 +92,7 @@ export const ProductFilter = () => {
 
   return (
     <>
-      <div className=" w-100  select-order-container p-2 d-flex  justify-content-between align-items-center">
+      <div className=" w-100  select-order-container   d-flex  justify-content-between align-items-center">
         <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-end">
           <div className=" d-flex flex-column gap-2">
             <p>Ordenar por:</p>
@@ -116,16 +116,16 @@ export const ProductFilter = () => {
               />
             )}
           </div>
-        </div>
 
-        {!isActiveFilter && (
-          <div className=" d-flex justify-content-between align-items-end px-2">
-            <div className="filter" onClick={handleShow}>
-              <p className=" ">Filtrar</p>
-              <FaFilter className="icon" />
+          {!isActiveFilter && (
+            <div className=" d-flex justify-content-between align-items-end ">
+              <div className="filter" onClick={handleShow}>
+                <p className=" ">Filtrar</p>
+                <FaFilter className="icon" />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <div className="filter-form border p-3">
