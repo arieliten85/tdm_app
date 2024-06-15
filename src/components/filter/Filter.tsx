@@ -19,12 +19,15 @@ export const ProductFilter = () => {
   const { minPriceParamas, maxPriceParamas, sort_byParamas } =
     useGetParamsLocation();
 
-  const minPriceStorage = JSON.parse(
-    localStorage.getItem("minPriceParamas") || ""
-  );
-  const maxPriceStorage = JSON.parse(
-    localStorage.getItem("maxPriceParamas") || ""
-  );
+  const minPriceStorageRaw = localStorage.getItem("minPriceParamas");
+  const minPriceStorage = minPriceStorageRaw
+    ? JSON.parse(minPriceStorageRaw)
+    : null;
+
+  const maxPriceStorageRaw = localStorage.getItem("maxPriceParamas");
+  const maxPriceStorage = maxPriceStorageRaw
+    ? JSON.parse(maxPriceStorageRaw)
+    : null;
 
   // CONTEXTO
   const { clearFilters, isActiveFilter } = useProductsContext();
@@ -65,7 +68,7 @@ export const ProductFilter = () => {
       navigate(`/productos/?sort_by=price-ascending`);
     }
     handleClose();
-  }, [navigate, selectedOption]);
+  }, [selectedOption]);
 
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
