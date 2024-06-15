@@ -65,7 +65,7 @@ export const ProductFilter = () => {
       navigate(`/productos/?sort_by=price-ascending`);
     }
     handleClose();
-  }, [selectedOption]);
+  }, [navigate, selectedOption]);
 
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {

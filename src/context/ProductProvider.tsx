@@ -153,7 +153,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     return () => {
       setErrorMessage("");
     };
-  }, [memoizedParams]);
+  }, [maxPriceParamas, memoizedParams, minPriceParamas]);
 
   const clearFilters = () => {
     searchParams.delete("q");
@@ -172,4 +172,5 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useProductsContext = () => useContext(ProductContext);
