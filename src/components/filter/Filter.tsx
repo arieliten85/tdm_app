@@ -94,7 +94,7 @@ export const ProductFilter = () => {
     <>
       <div className=" w-100  select-order-container p-2 d-flex  justify-content-between align-items-center">
         <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-end">
-          <div className=" d-flex flex-column gap-2 pb-2">
+          <div className=" d-flex flex-column gap-2">
             <p>Ordenar por:</p>
             <Form.Select
               aria-label="Default select example select"
