@@ -9,9 +9,9 @@ import { Breadcrumb } from "../components/breadcrumbs/Breadcrumbs";
 import { useProductsContext } from "../context/ProductProvider";
 
 export const SearchPage = () => {
-  const { loading, products, error, errorMessage } = useProductsContext();
+  const { status, products, errorMessage } = useProductsContext();
 
-  if (loading) {
+  if (status === "loading") {
     return <ShowSpinner />;
   }
 
@@ -22,7 +22,7 @@ export const SearchPage = () => {
           <TitleCategory title="Productos" />
           <Breadcrumb />
 
-          {errorMessage && error ? (
+          {errorMessage && status === "error" ? (
             <NotFoundData />
           ) : (
             <>

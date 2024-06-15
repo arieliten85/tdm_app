@@ -15,8 +15,8 @@ import { getProductByCategory } from "../hook/useGetProducts";
 
 export const ProductosPage = () => {
   const { categoria } = useParams();
-  <NotFoundData />;
-  const { products, error, errorMessage, loading } = useProductsContext();
+
+  const { products, errorMessage, status } = useProductsContext();
 
   const [productsByCategory, setProductsByCategory] = useState<
     ApiProductoProps[]
@@ -25,11 +25,12 @@ export const ProductosPage = () => {
   useEffect(() => {
     if (categoria) {
       const productosFiltrados = getProductByCategory(categoria);
+
       setProductsByCategory(productosFiltrados);
     }
-  }, [categoria, products]);
+  }, [categoria]);
 
-  if (loading) {
+  if (status === "loading") {
     return <ShowSpinner />;
   }
 
@@ -40,7 +41,7 @@ export const ProductosPage = () => {
           <TitleCategory title="Productos" />
           <Breadcrumb />
           <div className="productos-home">
-            {errorMessage && error ? (
+            {errorMessage && status === "error" ? (
               <NotFoundData />
             ) : (
               <>

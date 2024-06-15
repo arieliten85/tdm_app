@@ -1,6 +1,7 @@
 import { ApiProductoProps } from "../types/types";
 import { apiQuickStock } from "../api/apiQuickStock";
-import { apiAllproductos } from "../api/productos/apiAllproductos";
+
+import { apiAllproductosFinal } from "../api/productos/api-final/apiAllproductosFinal";
 
 // TYPS
 interface FilterRangePriceProps {
@@ -9,7 +10,7 @@ interface FilterRangePriceProps {
 }
 
 //ARRAY PRODUCTS
-const products: ApiProductoProps[] = apiAllproductos.concat(apiQuickStock);
+const products: ApiProductoProps[] = apiAllproductosFinal.concat(apiQuickStock);
 
 export const getProductByTitle = (title: string) => {
   const searchValueLowercase = title.toLowerCase();
@@ -50,7 +51,7 @@ export const getProductByRangePrice = ({
 };
 
 export const getAllProducts = () => {
-  const products = apiAllproductos.concat(apiQuickStock);
+  const products = apiAllproductosFinal.concat(apiQuickStock);
 
   return products;
 };

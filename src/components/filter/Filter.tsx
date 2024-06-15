@@ -1,5 +1,5 @@
 import "./filter.scss";
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -16,10 +16,18 @@ export const ProductFilter = () => {
   const navigate = useNavigate();
 
   // CAPTURO LOS PARAMETRO DE BUSQUEDA
-  const { minPriceParamas, maxPriceParamas } = useGetParamsLocation();
+  const { minPriceParamas, maxPriceParamas, sort_byParamas } =
+    useGetParamsLocation();
+
+  const minPriceStorage = JSON.parse(
+    localStorage.getItem("minPriceParamas") || ""
+  );
+  const maxPriceStorage = JSON.parse(
+    localStorage.getItem("maxPriceParamas") || ""
+  );
 
   // CONTEXTO
-  const { clearFilters } = useProductsContext();
+  const { clearFilters, isActiveFilter } = useProductsContext();
 
   // ESTADOS
   const [minPrice, setMinPrice] = useState("");
@@ -44,9 +52,7 @@ export const ProductFilter = () => {
     handleClose();
   };
 
-  const handleSelectChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
   };
 
@@ -64,6 +70,7 @@ export const ProductFilter = () => {
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
     if (minPriceParamas && maxPriceParamas) {
+      console.log(minPriceParamas);
       setMinPrice(minPriceParamas);
       setMaxPrice(maxPriceParamas);
     } else {
@@ -71,6 +78,14 @@ export const ProductFilter = () => {
       setMaxPrice("");
     }
   }, [minPriceParamas, maxPriceParamas]);
+  useEffect(() => {
+    if (sort_byParamas?.includes("descending")) {
+      setSelectedOption("2");
+    }
+    if (sort_byParamas?.includes("ascending")) {
+      setSelectedOption("3");
+    }
+  }, [sort_byParamas]);
 
   return (
     <>
@@ -83,22 +98,24 @@ export const ProductFilter = () => {
               value={selectedOption}
               onChange={handleSelectChange}
             >
-              <option value="1">Más Vendidos</option>
+              <option value="">Más Vendidos</option>
               <option value="2">Precio: Mayor a Menor</option>
               <option value="3">Precio: Menor a Mayor</option>
             </Form.Select>
           </div>
 
           <div className="data-filter-container-mobile">
-            <ShowFilterValue
-              clearFilters={clearFilters}
-              maxPriceParamas={maxPriceParamas}
-              minPriceParamas={minPriceParamas}
-            />
+            {isActiveFilter && (
+              <ShowFilterValue
+                clearFilters={clearFilters}
+                maxPriceParamas={maxPriceStorage}
+                minPriceParamas={minPriceStorage}
+              />
+            )}
           </div>
         </div>
 
-        {!minPriceParamas && !maxPriceParamas && (
+        {!isActiveFilter && (
           <div className=" d-flex justify-content-between align-items-end px-2">
             <div className="filter" onClick={handleShow}>
               <p className=" ">Filtrar</p>
@@ -125,16 +142,14 @@ export const ProductFilter = () => {
         </div>
 
         <div className="data-filter-container">
-          <p className="mt-3 " onClick={clearFilters}>
-            limpiar filtros
-          </p>
-
-          <div className="data-filter-container-mobile">
-            <ShowFilterValue
-              clearFilters={clearFilters}
-              maxPriceParamas={maxPriceParamas}
-              minPriceParamas={minPriceParamas}
-            />
+          <div className="w-50">
+            {isActiveFilter && (
+              <ShowFilterValue
+                clearFilters={clearFilters}
+                maxPriceParamas={maxPriceStorage}
+                minPriceParamas={minPriceStorage}
+              />
+            )}
           </div>
         </div>
 
@@ -220,21 +235,19 @@ const ShowFilterValue = ({
 }: ShowFilterValueProps) => {
   return (
     <>
-      {minPriceParamas && maxPriceParamas && (
-        <>
-          <p className="text-dark pb-2   fw-normal" style={{}}>
-            Filtros Aplicados:
-          </p>
-          <div className="data-filter text-center">
-            <span>${minPriceParamas}</span> - <span>${maxPriceParamas}</span>
-            <FontAwesomeIcon
-              icon={faClose}
-              className="icon-close"
-              onClick={clearFilters}
-            />
-          </div>
-        </>
-      )}
+      <>
+        <p className="text-dark pb-2   fw-normal" style={{}}>
+          Filtros Aplicados:
+        </p>
+        <div className="data-filter text-center">
+          <span>${minPriceParamas}</span> - <span>${maxPriceParamas}</span>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="icon-close"
+            onClick={clearFilters}
+          />
+        </div>
+      </>
     </>
   );
 };
