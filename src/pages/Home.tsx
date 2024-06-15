@@ -17,7 +17,7 @@ export function Home() {
   const productosVentaRapida = products.filter(
     (producto) => producto.tags && producto.tags.includes("ventaRapida")
   );
-
+  console.log("lo", status);
   if (status === "loading") {
     return <ShowSpinner />;
   }

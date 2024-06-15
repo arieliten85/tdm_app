@@ -97,7 +97,6 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
           "maxPriceParamas",
           JSON.stringify(maxPriceParamas)
         );
-
         setStatus("loading");
         const filterProductByRangePriceResults = getProductByRangePrice({
           numMin: parseFloat(memoizedParams.minPriceParamas),
@@ -152,6 +151,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     // Clean up errors on unmount
     return () => {
       setErrorMessage("");
+      setIsActiveFilter(false);
     };
   }, [memoizedParams]);
 
