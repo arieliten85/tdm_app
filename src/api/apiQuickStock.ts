@@ -1,6 +1,7 @@
+import { v4 as uuid } from "uuid";
 export const apiQuickStock = [
   {
-    id: 34,
+    id: uuid(),
     image:
       "https://cuk-it.com/wp-content/uploads/2020/06/alfajores-maicena.webp",
     title: "Alfajores de maicena",
@@ -30,7 +31,7 @@ export const apiQuickStock = [
   },
 
   {
-    id: 35,
+    id: uuid(),
     image:
       "https://images.aws.nestle.recipes/resized/2020_06_03T13_21_43_mrs_ImageRecipes_147427lrg_1080_850.jpg",
     title: "Brownie Tentación",
@@ -52,7 +53,7 @@ export const apiQuickStock = [
   },
 
   {
-    id: 36,
+    id: uuid(),
     image:
       "https://www.locosxelmate.com/wp-content/uploads/2015/11/pasta_frola.jpg",
     title: "Pastafrola Artesanal",
@@ -74,7 +75,7 @@ export const apiQuickStock = [
   },
 
   {
-    id: 37,
+    id: uuid(),
     image:
       "https://www.johaprato.com/files/styles/flexslider_full/public/budin_vainilla.jpg?itok=BjnPfhTA",
     title: "Budín de Vainilla",
@@ -96,7 +97,7 @@ export const apiQuickStock = [
   },
 
   {
-    id: 38,
+    id: uuid(),
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_V38fYdTpZZZWBKm2zsmdl2TLhkSowMgietl9YwQg65Bz0p2ltsrousuxyvW6aGwTG8c&usqp=CAU",
     title: "Cookies",
@@ -117,7 +118,7 @@ export const apiQuickStock = [
     ],
   },
   {
-    id: 39,
+    id: uuid(),
     image:
       "https://resizer.glanacion.com/resizer/v2/cuadrados-de-coco-y-dulce-de-leche-por-antonio-MZI5W3E4RNCY5MPRVD3SU45ISA.jpg?auth=8ba6531479a294314554a75b3b32299267b2ff23121947c09968c6fca0c7bb82&width=768&height=512&quality=70&smart=true",
     title: "Cuadrados de coco",
@@ -138,7 +139,7 @@ export const apiQuickStock = [
     ],
   },
   {
-    id: 40,
+    id: uuid(),
     image: "https://cuk-it.com/wp-content/uploads/2021/09/budin-chocolate.webp",
     title: "Budín de chocolate",
     description:
@@ -158,7 +159,7 @@ export const apiQuickStock = [
     ],
   },
   {
-    id: 41,
+    id: uuid(),
     image: "https://www.clarin.com/2021/05/14/KmxHFgxit_1200x0__1.jpg",
     title: "Pastafrola de batata Tradicional",
     description:
