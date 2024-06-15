@@ -12,13 +12,13 @@ import {
 } from "../components/utililidades/Components";
 
 export function Home() {
-  const { products, loading } = useProductsContext();
+  const { products, status } = useProductsContext();
 
   const productosVentaRapida = products.filter(
     (producto) => producto.tags && producto.tags.includes("ventaRapida")
   );
 
-  if (loading) {
+  if (status === "loading") {
     return <ShowSpinner />;
   }
   return (
