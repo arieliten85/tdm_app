@@ -52,7 +52,7 @@ export const apiQuickStock = [
   },
 
   {
-    id: 35,
+    id: 36,
     image:
       "https://www.locosxelmate.com/wp-content/uploads/2015/11/pasta_frola.jpg",
     title: "Pastafrola Artesanal",

@@ -107,7 +107,7 @@ export const ProductFilter = () => {
             </Form.Select>
           </div>
 
-          <div className="data-filter-container-mobile">
+          <div className="data-filter-container-mobile ">
             {isActiveFilter && (
               <ShowFilterValue
                 clearFilters={clearFilters}
