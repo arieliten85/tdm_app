@@ -1,46 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useParams } from "react-router-dom";
-import "./detailsContainer.scss";
-import { ApiProductoProps, buyProductProps } from "../../../types/types";
-import { FaEye, FaTimes } from "react-icons/fa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faWhatsapp,
-} from "@fortawesome/free-brands-svg-icons";
-import { Button } from "react-bootstrap";
-import { faCreditCard, faInfo } from "@fortawesome/free-solid-svg-icons";
-import { formatPrice } from "../../../components/utils/formatPrice ";
-import { phoneNumber } from "../../../api/whatapp";
+import { useParams } from 'react-router-dom';
+import './detailsContainer.scss';
+import { ApiProductoProps, buyProductProps } from '../../../types/types';
+import { FaEye, FaTimes } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { Button } from 'react-bootstrap';
+import { faCreditCard, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { formatPrice } from '../../../components/utils/formatPrice ';
+import { phoneNumber } from '../../../api/whatapp';
 
-import { Counter } from "../../../components/counter/Counter";
-import { Breadcrumb } from "../../../components/breadcrumbs/Breadcrumbs";
-import { useCounter } from "../../../hook/useCounter";
-import { useProductsContext } from "../../../context/ProductProvider";
+import { Counter } from '../../../components/counter/Counter';
+import { Breadcrumb } from '../../../components/breadcrumbs/Breadcrumbs';
+import { useCounter } from '../../../hook/useCounter';
+import { useProductsContext } from '../../../context/ProductProvider';
 
 export const DetailsContainer = () => {
   const { count, increment, decrement } = useCounter(0);
   const [total, setTotal] = useState<number>(0);
   const { title } = useParams();
   const [producto, setProducto] = useState<ApiProductoProps>({
-    id: "",
-    title: "",
-    price: "",
-    description: "",
-    image: "",
+    id: '',
+    title: '',
+    price: '',
+    description: '',
+    image: '',
   });
 
   const [showFullImage, setShowFullImage] = useState(false);
 
   const { products: allProducts } = useProductsContext();
 
-  console.log(title);
-
   useEffect(() => {
     if (allProducts && title) {
-      allProducts.map((prod) => {
+      allProducts.map(prod => {
         if (prod.title === title) {
           setProducto(prod);
         }
@@ -52,11 +46,7 @@ export const DetailsContainer = () => {
     setShowFullImage(!showFullImage);
   };
 
-  const buyProduct = (
-    product: buyProductProps,
-    count: number,
-    total: number
-  ) => {
+  const buyProduct = (product: buyProductProps, count: number, total: number) => {
     const message = `¡Hola!
 
  Me gustaría encargarte el siguiente producto:
@@ -73,10 +63,7 @@ Por favor, ¿podrías confirmarme si hay stock?
 
     const formattedMessage = encodeURIComponent(message);
 
-    window.open(
-      `https://wa.me/${phoneNumber}?text=${formattedMessage}`,
-      "_blank"
-    );
+    window.open(`https://wa.me/${phoneNumber}?text=${formattedMessage}`, '_blank');
   };
 
   useEffect(() => {
@@ -91,10 +78,7 @@ Por favor, ¿podrías confirmarme si hay stock?
       <Breadcrumb />
       <div className="card-detail">
         <div className="container-image" onClick={handleIconClick}>
-          <img
-            src={producto.image}
-            className={showFullImage ? "full-image" : ""}
-          />
+          <img src={producto.image} className={showFullImage ? 'full-image' : ''} />
           <FaEye className="eye-icon" />
         </div>
         <div className="container-info">
@@ -118,7 +102,7 @@ Por favor, ¿podrías confirmarme si hay stock?
             <div>
               <p className="seccion">
                 <FontAwesomeIcon className="fs-5" icon={faCreditCard} />
-                {"  "} Forma de pago
+                {'  '} Forma de pago
               </p>
             </div>
 
@@ -129,46 +113,36 @@ Por favor, ¿podrías confirmarme si hay stock?
               <p className="seccion">
                 <FontAwesomeIcon
                   style={{
-                    backgroundColor: "black",
-                    borderRadius: "20px",
-                    width: "10px",
-                    height: "10px",
-                    fontSize: "49px",
+                    backgroundColor: 'black',
+                    borderRadius: '20px',
+                    width: '10px',
+                    height: '10px',
+                    fontSize: '49px',
                   }}
                   className="   p-2 text-white"
                   icon={faInfo}
                 />
-                {"  "} Info
+                {'  '} Info
               </p>
             </div>
 
             <p
               className="border p-2 my-2 text-uppercase text-secondary"
               style={{
-                backgroundColor: "#80808040",
+                backgroundColor: '#80808040',
               }}
             >
-              Por favor, siempre consulte la disponibilidad de stock. Para los
-              productos especiales, se requiere realizar el pedido con al menos
-              5 días de anticipación.
+              Por favor, siempre consulte la disponibilidad de stock. Para los productos especiales,
+              se requiere realizar el pedido con al menos 5 días de anticipación.
             </p>
           </div>
 
           <div className="container-compartir my-2">
             <div>
               <p className="seccion"> COMPARTIR</p>
-              <FontAwesomeIcon
-                icon={faFacebook}
-                className="icon-whatsapp m-1"
-              />
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="icon-whatsapp m-1"
-              />
-              <FontAwesomeIcon
-                icon={faWhatsapp}
-                className="icon-whatsapp m-1"
-              />
+              <FontAwesomeIcon icon={faFacebook} className="icon-whatsapp m-1" />
+              <FontAwesomeIcon icon={faInstagram} className="icon-whatsapp m-1" />
+              <FontAwesomeIcon icon={faWhatsapp} className="icon-whatsapp m-1" />
             </div>
           </div>
         </div>
