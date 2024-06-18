@@ -1,92 +1,92 @@
-import "./filter.scss";
-import { useEffect, useState } from "react";
-import { FaFilter } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { Form } from "react-bootstrap";
+import './filter.scss';
+import { useEffect, useState } from 'react';
+import { FaFilter } from 'react-icons/fa';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { Form } from 'react-bootstrap';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { useGetParamsLocation } from "../../hook/useGetParamsLocation";
-import { useProductsContext } from "../../context/ProductProvider";
-import { apiRootNavLink } from "../../api/apiRootNavLink";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
-export const ProductFilter = () => {
+import { apiRootNavLink } from '../../api/apiRootNavLink';
+import { useGetParamsLocation } from '../../hook/useGetParamsLocation';
+
+interface ProductFilterProps {
+  clearFilters: () => void;
+  isFilterResults: boolean;
+}
+
+export const ProductFilter = ({
+  clearFilters,
+  isFilterResults: activeFilter,
+}: ProductFilterProps) => {
+  //HOOK
   const navigate = useNavigate();
-
-  // CAPTURO LOS PARAMETRO DE BUSQUEDA
-  const { minPriceParamas, maxPriceParamas, sort_byParamas } =
-    useGetParamsLocation();
-
-  const minPriceStorageRaw = localStorage.getItem("minPriceParamas");
-  const minPriceStorage = minPriceStorageRaw
-    ? JSON.parse(minPriceStorageRaw)
-    : null;
-
-  const maxPriceStorageRaw = localStorage.getItem("maxPriceParamas");
-  const maxPriceStorage = maxPriceStorageRaw
-    ? JSON.parse(maxPriceStorageRaw)
-    : null;
-
-  // CONTEXTO
-  const { clearFilters, isActiveFilter } = useProductsContext();
+  const { categoria = 'productos' } = useParams();
+  const { minPriceParamas, maxPriceParamas, sort_byParamas } = useGetParamsLocation();
 
   // ESTADOS
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+
   const [show, setShow] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    setMinPrice("");
-    setMaxPrice("");
+    setMinPrice('');
+    setMaxPrice('');
     setShow(true);
+  };
+
+  const handlerclearFilters = () => {
+    clearFilters();
   };
 
   const handleFilter = () => {
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
 
+    // RANGO DE PRECIO
     if (!isNaN(min) && !isNaN(max)) {
-      navigate(`/productos/?min_price=${min}&max_price=${max}`);
+      navigate(`/${categoria}/?min_price=${min}&max_price=${max}`);
     }
     handleClose();
   };
 
+  // CAPTURO EL VALOR DEL ORDER BY
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
   };
 
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
-    if (selectedOption === "2") {
-      navigate(`/productos/?sort_by=price-descending`);
+    if (selectedOption === '2') {
+      navigate(`/${categoria}/?sort_by=price-descending`);
     }
-    if (selectedOption === "3") {
-      navigate(`/productos/?sort_by=price-ascending`);
+    if (selectedOption === '3') {
+      navigate(`/${categoria}/?sort_by=price-ascending`);
     }
     handleClose();
-  }, [selectedOption]);
+  }, [categoria, navigate, selectedOption]);
 
   // EFECTO PARA ACTUALIZAR ESTADOS
   useEffect(() => {
     if (minPriceParamas && maxPriceParamas) {
-      console.log(minPriceParamas);
       setMinPrice(minPriceParamas);
       setMaxPrice(maxPriceParamas);
     } else {
-      setMinPrice("");
-      setMaxPrice("");
+      setMinPrice('');
+      setMaxPrice('');
     }
   }, [minPriceParamas, maxPriceParamas]);
   useEffect(() => {
-    if (sort_byParamas?.includes("descending")) {
-      setSelectedOption("2");
+    if (sort_byParamas?.includes('descending')) {
+      setSelectedOption('2');
     }
-    if (sort_byParamas?.includes("ascending")) {
-      setSelectedOption("3");
+    if (sort_byParamas?.includes('ascending')) {
+      setSelectedOption('3');
     }
   }, [sort_byParamas]);
 
@@ -107,17 +107,17 @@ export const ProductFilter = () => {
             </Form.Select>
           </div>
 
-          <div className="data-filter-container-mobile ">
-            {isActiveFilter && (
+          {activeFilter && (
+            <div className="data-filter-container-mobile ">
               <ShowFilterValue
-                clearFilters={clearFilters}
-                maxPriceParamas={maxPriceStorage}
-                minPriceParamas={minPriceStorage}
+                clearFilters={handlerclearFilters}
+                minPriceParamas={minPriceParamas}
+                maxPriceParamas={maxPriceParamas}
               />
-            )}
-          </div>
+            </div>
+          )}
 
-          {!isActiveFilter && (
+          {!activeFilter && (
             <div className=" d-flex justify-content-between align-items-end ">
               <div className="filter" onClick={handleShow}>
                 <p className=" ">Filtrar</p>
@@ -144,17 +144,17 @@ export const ProductFilter = () => {
           </Form.Select>
         </div>
 
-        <div className="data-filter-container">
-          <div className="w-50">
-            {isActiveFilter && (
+        {activeFilter && (
+          <div className="data-filter-container">
+            <div className="w-50">
               <ShowFilterValue
-                clearFilters={clearFilters}
-                maxPriceParamas={maxPriceStorage}
-                minPriceParamas={minPriceStorage}
+                clearFilters={handlerclearFilters}
+                minPriceParamas={minPriceParamas}
+                maxPriceParamas={maxPriceParamas}
               />
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
         <Form>
           <Form.Group controlId="formMinPrice">
@@ -163,7 +163,7 @@ export const ProductFilter = () => {
               type="number"
               placeholder="min"
               value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
+              onChange={e => setMinPrice(e.target.value)}
             />
           </Form.Group>
 
@@ -173,7 +173,7 @@ export const ProductFilter = () => {
               type="number"
               placeholder="max"
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
+              onChange={e => setMaxPrice(e.target.value)}
             />
           </Form.Group>
           <div className="w-100 d-flex justify-content-between">
@@ -199,7 +199,7 @@ export const ProductFilter = () => {
                 type="tel"
                 placeholder="min"
                 value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)}
+                onChange={e => setMinPrice(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="formMaxPrice">
@@ -209,7 +209,7 @@ export const ProductFilter = () => {
                 type="tel"
                 placeholder="max"
                 value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
+                onChange={e => setMaxPrice(e.target.value)}
               />
             </Form.Group>
           </Form>
@@ -244,11 +244,7 @@ const ShowFilterValue = ({
         </p>
         <div className="data-filter text-center">
           <span>${minPriceParamas}</span> - <span>${maxPriceParamas}</span>
-          <FontAwesomeIcon
-            icon={faClose}
-            className="icon-close"
-            onClick={clearFilters}
-          />
+          <FontAwesomeIcon icon={faClose} className="icon-close" onClick={clearFilters} />
         </div>
       </>
     </>
@@ -257,18 +253,14 @@ const ShowFilterValue = ({
 interface ProductFilterByCategoryProps {
   handleClose: () => void;
 }
-export const ProductFilterByCategory = ({
-  handleClose,
-}: ProductFilterByCategoryProps) => {
+export const ProductFilterByCategory = ({ handleClose }: ProductFilterByCategoryProps) => {
   return (
     <nav>
       <p className="fs-5 fw-normal pb-2">Categorías</p>
       <ul className="list-unstyled pills-container">
-        {apiRootNavLink[1].subRoutes?.map((cat) => (
+        {apiRootNavLink[1].subRoutes?.map(cat => (
           <Link to={`${cat.path}`} onClick={handleClose} key={cat.path}>
-            <li className="list-group-item bg-secondary text-white">
-              {cat.label}
-            </li>
+            <li className="list-group-item bg-secondary text-white">{cat.label}</li>
           </Link>
         ))}
       </ul>

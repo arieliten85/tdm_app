@@ -1,5 +1,5 @@
-import { Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const NotFoundData = () => {
   return (
@@ -7,10 +7,10 @@ export const NotFoundData = () => {
       <h1
         className=" text-center p-3 text-white "
         style={{
-          backgroundColor: "#e6762bee",
-          textTransform: "uppercase",
-          fontSize: "12px",
-          fontWeight: "bold",
+          backgroundColor: '#e6762bee',
+          textTransform: 'uppercase',
+          fontSize: '12px',
+          fontWeight: 'bold',
         }}
       >
         No se encontraron resultados para su búsqueda.
@@ -23,11 +23,11 @@ export const ShowSpinner = () => {
   return (
     <div
       style={{
-        height: "100vh",
+        height: '100vh',
       }}
       className="d-flex justify-content-center align-items-center"
     >
-      <Spinner className="fs-3" />
+      <Spinner className="fs-3" style={{ color: 'rgb(216, 172, 132)' }} />
     </div>
   );
 };
@@ -49,7 +49,7 @@ export const TitleCategory = ({ title }: TitleCategory) => {
 export const AllProductsButton = () => {
   return (
     <>
-      <Link to={"/productos"}>
+      <Link to={'/productos'}>
         <div className="allProductsButton">
           <Button className="button">Todos los productos</Button>
         </div>

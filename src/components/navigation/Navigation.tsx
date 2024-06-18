@@ -1,4 +1,5 @@
 import "./navigation.scss";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MenuLinks } from "./MenuLinks";
 import { SearchBar } from "../../components/search/SearchBar";
@@ -6,7 +7,7 @@ import { useMenuState } from "../../hook/useMenuState";
 import { useSearch } from "../../hook/useSearch";
 import { useScrollVisibility } from "../../hook/useScrollVisibility";
 import { apiRootNavLink } from "../../api/apiRootNavLink";
-import { useEffect } from "react";
+
 import { useGetParamsLocation } from "../../hook/useGetParamsLocation";
 
 export const Navigation = () => {

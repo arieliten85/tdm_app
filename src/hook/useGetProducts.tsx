@@ -1,12 +1,13 @@
-import { ApiProductoProps } from "../types/types";
-import { apiQuickStock } from "../api/apiQuickStock";
+import { ApiProductoProps } from '../types/types';
+import { apiQuickStock } from '../api/apiQuickStock';
 
-import { apiAllproductosFinal } from "../api/productos/api-final/apiAllproductosFinal";
+import { apiAllproductosFinal } from '../api/productos/api-final/apiAllproductosFinal';
 
 // TYPS
 interface FilterRangePriceProps {
   numMin: string | number;
   numMax: string | number;
+  dataArray: ApiProductoProps[];
 }
 
 //ARRAY PRODUCTS
@@ -23,8 +24,8 @@ export const getProductByTitle = (title: string) => {
     }
 
     if (product.tags) {
-      const tagsLowercase = product.tags.map((tag) => tag.toLowerCase());
-      if (tagsLowercase.some((tag) => tag.includes(searchValueLowercase))) {
+      const tagsLowercase = product.tags.map(tag => tag.toLowerCase());
+      if (tagsLowercase.some(tag => tag.includes(searchValueLowercase))) {
         return true;
       }
     }
@@ -38,16 +39,22 @@ export const getProductByTitle = (title: string) => {
 export const getProductByRangePrice = ({
   numMin,
   numMax,
-}: FilterRangePriceProps) => {
-  const minPrice = Number(numMin);
-  const maxPrice = Number(numMax);
+  dataArray,
+}: FilterRangePriceProps): ApiProductoProps[] => {
+  const minPrice = parseFloat(numMin as string);
+  const maxPrice = parseFloat(numMax as string);
 
-  const rangePriceResults = products.filter((producto: ApiProductoProps) => {
-    const productPrice = parseFloat(producto.price.substring(1));
+  if (isNaN(minPrice) || isNaN(maxPrice)) {
+    console.error('Invalid price range values:', { numMin, numMax });
+    return [];
+  }
+
+  const resultRange = dataArray.filter((producto: ApiProductoProps) => {
+    const productPrice = parseFloat(producto.price.replace(/[^\d.-]/g, ''));
     return productPrice >= minPrice && productPrice <= maxPrice;
   });
 
-  return rangePriceResults;
+  return resultRange;
 };
 
 export const getAllProducts = () => {
@@ -56,29 +63,16 @@ export const getAllProducts = () => {
   return products;
 };
 
-export const getProductByCategory = (categoryName: string) => {
-  const ccategoryNameLowercase = categoryName.toLowerCase();
-
-  const productosFiltrados = products.filter(
-    (producto) => producto.category === ccategoryNameLowercase
-  );
+export const getProductByCategory = (categoria: string) => {
+  const productosFiltrados = products.filter(product => product.category === categoria);
 
   return productosFiltrados;
 };
 
-export const getProductByAscending = (dataArray?: ApiProductoProps[]) => {
-  const productArray = dataArray ? dataArray : products;
-
-  const sortedProducts = [...productArray].sort((a, b) =>
-    a.price.localeCompare(b.price)
-  );
-  return sortedProducts;
+export const getProductByAscending = (dataArray: ApiProductoProps[]) => {
+  return dataArray.slice().sort((a, b) => (a.price > b.price ? 1 : -1));
 };
 
-export const getProductByDescending = (dataArray?: ApiProductoProps[]) => {
-  const productArray = dataArray ? dataArray : products;
-  const sortedProducts = [...productArray].sort((a, b) =>
-    b.price.localeCompare(a.price)
-  );
-  return sortedProducts;
+export const getProductByDescending = (dataArray: ApiProductoProps[]) => {
+  return dataArray.slice().sort((a, b) => (a.price < b.price ? 1 : -1));
 };

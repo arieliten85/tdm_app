@@ -70,7 +70,7 @@ export const apiAllproductosFinal = [
       "https://lh3.googleusercontent.com/pw/AP1GczNUvQHUymi2r7g8VO-Lgf-sCrfM1ySOZg9UFpQlgJwGQqYRS-wUow3rhy9SjOtpzpw-nuaaHBEBymdmx04JYRxKi03nLZywvZqe1HL2E2YBbvjNtKxr0id9xVDADWeyW6itif0O4kj-0TNrFsK9pShT=w768-h1024-s-no?authuser=1",
     title: "Tarta de frutilla",
     description: "Tarta de frutilla con pastelera",
-    price: "$5.50",
+    price: "$5",
     tags: ["frutilla", "dulce", "Tarta", "pastelera"],
     category: "tartas",
     optionalImages: [
@@ -92,7 +92,7 @@ export const apiAllproductosFinal = [
     title: "Tarta de Rocher",
     description:
       "Tarta Ferrero Rocher, una base de brwonie con crama y dulce de leche",
-    price: "$5.50",
+    price: "$4",
     tags: ["frutilla", "dulce", "Tarta", "brwonie"],
     category: "tartas",
     optionalImages: [
@@ -113,7 +113,7 @@ export const apiAllproductosFinal = [
     title: "Tarta de mousse",
     description:
       "La tarta de mousse tiene una base crujiente de masa de vainilla, coronada con una generosa cantidad de mousse de chocolate.",
-    price: "$5.50",
+    price: "$3",
     tags: ["dulce", "Tarta", "mousse"],
     category: "tartas",
     optionalImages: [
@@ -134,7 +134,7 @@ export const apiAllproductosFinal = [
     title: "Tarta de manzana",
     description:
       "La tarta de manzana caramelizada cuenta con una base crujiente de masa quebrada, cubierta con rodajas de manzana caramelizadas con azúcar moreno y un toque de canela.",
-    price: "$5.50",
+    price: "$2",
     tags: ["dulce", "Tarta", "manzana"],
     category: "tartas",
     optionalImages: [

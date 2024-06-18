@@ -1,17 +1,26 @@
-import {
-  NotFoundData,
-  ShowSpinner,
-  TitleCategory,
-} from "../components/utililidades/Components";
+import { NotFoundData, ShowSpinner, TitleCategory } from '../components/utililidades/Components';
 
-import ProductsList from "../components/ProductList/ProductList";
-import { Breadcrumb } from "../components/breadcrumbs/Breadcrumbs";
-import { useProductsContext } from "../context/ProductProvider";
+import ProductsList from '../components/ProductList/ProductList';
+import { Breadcrumb } from '../components/breadcrumbs/Breadcrumbs';
+import { useProductsContext } from '../context/ProductProvider';
+import { useGetParamsLocation } from '../hook/useGetParamsLocation';
+import { useEffect, useState } from 'react';
+import { getProductByTitle } from '../hook/useGetProducts';
+import { ApiProductoProps } from '../types/types';
 
 export const SearchPage = () => {
   const { status, products, errorMessage } = useProductsContext();
+  const [productsFilterd, setProductsFilterd] = useState<ApiProductoProps[]>([]);
+  const { valueTextParamas } = useGetParamsLocation();
 
-  if (status === "loading") {
+  useEffect(() => {
+    if (valueTextParamas) {
+      const searchResults = getProductByTitle(valueTextParamas);
+      setProductsFilterd(searchResults);
+    }
+  }, [valueTextParamas, productsFilterd]);
+
+  if (status === 'loading') {
     return <ShowSpinner />;
   }
 
@@ -22,11 +31,11 @@ export const SearchPage = () => {
           <TitleCategory title="Productos" />
           <Breadcrumb />
 
-          {errorMessage && status === "error" ? (
+          {errorMessage && status === 'error' ? (
             <NotFoundData />
           ) : (
             <>
-              <ProductsList productos={products} />
+              <ProductsList productos={productsFilterd ? productsFilterd : products} />
             </>
           )}
         </div>
