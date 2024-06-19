@@ -49,6 +49,7 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
   const filterRangePrice = () => {
     //RANGE PRICE FILTER
     if (minPriceParamas && maxPriceParamas) {
+      setIsLoading(true);
       const resultRange = getProductByRangePrice({
         numMin: minPriceParamas,
         numMax: maxPriceParamas,
@@ -70,12 +71,14 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
 
   const filterOrderBy = () => {
     if (sort_byParamas?.includes('descending')) {
+      setIsLoading(true);
       const OrderByResultsDescending = getProductByDescending(productsFilterd);
       setTimeout(() => {
         setIsLoading(false);
         setProductsFilterd(OrderByResultsDescending);
       }, 550);
-    } else {
+    } else if (sort_byParamas?.includes('ascending')) {
+      setIsLoading(true);
       const OrderByResultsAscending = getProductByAscending(productsFilterd);
       setTimeout(() => {
         setIsLoading(false);
@@ -86,18 +89,18 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
 
   useEffect(() => {
     if (searchParams.size > 0) {
-      setIsLoading(true);
-      //ORDER BY FILTER
       filterOrderBy();
-      //RANGE PRICE FILTER
-      filterRangePrice();
     }
 
     return () => {
       setErrorMessage('');
       setStatus('success');
     };
-  }, [minPriceParamas, maxPriceParamas, setErrorMessage, setStatus, sort_byParamas]);
+  }, [setErrorMessage, setStatus, sort_byParamas]);
+
+  useEffect(() => {
+    filterRangePrice();
+  }, [minPriceParamas, maxPriceParamas, setStatus, setErrorMessage]);
 
   return (
     <FilterProductsContext.Provider

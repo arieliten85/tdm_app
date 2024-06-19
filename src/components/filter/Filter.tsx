@@ -112,8 +112,6 @@ export const ProductFilter = ({
     }
   }, [sort_byParamas]);
 
-  console.log('active', activeFilter);
-
   return (
     <>
       <div className=" w-100  select-order-container   d-flex  justify-content-between align-items-center">
@@ -135,8 +133,8 @@ export const ProductFilter = ({
             <div className="data-filter-container-mobile ">
               <ShowFilterValue
                 clearFilters={handlerclearFilters}
-                minPriceParamas={minPriceParamas}
-                maxPriceParamas={maxPriceParamas}
+                minPriceParamas={minPrice}
+                maxPriceParamas={maxPrice}
               />
             </div>
           )}
@@ -173,8 +171,8 @@ export const ProductFilter = ({
             <div className="w-50">
               <ShowFilterValue
                 clearFilters={handlerclearFilters}
-                minPriceParamas={minPriceParamas}
-                maxPriceParamas={maxPriceParamas}
+                minPriceParamas={minPrice}
+                maxPriceParamas={maxPrice}
               />
             </div>
           </div>
