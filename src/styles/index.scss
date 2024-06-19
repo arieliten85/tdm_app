@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
 
 ul {
   margin: 0;
@@ -21,15 +21,12 @@ ul {
   --color-red-300: hsl(349, 100%, 70%);
   --color-red-400: hsl(349, 100%, 60%);
   --color-red-500: hsl(349, 100%, 45%);
-  --color-brown-400: #d8ac84;
-  --color-brown-500: #c59c76;
+  --color-brown-400: #bd9276;
+  --color-brown-500: #d6ae93;
 
-  --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 *,
@@ -55,7 +52,7 @@ html {
 
 body {
   //position: relative;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -131,7 +128,7 @@ input.form-control:focus {
 
 @media only screen and (min-width: 62rem) {
   .app {
-    margin-top: 70px !important;
+    margin-top: 60px !important;
   }
 
   .subtitle-container h2 {
