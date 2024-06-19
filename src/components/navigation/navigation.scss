@@ -111,11 +111,11 @@
 .subMenu-productos li p {
   text-transform: uppercase;
   width: max-content;
-  color: #bd9276;
+  color: black;
 }
 
 .subMenu-productos li p:hover {
-  color: #ad7a58;
+  color: black;
   font-weight: bolder;
 }
 
@@ -140,15 +140,15 @@
   width: fit-content;
   display: flex !important;
   justify-content: center !important;
-  border: #c59d77 solid 0.1rem;
-  padding: 10px 10px 2px 10px !important;
+  // border: #c59d77 solid 0.1rem;
+  padding: 0px 10px 2px 10px !important;
 
   .brand {
     position: relative;
     top: 8px;
     font-family: 'Borel', cursive;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.25;
     letter-spacing: -1px;
     color: var(--color-brown-500);
@@ -158,12 +158,13 @@
     margin: 0 !important;
   }
   p {
-    font-size: 11px !important;
+    font-size: 10px !important;
     font-weight: 600;
     color: #c59d77;
     position: relative;
     bottom: 2px;
     text-align: center;
+    z-index: 2;
   }
 }
 @media (min-width: 576px) {
@@ -283,7 +284,7 @@
   left: 0;
   width: 100%;
   height: auto;
-
+  z-index: 1;
   padding-block: 3rem 2rem;
   background: var(--color-white-100);
   box-shadow: var(--shadow-medium);
@@ -291,7 +292,7 @@
 }
 
 .menu.is-active {
-  top: 70px;
+  top: 50px;
   //width: 100%;
   height: inherit;
   z-index: 1;
@@ -312,7 +313,7 @@
   font-weight: 600;
   line-height: inherit;
   text-transform: uppercase !important;
-  color: #d6ae93;
+  color: black;
   transition: all 0.35s ease-in-out;
   padding: 0.5rem;
 }
@@ -323,7 +324,7 @@
 }
 
 .menu-link.active {
-  color: #dd9d72;
+  color: #cb997e;
   font-weight: bolder;
 }
 

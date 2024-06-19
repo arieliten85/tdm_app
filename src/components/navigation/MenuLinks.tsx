@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { FaChevronDown } from "react-icons/fa";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaChevronDown } from 'react-icons/fa';
 
 interface SubRoute {
   path: string;
@@ -30,27 +30,19 @@ export const MenuLinks: React.FC<MenuProps> = ({
 
   return (
     <ul className="menu-inner">
-      {routes.map((route) =>
+      {routes.map(route =>
         route.subRoutes ? (
-          <li
-            key={route.path}
-            className="menu-item menu-item-product"
-            onClick={toggleMenuProducts}
-          >
-            <p
-              className={`menu-link ${
-                location.pathname.startsWith(route.path) ? "active" : ""
-              }`}
-            >
+          <li key={route.path} className="menu-item menu-item-product" onClick={toggleMenuProducts}>
+            <p className={`menu-link ${location.pathname.startsWith(route.path) ? 'active' : ''}`}>
               {route.label}
             </p>
             <FaChevronDown />
             <ul
-              className={`subMenu-productos p-3 ${
-                menuProductActive ? "subMenu-productos-active" : ""
+              className={`subMenu-productos p-  ${
+                menuProductActive ? 'subMenu-productos-active' : ''
               }`}
             >
-              {route.subRoutes.map((subRoute) => (
+              {route.subRoutes.map(subRoute => (
                 <li key={subRoute.path} className="border-bottom">
                   <Link to={subRoute.path} onClick={closeMenu}>
                     <p>{subRoute.label}</p>
@@ -64,14 +56,12 @@ export const MenuLinks: React.FC<MenuProps> = ({
             <Link
               to={route.path}
               onClick={closeMenu}
-              className={`menu-link ${
-                location.pathname === route.path ? "active" : ""
-              }`}
+              className={`menu-link ${location.pathname === route.path ? 'active' : ''}`}
             >
               {route.label}
             </Link>
           </li>
-        )
+        ),
       )}
     </ul>
   );
