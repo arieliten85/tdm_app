@@ -171,14 +171,16 @@ export const ProductosPage = () => {
   // LIMPIAR FILTROS
   const clearFilters = () => {
     setIsLoading(true);
-
-    setProductsFilterd(productRef.current);
-    setIsFilerResults(false);
-    navigate(`/${categoria ? categoria : 'productos'}`);
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsFilerResults(false);
+      setProductsFilterd(productRef.current);
+      navigate(`/${categoria ? categoria : 'productos'}`);
+    }, 500);
   };
 
   if (isLoading) {
+    console.log('entro');
     return <ShowSpinner />;
   }
 

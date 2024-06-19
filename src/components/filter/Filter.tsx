@@ -1,7 +1,7 @@
 import './filter.scss';
 import { useEffect, useState } from 'react';
 import { FaFilter } from 'react-icons/fa';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
@@ -23,8 +23,8 @@ export const ProductFilter = ({
 }: ProductFilterProps) => {
   //HOOK
   const navigate = useNavigate();
-  const { categoria = 'productos' } = useParams();
-  const { minPriceParamas, maxPriceParamas, sort_byParamas } = useGetParamsLocation();
+
+  const { minPriceParamas, maxPriceParamas, sort_byParamas, location } = useGetParamsLocation();
 
   // ESTADOS
   const [minPrice, setMinPrice] = useState('');
@@ -48,45 +48,59 @@ export const ProductFilter = ({
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
 
-    // RANGO DE PRECIO
+    // Validación de rangos
     if (!isNaN(min) && !isNaN(max)) {
-      navigate(`/${categoria}/?min_price=${min}&max_price=${max}`);
+      const currentSearchParams = new URLSearchParams(location.search);
+
+      // Eliminar parámetros anteriores si existen
+      currentSearchParams.delete('min_price');
+      currentSearchParams.delete('max_price');
+
+      // Agregar nuevos parámetros
+      currentSearchParams.set('min_price', min.toString());
+      currentSearchParams.set('max_price', max.toString());
+
+      const newSearch = currentSearchParams.toString();
+      navigate(`${location.pathname}?${newSearch}`);
     }
+
     handleClose();
   };
 
-  // CAPTURO EL VALOR DEL ORDER BY
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(event.target.value);
+    const valueSelect = event.target.value;
+    let newSortParam = '';
+
+    if (valueSelect === '2') {
+      newSortParam = 'price-descending';
+    } else if (valueSelect === '3') {
+      newSortParam = 'price-ascending';
+    }
+
+    // Obtener los parámetros actuales de la URL
+    const currentSearchParams = new URLSearchParams(location.search);
+
+    // Modificar el parámetro 'sort_by'
+    currentSearchParams.set('sort_by', newSortParam);
+
+    // // Reconstruir la nueva URL manteniendo el resto de parámetros
+    const newSearch = currentSearchParams.toString();
+
+    // // Navegar a la nueva URL
+    navigate(`${location.pathname}?${newSearch}`);
+
+    // Cerrar el menú o realizar otras acciones necesarias
+    handleClose();
   };
 
-  // EFECTO PARA ACTUALIZAR ESTADOS
-  useEffect(() => {
-    if (selectedOption === '2') {
-      navigate(`/${categoria}/?sort_by=price-descending`);
-    }
-    if (selectedOption === '3') {
-      navigate(`/${categoria}/?sort_by=price-ascending`);
-    }
-    handleClose();
-  }, [categoria, navigate, selectedOption]);
-
-  // EFECTO PARA ACTUALIZAR ESTADOS
-  useEffect(() => {
-    if (minPriceParamas && maxPriceParamas) {
-      setMinPrice(minPriceParamas);
-      setMaxPrice(maxPriceParamas);
-    } else {
-      setMinPrice('');
-      setMaxPrice('');
-    }
-  }, [minPriceParamas, maxPriceParamas]);
+  // FIJO VALOR SELECCIONADO EN EL SELECT
   useEffect(() => {
     if (sort_byParamas?.includes('descending')) {
       setSelectedOption('2');
-    }
-    if (sort_byParamas?.includes('ascending')) {
+    } else if (sort_byParamas?.includes('ascending')) {
       setSelectedOption('3');
+    } else {
+      setSelectedOption('');
     }
   }, [sort_byParamas]);
 
@@ -94,7 +108,7 @@ export const ProductFilter = ({
     <>
       <div className=" w-100  select-order-container   d-flex  justify-content-between align-items-center">
         <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-end">
-          <div className=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2  ">
             <p>Ordenar por:</p>
             <Form.Select
               aria-label="Default select example select"

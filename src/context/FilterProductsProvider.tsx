@@ -49,55 +49,64 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
   const filterRangePrice = () => {
     //RANGE PRICE FILTER
     if (minPriceParamas && maxPriceParamas) {
+      setIsLoading(true);
       const resultRange = getProductByRangePrice({
         numMin: minPriceParamas,
         numMax: maxPriceParamas,
         dataArray: productsFilterd,
       });
 
-      if (!resultRange.length) {
-        setStatus('error');
-        setErrorMessage('No hay productos para este rango de precios');
-      } else {
+      if (resultRange.length) {
         setTimeout(() => {
           setIsLoading(false);
           setIsFilerResults(true);
           setProductsFilterd(resultRange);
-        }, 550);
+        }, 200);
+      } else {
+        setStatus('error');
+        setErrorMessage('No hay productos para este rango de precios');
       }
     }
   };
 
   const filterOrderBy = () => {
     if (sort_byParamas?.includes('descending')) {
+      setIsLoading(true);
       const OrderByResultsDescending = getProductByDescending(productsFilterd);
-      setTimeout(() => {
-        setIsLoading(false);
-        setProductsFilterd(OrderByResultsDescending);
-      }, 550);
-    } else {
+
+      if (OrderByResultsDescending.length) {
+        setTimeout(() => {
+          setIsLoading(false);
+          setProductsFilterd(OrderByResultsDescending);
+        }, 200);
+      }
+    } else if (sort_byParamas?.includes('ascending')) {
+      setIsLoading(true);
       const OrderByResultsAscending = getProductByAscending(productsFilterd);
-      setTimeout(() => {
-        setIsLoading(false);
-        setProductsFilterd(OrderByResultsAscending);
-      }, 550);
+
+      if (OrderByResultsAscending.length) {
+        setTimeout(() => {
+          setIsLoading(false);
+          setProductsFilterd(OrderByResultsAscending);
+        }, 200);
+      }
     }
   };
 
   useEffect(() => {
     if (searchParams.size > 0) {
-      setIsLoading(true);
-      //ORDER BY FILTER
       filterOrderBy();
-      //RANGE PRICE FILTER
-      filterRangePrice();
     }
 
     return () => {
       setErrorMessage('');
       setStatus('success');
     };
-  }, [minPriceParamas, maxPriceParamas, setErrorMessage, setStatus, sort_byParamas]);
+  }, [setErrorMessage, setStatus, sort_byParamas]);
+
+  useEffect(() => {
+    filterRangePrice();
+  }, [minPriceParamas, maxPriceParamas, setStatus, setErrorMessage]);
 
   return (
     <FilterProductsContext.Provider

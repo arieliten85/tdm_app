@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
 /*   color variables */
 $clr-primary: #0aaf78;
@@ -237,7 +237,7 @@ $clr-gray700: #161d34;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
     padding: 20px;
   }
