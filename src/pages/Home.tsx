@@ -26,7 +26,7 @@ export function Home() {
       <CustomCarousel />
       <div className="flex-center-column">
         <InfoText />
-        <TitleCategory title="Listo para retirar" />
+        <TitleCategory title="Listos para disfrutar" />
         <CardList productos={productosVentaRapida} />
         <AllProductsButton />
       </div>
