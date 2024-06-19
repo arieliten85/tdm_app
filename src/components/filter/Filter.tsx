@@ -93,22 +93,14 @@ export const ProductFilter = ({
     handleClose();
   };
 
-  // EFECTO PARA ACTUALIZAR ESTADOS
-  useEffect(() => {
-    if (minPriceParamas && maxPriceParamas) {
-      setMinPrice(minPriceParamas);
-      setMaxPrice(maxPriceParamas);
-    } else {
-      setMinPrice('');
-      setMaxPrice('');
-    }
-  }, [minPriceParamas, maxPriceParamas]);
+  // FIJO VALOR SELECCIONADO EN EL SELECT
   useEffect(() => {
     if (sort_byParamas?.includes('descending')) {
       setSelectedOption('2');
-    }
-    if (sort_byParamas?.includes('ascending')) {
+    } else if (sort_byParamas?.includes('ascending')) {
       setSelectedOption('3');
+    } else {
+      setSelectedOption('');
     }
   }, [sort_byParamas]);
 
@@ -116,7 +108,7 @@ export const ProductFilter = ({
     <>
       <div className=" w-100  select-order-container   d-flex  justify-content-between align-items-center">
         <div className=" w-100 select-order p-2 d-flex  justify-content-between align-items-end">
-          <div className=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2  ">
             <p>Ordenar por:</p>
             <Form.Select
               aria-label="Default select example select"
@@ -133,8 +125,8 @@ export const ProductFilter = ({
             <div className="data-filter-container-mobile ">
               <ShowFilterValue
                 clearFilters={handlerclearFilters}
-                minPriceParamas={minPrice}
-                maxPriceParamas={maxPrice}
+                minPriceParamas={minPriceParamas}
+                maxPriceParamas={maxPriceParamas}
               />
             </div>
           )}
@@ -171,8 +163,8 @@ export const ProductFilter = ({
             <div className="w-50">
               <ShowFilterValue
                 clearFilters={handlerclearFilters}
-                minPriceParamas={minPrice}
-                maxPriceParamas={maxPrice}
+                minPriceParamas={minPriceParamas}
+                maxPriceParamas={maxPriceParamas}
               />
             </div>
           </div>

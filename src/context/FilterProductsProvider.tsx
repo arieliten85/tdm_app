@@ -56,15 +56,15 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
         dataArray: productsFilterd,
       });
 
-      if (!resultRange.length) {
-        setStatus('error');
-        setErrorMessage('No hay productos para este rango de precios');
-      } else {
+      if (resultRange.length) {
         setTimeout(() => {
           setIsLoading(false);
           setIsFilerResults(true);
           setProductsFilterd(resultRange);
-        }, 550);
+        }, 200);
+      } else {
+        setStatus('error');
+        setErrorMessage('No hay productos para este rango de precios');
       }
     }
   };
@@ -73,17 +73,23 @@ export const FilterProductsProvider: React.FC<{ children: ReactNode }> = ({ chil
     if (sort_byParamas?.includes('descending')) {
       setIsLoading(true);
       const OrderByResultsDescending = getProductByDescending(productsFilterd);
-      setTimeout(() => {
-        setIsLoading(false);
-        setProductsFilterd(OrderByResultsDescending);
-      }, 550);
+
+      if (OrderByResultsDescending.length) {
+        setTimeout(() => {
+          setIsLoading(false);
+          setProductsFilterd(OrderByResultsDescending);
+        }, 200);
+      }
     } else if (sort_byParamas?.includes('ascending')) {
       setIsLoading(true);
       const OrderByResultsAscending = getProductByAscending(productsFilterd);
-      setTimeout(() => {
-        setIsLoading(false);
-        setProductsFilterd(OrderByResultsAscending);
-      }, 550);
+
+      if (OrderByResultsAscending.length) {
+        setTimeout(() => {
+          setIsLoading(false);
+          setProductsFilterd(OrderByResultsAscending);
+        }, 200);
+      }
     }
   };
 
