@@ -1,5 +1,5 @@
 import './filter.scss';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -15,11 +15,13 @@ import { useGetParamsLocation } from '../../hook/useGetParamsLocation';
 interface ProductFilterProps {
   clearFilters: () => void;
   isFilterResults: boolean;
+  setIsFilerResults: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ProductFilter = ({
   clearFilters,
   isFilterResults: activeFilter,
+  setIsFilerResults,
 }: ProductFilterProps) => {
   //HOOK
   const navigate = useNavigate();
@@ -103,6 +105,12 @@ export const ProductFilter = ({
       setSelectedOption('');
     }
   }, [sort_byParamas]);
+
+  useEffect(() => {
+    if (!minPriceParamas && !maxPriceParamas) {
+      setIsFilerResults(false);
+    }
+  }, [minPriceParamas, maxPriceParamas, navigate, setIsFilerResults]);
 
   return (
     <>

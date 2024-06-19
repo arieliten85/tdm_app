@@ -166,6 +166,11 @@ export const ProductosPage = () => {
 
     setIsLoading(false);
     setProductsFilterd(filteredProducts);
+
+    return () => {
+      // Limpiar filtros al desmontar el componente
+      setIsFilerResults(false);
+    };
   }, [categoria, products, setIsLoading, setProductsFilterd]);
 
   // LIMPIAR FILTROS
@@ -180,7 +185,6 @@ export const ProductosPage = () => {
   };
 
   if (isLoading) {
-    console.log('entro');
     return <ShowSpinner />;
   }
 
@@ -194,7 +198,11 @@ export const ProductosPage = () => {
             <NotFoundData />
           ) : (
             <>
-              <ProductFilter clearFilters={clearFilters} isFilterResults={isFilterResults} />
+              <ProductFilter
+                clearFilters={clearFilters}
+                isFilterResults={isFilterResults}
+                setIsFilerResults={setIsFilerResults}
+              />
               <ProductsList productos={productsFilterd} />
             </>
           )}
